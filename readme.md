@@ -24,4 +24,3 @@ To create a build file use
 ```html
 npm run build:tailwind
 ```
-Icons from: https://www.flaticon.com/
