@@ -142,46 +142,83 @@ sections.forEach((sec) => {
 })
 
 
-// ------------- Feature scroll highlight and phone sync ---------------
+// ------------- Feature scroll highlight and phone carousel sync ---------------
 
 const featureItems = document.querySelectorAll('.feature-item')
-const featurePhones = document.querySelectorAll('.feature-phone')
+const phoneCarousel = document.getElementById('phone-carousel')
+const phoneItems = document.querySelectorAll('.phone-carousel-item')
 
 let currentActiveFeature = 0
+const totalFeatures = 5
+const anglePerItem = 360 / totalFeatures // 72 degrees between each phone
+
+// Position each phone in a circle (Y-axis rotation)
+function initCarousel() {
+    phoneItems.forEach((item, index) => {
+        const angle = index * anglePerItem
+        // translateZ pushes the phone outward from center
+        item.style.transform = `rotateY(${angle}deg) translateZ(200px)`
+        if (index === 0) {
+            item.classList.add('active')
+        } else {
+            item.classList.add('behind')
+        }
+    })
+}
+
+// Rotate carousel to show the phone at given index
+function rotateCarouselTo(index) {
+    const rotation = -index * anglePerItem
+    phoneCarousel.style.transform = `rotateY(${rotation}deg)`
+    
+    // Update active/behind states
+    phoneItems.forEach((item, i) => {
+        if (i === index) {
+            item.classList.remove('behind')
+            item.classList.add('active')
+        } else {
+            item.classList.remove('active')
+            item.classList.add('behind')
+        }
+    })
+}
 
 function updateActiveFeature() {
     const viewportCenter = window.innerHeight / 2
+    let closestIndex = 0
+    let closestDistance = Infinity
     
     featureItems.forEach((item, index) => {
         const rect = item.getBoundingClientRect()
         const itemCenter = rect.top + rect.height / 2
         const distanceFromCenter = Math.abs(itemCenter - viewportCenter)
         
-        // Check if this item is closest to center
-        if (distanceFromCenter < rect.height) {
-            if (currentActiveFeature !== index) {
-                currentActiveFeature = index
-                
-                // Update feature items (highlight/blur)
-                featureItems.forEach((f, i) => {
-                    if (i === index) {
-                        f.classList.add('active')
-                    } else {
-                        f.classList.remove('active')
-                    }
-                })
-                
-                // Update phone images
-                featurePhones.forEach((phone, i) => {
-                    if (i === index) {
-                        phone.classList.remove('tw-opacity-0')
-                    } else {
-                        phone.classList.add('tw-opacity-0')
-                    }
-                })
-            }
+        if (distanceFromCenter < closestDistance) {
+            closestDistance = distanceFromCenter
+            closestIndex = index
         }
     })
+    
+    if (currentActiveFeature !== closestIndex) {
+        currentActiveFeature = closestIndex
+        
+        // Update feature text items (highlight/blur)
+        featureItems.forEach((f, i) => {
+            if (i === closestIndex) {
+                f.classList.add('active')
+            } else {
+                f.classList.remove('active')
+            }
+        })
+        
+        // Rotate the phone carousel
+        rotateCarouselTo(closestIndex)
+    }
+}
+
+// Initialize carousel on load
+if (phoneItems.length > 0) {
+    initCarousel()
 }
 
 // Initialize first feature as active

@@ -64,6 +64,62 @@ header > .collapsible-header{
     position: relative;
 }
 
+/* ============ 3D Phone Carousel ============ */
+#phone-carousel-wrapper {
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.phone-carousel {
+    position: relative;
+    width: 380px;
+    height: 760px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease-out;
+}
+
+.phone-carousel-item {
+    position: absolute;
+    width: 380px;
+    height: 760px;
+    backface-visibility: hidden;
+    transition: transform 0.6s ease-out, opacity 0.6s ease-out, filter 0.6s ease-out;
+    border-radius: 24px;
+    overflow: hidden;
+}
+
+.phone-carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Dimmed/behind state for non-active phones */
+.phone-carousel-item.behind {
+    opacity: 0.3;
+    filter: brightness(0.5) blur(2px);
+}
+
+/* Active phone in front */
+.phone-carousel-item.active {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+    z-index: 10;
+}
+
+@media (max-width: 1024px) {
+    .phone-carousel {
+        width: 180px;
+        height: 360px;
+    }
+    .phone-carousel-item {
+        width: 180px;
+        height: 360px;
+    }
+}
+
 
 .header-links:hover {
     color: #ffffff;

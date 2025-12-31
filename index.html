@@ -154,13 +154,9 @@
             >
                 <div
                     class="tw-flex tw-flex-col tw-gap-[200px] tw-h-full tw-max-w-[50%] max-lg:tw-max-w-full tw-px-[10%] max-lg:tw-px-4 max-lg:tw-gap-16 max-lg:tw-w-full lg:tw-top-[20%]"
+                    id="features-text-container"
                 >   
-                    <div class="tw-flex tw-gap-6">
-                        <div class="tw-w-[80px] tw-h-[80px] tw-min-w-[80px] 
-                                    tw-min-h-[80px] 
-                                    max-lg:tw-min-h-[60px] max-lg:tw-min-w-[60px] max-lg:tw-h-[60px] max-lg:tw-w-[60px]">
-                            <img src="./assets/images/icons/unlock.png" alt="unlock" class="tw-object-contain tw-w-full tw-h-full">
-                        </div>
+                    <div class="feature-item tw-flex tw-gap-6 tw-transition-all tw-duration-500" data-feature="0">
                         <h3
                             class="tw-text-4xl tw-font-medium max-lg:tw-text-2xl max-lg:tw-font-normal"
                         >
@@ -168,10 +164,7 @@
                         </h3>
                     </div>
 
-                    <div class="tw-flex tw-gap-6">
-                        <div class="tw-w-[80px] tw-h-[80px] tw-min-w-[80px] tw-min-h-[80px] max-lg:tw-min-h-[60px] max-lg:tw-min-w-[60px] max-lg:tw-h-[60px] max-lg:tw-w-[60px]">
-                            <img src="./assets/images/icons/lighting.png" alt="unlock" class="tw-object-contain tw-w-full tw-h-full">
-                        </div>
+                    <div class="feature-item tw-flex tw-gap-6 tw-transition-all tw-duration-500" data-feature="1">
                         <h3
                             class="tw-text-4xl tw-font-medium max-lg:tw-text-2xl max-lg:tw-font-normal"
                         >
@@ -179,10 +172,7 @@
                         </h3>
                     </div>
 
-                    <div class="tw-flex tw-gap-6">
-                        <div class="tw-w-[80px] tw-h-[80px] tw-min-w-[80px] tw-min-h-[80px] max-lg:tw-min-h-[60px] max-lg:tw-min-w-[60px] max-lg:tw-h-[60px] max-lg:tw-w-[60px]">
-                            <img src="./assets/images/icons/credit-card.png" alt="unlock" class="tw-object-contain tw-w-full tw-h-full">
-                        </div>
+                    <div class="feature-item tw-flex tw-gap-6 tw-transition-all tw-duration-500" data-feature="2">
                         <h3
                             class="tw-text-4xl tw-font-medium max-lg:tw-text-2xl max-lg:tw-font-normal"
                         >
@@ -190,10 +180,7 @@
                         </h3>
                     </div>
 
-                    <div class="tw-flex tw-gap-6">
-                        <div class="tw-w-[80px] tw-h-[80px] tw-min-w-[80px] tw-min-h-[80px] max-lg:tw-min-h-[60px] max-lg:tw-min-w-[60px] max-lg:tw-h-[60px] max-lg:tw-w-[60px]">
-                            <img src="./assets/images/icons/music.png" alt="unlock" class="tw-object-contain tw-w-full tw-h-full">
-                        </div>
+                    <div class="feature-item tw-flex tw-gap-6 tw-transition-all tw-duration-500" data-feature="3">
                         <h3
                             class="tw-text-4xl tw-font-medium max-lg:tw-text-2xl max-lg:tw-font-normal"
                         >
@@ -201,30 +188,40 @@
                         </h3>
                     </div>
 
-                    <div class="tw-flex tw-gap-6">
-                        <div class="tw-w-[80px] tw-h-[80px] tw-min-w-[80px] tw-min-h-[80px] max-lg:tw-min-h-[60px] max-lg:tw-min-w-[60px] max-lg:tw-h-[60px] max-lg:tw-w-[60px]">
-                            <img src="./assets/images/icons/lighting.png" alt="unlock" class="tw-object-contain tw-w-full tw-h-full">
-                        </div>
+                    <div class="feature-item tw-flex tw-gap-6 tw-transition-all tw-duration-500" data-feature="4">
                         <h3
                             class="tw-text-4xl tw-font-medium max-lg:tw-text-2xl max-lg:tw-font-normal"
                         >
-                            Powered by AI trained on published Stanford and Harvard research papers
+                            Seamlessly track your dining halls on one page
                         </h3>
                     </div>
 
                 </div>
 
                 <div
-                    class="tw-relative tw-flex tw-max-w-[30%] max-lg:tw-max-w-full tw-flex-col tw-place-items-start tw-gap-4  tw-p-2 max-lg:tw-place-items-center max-lg:tw-place-content-center max-lg:tw-w-full"
+                    class="tw-relative tw-flex tw-max-w-[40%] max-lg:tw-max-w-full tw-flex-col tw-place-items-center tw-gap-4 tw-p-2 max-lg:tw-place-content-center max-lg:tw-w-full"
                 >
                     <div
-                        class="tw-top-20 lg:tw-sticky tw-max-h-[800px] tw-h-full tw-max-w-[850px] max-lg:tw-max-h-fit max-lg:tw-max-w-[320px] tw-overflow-hidden tw-rounded-lg"
+                        class="tw-top-20 lg:tw-sticky tw-h-[700px] tw-w-[420px] max-lg:tw-h-[500px] max-lg:tw-w-[300px]"
+                        id="phone-carousel-wrapper"
                     >
-                        <img
-                            src="./assets/images/home/phone3.png"
-                            alt="phone"
-                            class="tw-h-full tw-w-full tw-object-contain"
-                        />
+                        <div class="phone-carousel" id="phone-carousel">
+                            <div class="phone-carousel-item" data-index="0">
+                                <img src="./assets/images/home/brandbird-iphone-16.png" alt="Feature 1" />
+                            </div>
+                            <div class="phone-carousel-item" data-index="1">
+                                <img src="./assets/images/home/brandbird-iphone-16(1).png" alt="Feature 2" />
+                            </div>
+                            <div class="phone-carousel-item" data-index="2">
+                                <img src="./assets/images/home/brandbird-iphone-16(5).png" alt="Feature 3" />
+                            </div>
+                            <div class="phone-carousel-item" data-index="3">
+                                <img src="./assets/images/home/brandbird-iphone-16(3).png" alt="Feature 4" />
+                            </div>
+                            <div class="phone-carousel-item" data-index="4">
+                                <img src="./assets/images/home/brandbird-iphone-16(4).png" alt="Feature 5" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
