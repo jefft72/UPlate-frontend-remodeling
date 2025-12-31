@@ -1,6 +1,4 @@
 
-**Github**: https://github.com/PaulleDemon/awesome-landing-pages
-
 ## Usage
 
 * This template uses tailwind css every tailwind class are prefixed with `tw-`, to help differentiate
@@ -26,4 +24,3 @@ To create a build file use
 ```html
 npm run build:tailwind
 ```
-Icons from: https://www.flaticon.com/
