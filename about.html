@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>About Us - UPlate</title>
+        <meta name="description" content="Learn more about UPlate and our mission" />
+        <link
+            rel="shortcut icon"
+            href="./assets/logo/logo.png"
+            type="image/x-icon"
+        />
+
+        <link rel="stylesheet" href="/css/tailwind.css">
+        <link rel="stylesheet" href="css/index.css" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+            integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body
+        class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
+    >
+        <header
+            class="tw-max-w-lg:tw-px-4 tw-max-w-lg:tw-mr-auto tw-absolute tw-top-0 tw-z-20 tw-flex tw-h-[80px] tw-w-full tw-bg-opacity-0 tw-px-[5%] tw-pt-3 lg:tw-justify-around"
+        >
+            <a class="tw-h-[50px] tw-w-[50px] tw-p-[4px]" href="index.html">
+                <img
+                    src="./assets/logo/logo.png"
+                    alt="logo"
+                    class="tw-object tw-h-full tw-w-full"
+                />
+            </a>
+            <div
+                class="collapsible-header animated-collapse max-lg:tw-shadow-md"
+                id="collapsed-header-items"
+            >
+                <div
+                    class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
+                >
+                    <a class="header-links" href="about.html"> About us </a>
+                    <a class="header-links" href="index.html#pricing"> Pricing </a>
+                    <a class="header-links" href="index.html"> Solutions </a>
+                    <a class="header-links" href="index.html"> Features </a>
+                    <a class="header-links" href="index.html"> Company </a>
+                </div>
+                <div
+                    class="tw-mx-4 tw-flex tw-place-items-center tw-gap-[20px] tw-text-base max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center"
+                >
+                    <a
+                        href="https://apps.apple.com/us/app/uplate/id6752828206"
+                        aria-label="download"
+                        class="tw-rounded-full tw-bg-white tw-px-3 tw-py-2 tw-text-black tw-transition-transform tw-duration-[0.3s] hover:tw-translate-x-2"
+                    >
+                        <span>Download</span>
+                        <i class="bi bi-download"></i>
+                    </a>
+                </div>
+            </div>
+            <button
+                class="bi bi-list tw-absolute tw-right-3 tw-top-3 tw-z-50 tw-text-3xl tw-text-white lg:tw-hidden"
+                onclick="toggleHeader()"
+                aria-label="menu"
+                id="collapse-btn"
+            ></button>
+        </header>
+
+        <section
+            class="tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-px-[5%] tw-py-20 max-md:tw-px-4"
+        >
+            <div class="tw-max-w-[900px] tw-flex tw-flex-col tw-gap-8">
+                <h1 class="gradient-text tw-text-5xl tw-font-semibold tw-uppercase max-md:tw-text-4xl">
+                    About Us
+                </h1>
+
+                <div class="tw-flex tw-flex-col tw-gap-6 tw-text-lg tw-text-gray-300">
+                    <h2 class="tw-text-3xl tw-font-medium tw-text-white">Our Mission</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris.
+                    </p>
+
+                    <h2 class="tw-text-3xl tw-font-medium tw-text-white tw-mt-4">Why UPlate?</h2>
+                    <p>
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu 
+                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in 
+                        culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+
+                    <h2 class="tw-text-3xl tw-font-medium tw-text-white tw-mt-4">Our Story</h2>
+                    <p>
+                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium 
+                        doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore 
+                        veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                    </p>
+
+                    <h2 class="tw-text-3xl tw-font-medium tw-text-white tw-mt-4">Our Team</h2>
+                    <p>
+                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, 
+                        sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                    </p>
+                </div>
+
+                <a
+                    href="index.html"
+                    class="btn tw-w-fit tw-bg-[#7e22ce85] tw-transition-transform tw-duration-[0.3s] hover:tw-scale-105"
+                >
+                    Back to Home
+                </a>
+            </div>
+        </section>
+
+        <script src="./index.js"></script>
+    </body>
+</html>

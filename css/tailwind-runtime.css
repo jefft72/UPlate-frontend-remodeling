@@ -643,6 +643,10 @@ video {
   margin-top: auto;
 }
 
+.tw-mt-4 {
+  margin-top: 1rem;
+}
+
 .tw-flex {
   display: flex;
 }
@@ -685,6 +689,10 @@ video {
 
 .tw-h-\[700px\] {
   height: 700px;
+}
+
+.tw-h-\[50vh\] {
+  height: 50vh;
 }
 
 .tw-max-h-\[550px\] {
@@ -752,6 +760,11 @@ video {
   width: 420px;
 }
 
+.tw-w-fit {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 .tw-min-w-\[80px\] {
   min-width: 80px;
 }
@@ -794,6 +807,10 @@ video {
 
 .tw-max-w-\[40\%\] {
   max-width: 40%;
+}
+
+.tw-max-w-\[900px\] {
+  max-width: 900px;
 }
 
 .tw-select-none {
@@ -1044,6 +1061,15 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.tw-py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.tw-pt-3 {
+  padding-top: 0.75rem;
+}
+
 .tw-text-center {
   text-align: center;
 }
@@ -1086,6 +1112,11 @@ video {
 .tw-text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.tw-text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .tw-font-medium {
@@ -1230,6 +1261,12 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:tw-scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .hover\:tw-scale-x-\[1\.03\]:hover {
   --tw-scale-x: 1.03;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1274,6 +1311,10 @@ video {
 
   .max-lg\:tw-h-\[500px\] {
     height: 500px;
+  }
+
+  .max-lg\:tw-h-\[30vh\] {
+    height: 30vh;
   }
 
   .max-lg\:tw-max-h-fit {
@@ -1397,6 +1438,11 @@ video {
     padding-right: 0.5rem;
   }
 
+  .max-md\:tw-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .max-md\:tw-text-2xl {
     font-size: 1.5rem;
     line-height: 2rem;
@@ -1420,6 +1466,11 @@ video {
   .max-md\:tw-text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .max-md\:tw-text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
   .max-md\:tw-leading-snug {
