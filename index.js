@@ -7,36 +7,119 @@ let isHeaderCollapsed = window.innerWidth < RESPONSIVE_WIDTH
 const collapseBtn = document.getElementById("collapse-btn")
 const collapseHeaderItems = document.getElementById("collapsed-header-items")
 
+// ============ INTRO SCREEN WITH TYPEWRITER ============
+const introScreen = document.getElementById("intro-screen")
+const mainSite = document.getElementById("main-site")
+const enterBtn = document.getElementById("enter-btn")
+const typewriterText = document.getElementById("typewriter-text")
 
+const phrases = [
+    "BETTER FOOD.",
+    "BETTER TRACKING.",
+    "BETTER HEALTH."
+]
 
-function onHeaderClickOutside(e) {
+let currentPhraseIndex = 0
+let currentCharIndex = 0
+let isDeleting = false
+let typingSpeed = 80
 
-    if (!collapseHeaderItems.contains(e.target)) {
-        toggleHeader()
+function typeWriter() {
+    const currentPhrase = phrases[currentPhraseIndex]
+    
+    if (!isDeleting) {
+        // Typing
+        typewriterText.textContent = currentPhrase.substring(0, currentCharIndex + 1)
+        currentCharIndex++
+        
+        if (currentCharIndex === currentPhrase.length) {
+            // Finished typing current phrase
+            if (currentPhraseIndex < phrases.length - 1) {
+                // Pause before deleting
+                setTimeout(() => {
+                    isDeleting = true
+                    typeWriter()
+                }, 800)
+            }
+            // If last phrase, just keep it displayed
+            return
+        }
+    } else {
+        // Deleting
+        typewriterText.textContent = currentPhrase.substring(0, currentCharIndex - 1)
+        currentCharIndex--
+        
+        if (currentCharIndex === 0) {
+            isDeleting = false
+            currentPhraseIndex++
+            setTimeout(typeWriter, 300)
+            return
+        }
     }
+    
+    const speed = isDeleting ? typingSpeed / 2 : typingSpeed
+    setTimeout(typeWriter, speed)
+}
 
+function enterSite() {
+    introScreen.classList.add("hidden")
+    mainSite.classList.add("visible")
+    document.body.style.overflow = "auto"
+    
+    // Store in session so intro doesn't show again during this visit
+    sessionStorage.setItem("introSeen", "true")
+}
+
+// Check if user has already seen intro this session
+if (sessionStorage.getItem("introSeen")) {
+    introScreen.style.display = "none"
+    mainSite.classList.add("visible")
+} else {
+    document.body.style.overflow = "hidden"
+    // Start typewriter after a brief delay
+    setTimeout(typeWriter, 500)
+}
+
+// Enter button click
+if (enterBtn) {
+    enterBtn.addEventListener("click", enterSite)
+}
+
+// Also allow clicking anywhere on intro after animation completes
+if (introScreen) {
+    setTimeout(() => {
+        introScreen.addEventListener("click", (e) => {
+            if (e.target === introScreen || e.target.closest(".intro-content")) {
+                enterSite()
+            }
+        })
+    }, 3000)
 }
 
 
+
+// ============ HEADER TOGGLE ============
+function onHeaderClickOutside(e) {
+    if (!collapseHeaderItems.contains(e.target)) {
+        toggleHeader()
+    }
+}
+
 function toggleHeader() {
     if (isHeaderCollapsed) {
-        // collapseHeaderItems.classList.remove("max-md:tw-opacity-0")
-        collapseHeaderItems.classList.add("opacity-100",)
-        collapseHeaderItems.style.width = "60vw"
+        collapseHeaderItems.classList.add("opacity-100")
+        collapseHeaderItems.style.width = "280px"
         collapseBtn.classList.remove("bi-list")
-        collapseBtn.classList.add("bi-x", "max-lg:tw-fixed")
+        collapseBtn.classList.add("bi-x")
         isHeaderCollapsed = false
-
         setTimeout(() => window.addEventListener("click", onHeaderClickOutside), 1)
-
     } else {
         collapseHeaderItems.classList.remove("opacity-100")
-        collapseHeaderItems.style.width = "0vw"
-        collapseBtn.classList.remove("bi-x", "max-lg:tw-fixed")
+        collapseHeaderItems.style.width = "0px"
+        collapseBtn.classList.remove("bi-x")
         collapseBtn.classList.add("bi-list")
         isHeaderCollapsed = true
         window.removeEventListener("click", onHeaderClickOutside)
-
     }
 }
 
@@ -78,19 +161,15 @@ gsap.to(".reveal-up", {
 
 // straightens the slanting image
 gsap.to("#dashboard", {
-
     scale: 1,
     translateY: 0,
-    // translateY: "0%",
     rotateX: "0deg",
     scrollTrigger: {
         trigger: "#hero-section",
         start: "top 80%",
-        end: "bottom bottom",
+        end: "60% center",
         scrub: 1,
-        // markers: true,
     }
-
 })
 
 const faqAccordion = document.querySelectorAll('.faq-accordion')

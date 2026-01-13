@@ -11,6 +11,11 @@
             type="image/x-icon"
         />
 
+        <!-- SF Pro Display Font (Apple-style) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
         <link rel="stylesheet" href="/css/tailwind.css">
         <link rel="stylesheet" href="css/index.css" />
 
@@ -26,43 +31,42 @@
         class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
     >
         <header
-            class="tw-max-w-lg:tw-px-4 tw-max-w-lg:tw-mr-auto tw-absolute tw-top-0 tw-z-20 tw-flex tw-h-[80px] tw-w-full tw-bg-opacity-0 tw-px-[5%] tw-pt-3 lg:tw-justify-around"
+            class="header-glass tw-fixed tw-top-0 tw-z-50 tw-flex tw-h-[72px] tw-w-full tw-items-center tw-justify-between tw-px-[5%] lg:tw-px-[8%]"
         >
-            <a class="tw-h-[50px] tw-w-[50px] tw-p-[4px]" href="index.html">
+            <a class="tw-flex tw-items-center tw-gap-3" href="index.html">
                 <img
                     src="./assets/logo/logo.png"
                     alt="logo"
-                    class="tw-object tw-h-full tw-w-full"
+                    class="tw-h-[40px] tw-w-[40px] tw-object-contain"
                 />
+                <span class="tw-text-xl tw-font-semibold tw-tracking-tight">UPlate</span>
             </a>
-            <div
+            <nav
                 class="collapsible-header animated-collapse max-lg:tw-shadow-md"
                 id="collapsed-header-items"
             >
                 <div
-                    class="tw-flex tw-h-full tw-w-max tw-gap-5 tw-text-base max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
+                    class="tw-flex tw-h-full tw-w-max tw-gap-8 tw-text-sm tw-font-medium max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
                 >
-                    <a class="header-links" href="about.html"> About us </a>
-                    <a class="header-links" href="index.html#pricing"> Pricing </a>
-                    <a class="header-links" href="index.html"> Solutions </a>
-                    <a class="header-links" href="index.html"> Features </a>
-                    <a class="header-links" href="index.html"> Company </a>
+                    <a class="header-links" href="about.html">About</a>
+                    <a class="header-links" href="index.html#features">Features</a>
+                    <a class="header-links" href="index.html#faq">FAQ</a>
                 </div>
                 <div
-                    class="tw-mx-4 tw-flex tw-place-items-center tw-gap-[20px] tw-text-base max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center"
+                    class="tw-ml-8 tw-flex tw-place-items-center tw-gap-4 max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center max-md:tw-ml-0 max-md:tw-mt-6"
                 >
                     <a
                         href="https://apps.apple.com/us/app/uplate/id6752828206"
-                        aria-label="download"
-                        class="tw-rounded-full tw-bg-white tw-px-3 tw-py-2 tw-text-black tw-transition-transform tw-duration-[0.3s] hover:tw-translate-x-2"
+                        aria-label="Download"
+                        class="glass-btn tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-transition-all tw-duration-300 hover:tw-scale-105"
                     >
                         <span>Download</span>
-                        <i class="bi bi-download"></i>
+                        <i class="bi bi-apple tw-ml-2"></i>
                     </a>
                 </div>
-            </div>
+            </nav>
             <button
-                class="bi bi-list tw-absolute tw-right-3 tw-top-3 tw-z-50 tw-text-3xl tw-text-white lg:tw-hidden"
+                class="bi bi-list tw-text-2xl tw-text-white lg:tw-hidden"
                 onclick="toggleHeader()"
                 aria-label="menu"
                 id="collapse-btn"
@@ -70,53 +74,105 @@
         </header>
 
         <section
-            class="tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-max-w-[100vw] tw-flex-col tw-place-content-center tw-place-items-center tw-px-[5%] tw-py-20 max-md:tw-px-4"
+            class="tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-flex-col tw-items-center tw-px-[5%] lg:tw-px-[8%] tw-pt-[120px] tw-pb-20"
         >
-            <div class="tw-max-w-[900px] tw-flex tw-flex-col tw-gap-8">
-                <h1 class="gradient-text tw-text-5xl tw-font-semibold tw-uppercase max-md:tw-text-4xl">
-                    About Us
-                </h1>
+            <!-- Subtle gradient orb background -->
+            <div class="hero-glow"></div>
 
-                <div class="tw-flex tw-flex-col tw-gap-6 tw-text-lg tw-text-gray-300">
-                    <h2 class="tw-text-3xl tw-font-medium tw-text-white">Our Mission</h2>
-                    <p>
-                        A 2023 Michigan State University study revealed that across 27,000 students, 
-                        every one in six had a dietary restriction. In 2018, it was one in eight. 
-                        Whether it be a religious or life-threatening issue, its becoming clear that 
-                        there is a prevalent need for an accessible, safer way for students to 
-                        reliably get the food they deserve. <br> 
-                        <br>
-                        At UPlate, our mission is to empower students. And it doesn't have to stop at 
-                        dietary restrictions. <br>
-                        <br>
-                        Bottom line is, we believe that students deserve to take control of their nutrition.<br>
-                        <br>
-                        Leading nutrition apps are finnicky when it comes to estimating the macros of
-                        obscure dining hall specific meals, and they often require tedious manual input. 
-                        With UPlate, however, you can feel confident knowing you're getting reliable,
-                        accurate nutrition about the food served to you, without the guessing and checking. <br>
-                        <br>
-                        UPlate is your one-stop meal prep solution for anyone looking to take control of their nutrition. 
-                    </p>
+            <div class="tw-max-w-[900px] tw-flex tw-flex-col tw-gap-8 tw-relative tw-z-10">
+                <div>
+                    <h1 class="tw-text-5xl tw-font-semibold tw-tracking-tight tw-mb-4 max-md:tw-text-4xl">
+                        About Us
+                    </h1>
+                </div>
 
-                    <h2 class="tw-text-3xl tw-font-medium tw-text-white tw-mt-4">Our Team</h2>
-                    <p>
-                        We are a team of 3 freshman CS students from Purdue University, hoping to eventually
-                        make a positive impact on college campuses across the nation. UPlate started as an idea
-                        at a hackathon, but we soon realized that this was a problem worth solving. Since then, 
-                        we've worked tirelessly to bring UPlate to life, and we couldn't be more excited to share 
-                        it with you.
+                <div class="tw-flex tw-flex-col tw-gap-6 tw-text-lg tw-text-gray-300 tw-leading-relaxed">
+                    <div>
+                        <h2 class="tw-text-2xl tw-font-medium tw-text-white tw-mb-4">Our Mission</h2>
+                        <p>
+                            A 2023 Michigan State University study revealed that across 27,000 students, every one in six had a dietary restriction. In 2018, it was one in eight. Whether it be a religious or life-threatening issue, it's becoming clear that there is a prevalent need for an accessible, safer way for students to reliably get the food they deserve.
+                        </p>
+                        <p class="tw-mt-4">
+                            At UPlate, our mission is to empower students. And it doesn't have to stop at dietary restrictions.
+                        </p>
+                        <p class="tw-mt-4">
+                            Bottom line is, students deserve to take control of their nutrition.
+                        </p>
+                        <p class="tw-mt-4">
+                            Leading nutrition apps are finnicky when it comes to estimating the macros of obscure dining hall specific meals, and they often require tedious manual input. With UPlate, however, you can feel confident knowing you're getting reliable, accurate nutrition about the food served to you, without the guessing and checking.
+                        </p>
+                        <p class="tw-mt-4">
+                            UPlate is your one-stop meal prep solution for anyone looking to take control of their nutrition.
+                        </p>
+                    </div>
+
+                    <div class="tw-mt-4">
+                        <h2 class="tw-text-2xl tw-font-medium tw-text-white tw-mb-4">Our Team</h2>
+                        <p>
+                            We are a team of 3 freshman CS students from Purdue University, hoping to eventually make a positive impact on college campuses across the nation. UPlate started as an idea at a hackathon, but we soon realized that this was a problem worth solving. Since then, we've worked tirelessly to bring UPlate to life, and we couldn't be more excited to share it with you.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="tw-mt-8 tw-flex tw-gap-4 max-md:tw-flex-col max-md:tw-w-full">
+                    <a
+                        href="index.html"
+                        class="primary-btn"
+                    >
+                        Back to Home
+                    </a>
+                    <a
+                        href="https://apps.apple.com/us/app/uplate/id6752828206"
+                        class="secondary-btn"
+                    >
+                        Download App
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <footer
+            class="tw-border-t tw-border-white/10 tw-py-16 tw-px-[8%]"
+        >
+            <div class="tw-max-w-[1200px] tw-mx-auto tw-flex tw-justify-between tw-gap-12 max-md:tw-flex-col">
+                <div class="tw-flex tw-flex-col tw-gap-6">
+                    <div class="tw-flex tw-items-center tw-gap-3">
+                        <img
+                            src="./assets/logo/logo.png"
+                            alt="logo"
+                            class="tw-w-[40px] tw-h-[40px] tw-object-contain"
+                        />
+                        <span class="tw-text-xl tw-font-semibold">UPlate</span>
+                    </div>
+                    <p class="tw-text-gray-500 tw-text-sm tw-max-w-[250px]">
+                        Your AI-powered university meal prep companion.
                     </p>
                 </div>
 
-                <a
-                    href="index.html"
-                    class="btn tw-w-fit tw-bg-[#7e22ce85] tw-transition-transform tw-duration-[0.3s] hover:tw-scale-105"
-                >
-                    Back to Home
-                </a>
+                <div class="tw-flex tw-gap-20 max-md:tw-gap-12">
+                    <div class="tw-flex tw-flex-col tw-gap-4">
+                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Product</h3>
+                        <div class="tw-flex tw-flex-col tw-gap-3 tw-text-sm">
+                            <a href="index.html#features" class="footer-link">Features</a>
+                            <a href="index.html#faq" class="footer-link">FAQ</a>
+                            <a href="index.html" class="footer-link">Home</a>
+                        </div>
+                    </div>
+
+                    <div class="tw-flex tw-flex-col tw-gap-4">
+                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Company</h3>
+                        <div class="tw-flex tw-flex-col tw-gap-3 tw-text-sm">
+                            <a href="about.html" class="footer-link">About</a>
+                            <a href="index.html" class="footer-link">Contact</a>
+                            <a href="index.html" class="footer-link">Privacy</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="tw-max-w-[1200px] tw-mx-auto tw-mt-12 tw-pt-8 tw-border-t tw-border-white/5 tw-text-center tw-text-sm tw-text-gray-600">
+                © 2026 UPlate. All rights reserved.
+            </div>
+        </footer>
 
         <script src="./index.js"></script>
     </body>
