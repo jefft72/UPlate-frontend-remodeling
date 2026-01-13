@@ -226,8 +226,9 @@ sections.forEach((sec) => {
 const featureItems = document.querySelectorAll('.feature-item')
 const phoneCarousel = document.getElementById('phone-carousel')
 const phoneItems = document.querySelectorAll('.phone-carousel-item')
+const featuresSection = document.getElementById('features')
 
-let currentActiveFeature = 0
+let currentActiveFeature = -1
 const totalFeatures = 5
 const anglePerItem = 360 / totalFeatures // 72 degrees between each phone
 
@@ -263,35 +264,35 @@ function rotateCarouselTo(index) {
 }
 
 function updateActiveFeature() {
-    const viewportCenter = window.innerHeight / 2
-    let closestIndex = 0
-    let closestDistance = Infinity
+    const scrollContainer = document.getElementById('features-scroll-container')
+    if (!scrollContainer) return
     
+    const containerRect = scrollContainer.getBoundingClientRect()
+    const containerTop = containerRect.top
+    const containerHeight = containerRect.height
+    
+    // Calculate scroll progress through the container (0 to 1)
+    // When container top is at viewport top, progress = 0
+    // When container bottom is at viewport top, progress = 1
+    const scrollProgress = Math.max(0, Math.min(1, -containerTop / (containerHeight - window.innerHeight)))
+    
+    // Determine which feature to show based on scroll progress
+    const featureProgress = scrollProgress * totalFeatures
+    const activeIndex = Math.min(Math.floor(featureProgress), totalFeatures - 1)
+    
+    // Update feature items - only show the active one
     featureItems.forEach((item, index) => {
-        const rect = item.getBoundingClientRect()
-        const itemCenter = rect.top + rect.height / 2
-        const distanceFromCenter = Math.abs(itemCenter - viewportCenter)
-        
-        if (distanceFromCenter < closestDistance) {
-            closestDistance = distanceFromCenter
-            closestIndex = index
+        if (index === activeIndex) {
+            item.classList.add('active')
+        } else {
+            item.classList.remove('active')
         }
     })
     
-    if (currentActiveFeature !== closestIndex) {
-        currentActiveFeature = closestIndex
-        
-        // Update feature text items (highlight/blur)
-        featureItems.forEach((f, i) => {
-            if (i === closestIndex) {
-                f.classList.add('active')
-            } else {
-                f.classList.remove('active')
-            }
-        })
-        
-        // Rotate the phone carousel
-        rotateCarouselTo(closestIndex)
+    // Update phone carousel
+    if (currentActiveFeature !== activeIndex) {
+        currentActiveFeature = activeIndex
+        rotateCarouselTo(activeIndex)
     }
 }
 
@@ -300,14 +301,12 @@ if (phoneItems.length > 0) {
     initCarousel()
 }
 
-// Initialize first feature as active
-if (featureItems.length > 0) {
-    featureItems[0].classList.add('active')
-}
+// Don't initialize first feature as active - let scroll reveal it
+// featureItems start with opacity 0 via CSS
 
 // Listen to scroll events
 window.addEventListener('scroll', updateActiveFeature)
 window.addEventListener('resize', updateActiveFeature)
 
-// Initial check
-updateActiveFeature()
+// Initial check after a small delay to let layout settle
+setTimeout(updateActiveFeature, 100)
