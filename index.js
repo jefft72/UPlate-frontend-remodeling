@@ -270,28 +270,29 @@ function updateActiveFeature() {
     const containerRect = scrollContainer.getBoundingClientRect()
     const containerTop = containerRect.top
     const containerHeight = containerRect.height
+    const viewportHeight = window.innerHeight
     
     // Calculate scroll progress through the container (0 to 1)
-    // When container top is at viewport top, progress = 0
-    // When container bottom is at viewport top, progress = 1
-    const scrollProgress = Math.max(0, Math.min(1, -containerTop / (containerHeight - window.innerHeight)))
+    const scrollableDistance = containerHeight - viewportHeight
+    const scrollProgress = Math.max(0, Math.min(1, -containerTop / scrollableDistance))
     
     // Determine which feature to show based on scroll progress
-    const featureProgress = scrollProgress * totalFeatures
-    const activeIndex = Math.min(Math.floor(featureProgress), totalFeatures - 1)
+    const activeIndex = Math.min(Math.floor(scrollProgress * totalFeatures), totalFeatures - 1)
     
-    // Update feature items - only show the active one
-    featureItems.forEach((item, index) => {
-        if (index === activeIndex) {
-            item.classList.add('active')
-        } else {
-            item.classList.remove('active')
-        }
-    })
-    
-    // Update phone carousel
-    if (currentActiveFeature !== activeIndex) {
+    // Only update if the index actually changed
+    if (activeIndex !== currentActiveFeature) {
         currentActiveFeature = activeIndex
+        
+        // Update feature items - only show the active one
+        featureItems.forEach((item, index) => {
+            if (index === activeIndex) {
+                item.classList.add('active')
+            } else {
+                item.classList.remove('active')
+            }
+        })
+        
+        // Rotate the phone carousel with smooth animation
         rotateCarouselTo(activeIndex)
     }
 }
@@ -300,9 +301,6 @@ function updateActiveFeature() {
 if (phoneItems.length > 0) {
     initCarousel()
 }
-
-// Don't initialize first feature as active - let scroll reveal it
-// featureItems start with opacity 0 via CSS
 
 // Listen to scroll events
 window.addEventListener('scroll', updateActiveFeature)
