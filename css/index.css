@@ -656,3 +656,103 @@ header > .collapsible-header {
     }
     
 }
+
+/* ============ ABOUT PAGE - TEAM CARDS ============ */
+.pc-card-wrapper {
+  position: relative;
+  width: 320px;
+  --card-opacity: 0;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+}
+
+.pc-behind {
+  display: none;
+}
+
+.pc-card {
+  height: 420px;
+  border-radius: 20px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transform: rotateX(var(--rotate-y)) rotateY(var(--rotate-x));
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pc-card:hover {
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.pc-card-wrapper:hover { --card-opacity: 1; }
+
+.pc-inside {
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+
+.pc-shine {
+  display: none;
+}
+
+.pc-glare {
+  display: none;
+}
+
+.pc-avatar-content .avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: none;
+  transition: transform 0.3s ease;
+  border-radius: 20px;
+}
+
+.pc-card:hover .avatar {
+  transform: scale(1.05);
+}
+
+.pc-user-info {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.pc-user-details { display: flex; align-items: center; gap: 12px; }
+.pc-user-text { display: flex; flex-direction: column; }
+.pc-handle { font-size: 14px; font-weight: 600; color: #fff; }
+
+.pc-contact-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.pc-contact-btn:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.05);
+}
