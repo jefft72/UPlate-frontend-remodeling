@@ -117,18 +117,19 @@ html {
 
 /* ============ HEADER - GLASSMORPHISM ============ */
 .header-glass {
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px) saturate(160%);
+    -webkit-backdrop-filter: blur(12px) saturate(160%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 header > .collapsible-header {
     display: flex;
     gap: 1rem;
-    background-color: inherit;
+    background-color: transparent;
     place-content: center;
-    overflow: hidden;
+    align-items: center;
+    overflow: visible;
     transition: width 0.3s ease;
 }
 
