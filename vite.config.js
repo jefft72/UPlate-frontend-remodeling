@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 
 export default defineConfig({
-  base: '/UPlate-frontend-remodeling/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
