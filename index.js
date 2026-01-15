@@ -1,4 +1,4 @@
-// CSS imports for Vite bundling
+// Vite bundling imports 
 import './css/tailwind.css'
 import './css/index.css'
 
@@ -12,7 +12,7 @@ let isHeaderCollapsed = window.innerWidth < RESPONSIVE_WIDTH
 const collapseBtn = document.getElementById("collapse-btn")
 const collapseHeaderItems = document.getElementById("collapsed-header-items")
 
-// ============ INTRO SCREEN WITH TYPEWRITER ============
+// Typewriter effect 
 const introScreen = document.getElementById("intro-screen")
 const mainSite = document.getElementById("main-site")
 const enterBtn = document.getElementById("enter-btn")
@@ -75,7 +75,7 @@ function enterSite() {
     sessionStorage.setItem("introSeen", "true")
 }
 
-// Check if user has already seen intro this session
+// Check if user has already seen intro this session (maybe we should do it so every reload it types again? just a thought)
 if (sessionStorage.getItem("introSeen")) {
     introScreen.style.display = "none"
     mainSite.classList.add("visible")
@@ -90,7 +90,7 @@ if (enterBtn) {
     enterBtn.addEventListener("click", enterSite)
 }
 
-// Also allow clicking anywhere on intro after animation completes
+// Also allow clicking anywhere on intro after animation completes post delay 
 if (introScreen) {
     setTimeout(() => {
         introScreen.addEventListener("click", (e) => {
@@ -103,7 +103,7 @@ if (introScreen) {
 
 
 
-// ============ HEADER TOGGLE ============
+// Header
 function onHeaderClickOutside(e) {
     if (!collapseHeaderItems.contains(e.target)) {
         toggleHeader()
@@ -200,7 +200,7 @@ faqAccordion.forEach(function (btn) {
 
 
 
-// ------------- reveal section animations ---------------
+// Section reveal animations
 
 const sections = gsap.utils.toArray("section")
 
@@ -226,7 +226,7 @@ sections.forEach((sec) => {
 })
 
 
-// ------------- Feature scroll highlight and phone carousel sync ---------------
+// Scroll highlight and phone carousel sync 
 
 const featureItems = document.querySelectorAll('.feature-item')
 const phoneCarousel = document.getElementById('phone-carousel')
@@ -237,7 +237,7 @@ let currentActiveFeature = -1
 const totalFeatures = 5
 const anglePerItem = 360 / totalFeatures // 72 degrees between each phone
 
-// Position each phone in a circle (Y-axis rotation)
+// Y-axis rotation
 function initCarousel() {
     phoneItems.forEach((item, index) => {
         const angle = index * anglePerItem
@@ -317,7 +317,7 @@ setTimeout(updateActiveFeature, 100)
 // Export toggleHeader to global scope for HTML onclick
 window.toggleHeader = toggleHeader
 
-} // End of init function
+} 
 
 // Run init when DOM is ready
 if (document.readyState === 'loading') {

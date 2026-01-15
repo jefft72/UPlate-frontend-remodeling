@@ -11,7 +11,7 @@
             type="image/x-icon"
         />
 
-        <!-- SF Pro Display Font (Apple-style) -->
+        <!-- Apple font -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -24,7 +24,7 @@
             referrerpolicy="no-referrer"
         />
 
-        <!-- GSAP must load before our module script -->
+        <!-- GSAP must load before our module script, it was screwing up phone carousel loading and animation -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
             integrity="sha512-B1lby8cGcAUU3GR+Fd809/ZxgHbfwJMp0jLTVfHiArTuUt++VqSlJpaJvhNtRf3NERaxDNmmxkdx2o+aHd4bvw=="
@@ -37,6 +37,25 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
         ></script>
+
+        <!-- Mobile-only overrides for team cards -->
+        <style>
+            @media (max-width: 640px) {
+                .pc-user-info {
+                    left: 16px;
+                    right: 16px;
+                    padding: 8px 10px;
+                    gap: 6px;
+                }
+                .pc-handle {
+                    font-size: 11px;
+                }
+                .pc-contact-btn {
+                    padding: 3px 8px;
+                    font-size: 10px;
+                }
+            }
+        </style>
     </head>
     <body
         class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white tw-overflow-x-hidden"
@@ -87,7 +106,7 @@
         <section
             class="tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-flex-col tw-items-center tw-px-4 sm:tw-px-[5%] lg:tw-px-[8%] tw-pt-[120px] tw-pb-20 tw-overflow-x-hidden tw-box-border"
         >
-            <!-- Subtle gradient orb background -->
+            <!-- gradient orb background -->
             <div class="hero-glow"></div>
 
             <div class="tw-max-w-[900px] tw-w-full tw-flex tw-flex-col tw-gap-8 tw-relative tw-z-10 tw-overflow-hidden tw-box-border">
