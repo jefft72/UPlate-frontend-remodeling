@@ -1,3 +1,7 @@
+// CSS imports for Vite bundling
+import './css/tailwind.css'
+import './css/index.css'
+
 // initialization
 
 const RESPONSIVE_WIDTH = 1024
