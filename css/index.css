@@ -660,7 +660,7 @@ header > .collapsible-header {
 /* ============ ABOUT PAGE - TEAM CARDS ============ */
 .pc-card-wrapper {
   position: relative;
-  width: 520px;
+  width: 440px;
   --card-opacity: 0;
   --rotate-x: 0deg;
   --rotate-y: 0deg;
@@ -671,7 +671,7 @@ header > .collapsible-header {
 }
 
 .pc-card {
-  height: 420px;
+  height: 400px;
   border-radius: 24px;
   position: relative;
   background: rgba(255, 255, 255, 0.08);
@@ -726,28 +726,28 @@ header > .collapsible-header {
 .pc-user-info {
   position: absolute;
   bottom: 24px;
-  left: 20px;
-  right: 20px;
-  background: rgba(40, 40, 40, 0.85);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-radius: 14px;
-  padding: 14px 18px;
+  left: 8px;
+  right: 8px;
+  background: rgba(50, 50, 50, 0.30);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 12px 16px 12px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
 }
 
-.pc-user-details { display: flex; align-items: center; gap: 12px; min-width: 0; flex: 1; }
-.pc-user-text { display: flex; flex-direction: column; min-width: 0; }
-.pc-handle { font-size: 15px; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc-user-details { display: flex; align-items: center; gap: 12px; }
+.pc-user-text { display: flex; flex-direction: column; }
+.pc-handle { font-size: 14px; font-weight: 600; color: #fff; }
 
 .pc-contact-btn {
-  padding: 10px 18px;
+  padding: 8px 16px;
   border-radius: 20px;
-  background: rgba(255,255,255,0.15);
+  background: rgba(80, 80, 80, 0.95);
   color: #fff;
   font-size: 13px;
   font-weight: 500;
@@ -760,6 +760,6 @@ header > .collapsible-header {
 }
 
 .pc-contact-btn:hover {
-  background: rgba(255,255,255,0.25);
+  background: rgba(100, 100, 100, 0.9);
   transform: scale(1.05);
 }
