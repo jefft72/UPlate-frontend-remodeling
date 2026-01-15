@@ -2,7 +2,8 @@
 import './css/tailwind.css'
 import './css/index.css'
 
-// initialization
+// Wrap everything in init function to ensure DOM is ready
+function init() {
 
 const RESPONSIVE_WIDTH = 1024
 
@@ -312,3 +313,15 @@ window.addEventListener('resize', updateActiveFeature)
 
 // Initial check after a small delay to let layout settle
 setTimeout(updateActiveFeature, 100)
+
+// Export toggleHeader to global scope for HTML onclick
+window.toggleHeader = toggleHeader
+
+} // End of init function
+
+// Run init when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init)
+} else {
+    init()
+}
