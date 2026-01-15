@@ -8,6 +8,7 @@
       "build:tailwind": "cross-env NODE_ENV=production tailwindcss --postcss -i tailwind.css -o tailwind-build.css --minify",
       "dev": "vite",
       "build": "vite build",
+      "build:prod": "npm run build:tailwind && vite build",
       "preview": "vite preview --port 8080",
       "test": "echo \"Error: no test specified\" && exit 1"
     },
