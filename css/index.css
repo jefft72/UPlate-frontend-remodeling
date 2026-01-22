@@ -376,6 +376,12 @@ header>.collapsible-header {
     pointer-events: auto;
 }
 
+/* isolate sticky container's 3D context FOR FIREFOX/ZEN BROWSERS */
+#features-scroll-container > .tw-sticky {
+    transform-style: flat;
+    -webkit-transform-style: flat;
+}
+
 /* ============ 3D Phone Carousel ============ */
 #phone-carousel-wrapper {
     perspective: 1200px;
@@ -409,7 +415,7 @@ header>.collapsible-header {
 }
 
 .phone-carousel-item.behind {
-    opacity: 0.2;
+    opacity: 0;
     filter: brightness(0.4) blur(4px);
 }
 
@@ -417,6 +423,33 @@ header>.collapsible-header {
     opacity: 1;
     filter: brightness(1) blur(0);
     z-index: 10;
+}
+
+/* ============ FIREFOX/ZEN FIX: Disable 3D carousel, use 2D fade ============ */
+@-moz-document url-prefix() {
+    #phone-carousel-wrapper {
+        perspective: none;
+    }
+    
+    .phone-carousel {
+        transform-style: flat !important;
+        transform: none !important;
+    }
+    
+    .phone-carousel-item {
+        transform: none !important;
+        backface-visibility: visible;
+        left: 0;
+        top: 0;
+    }
+    
+    .phone-carousel-item.behind {
+        opacity: 0;
+    }
+    
+    .phone-carousel-item.active {
+        opacity: 1;
+    }
 }
 
 @media (max-width: 1024px) {

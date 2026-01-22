@@ -50,13 +50,15 @@ function typeWriter() {
             return
         }
     } else {
-        // Deleting
-        typewriterText.textContent = currentPhrase.substring(0, currentCharIndex - 1)
-        currentCharIndex--
-        
-        if (currentCharIndex === 0) {
+        // Deleting - but keep "BETTER " (7 characters)
+        if (currentCharIndex > 7) {
+            currentCharIndex--
+            typewriterText.textContent = currentPhrase.substring(0, currentCharIndex)
+        } else {
+            // Reached "BETTER ", move to next phrase
             isDeleting = false
             currentPhraseIndex++
+            currentCharIndex = 7 // Start after "BETTER "
             setTimeout(typeWriter, 300)
             return
         }
@@ -70,35 +72,40 @@ function enterSite() {
     introScreen.classList.add("hidden")
     mainSite.classList.add("visible")
     document.body.style.overflow = "auto"
-    
-    // Store in session so intro doesn't show again during this visit
+    // Mark that user has seen the intro this session
     sessionStorage.setItem("introSeen", "true")
 }
 
-// Check if user has already seen intro this session (maybe we should do it so every reload it types again? just a thought)
-if (sessionStorage.getItem("introSeen")) {
-    introScreen.style.display = "none"
-    mainSite.classList.add("visible")
-} else {
-    document.body.style.overflow = "hidden"
-    // Start typewriter after a brief delay
-    setTimeout(typeWriter, 500)
-}
+// Only run intro/typewriter on home page (where intro-screen exists)
+// AND only if user hasn't seen it this session
+if (introScreen && typewriterText) {
+    const hasSeenIntro = sessionStorage.getItem("introSeen")
+    
+    if (hasSeenIntro) {
+        // Skip intro, go straight to main site
+        introScreen.classList.add("hidden")
+        mainSite.classList.add("visible")
+        document.body.style.overflow = "auto"
+    } else {
+        // Show intro on first visit
+        document.body.style.overflow = "hidden"
+        // Start typewriter after a brief delay
+        setTimeout(typeWriter, 500)
 
-// Enter button click
-if (enterBtn) {
-    enterBtn.addEventListener("click", enterSite)
-}
+        // Enter button click
+        if (enterBtn) {
+            enterBtn.addEventListener("click", enterSite)
+        }
 
-// Also allow clicking anywhere on intro after animation completes post delay 
-if (introScreen) {
-    setTimeout(() => {
-        introScreen.addEventListener("click", (e) => {
-            if (e.target === introScreen || e.target.closest(".intro-content")) {
-                enterSite()
-            }
-        })
-    }, 3000)
+        // Also allow clicking anywhere on intro after animation completes post delay 
+        setTimeout(() => {
+            introScreen.addEventListener("click", (e) => {
+                if (e.target === introScreen || e.target.closest(".intro-content")) {
+                    enterSite()
+                }
+            })
+        }, 3000)
+    }
 }
 
 
