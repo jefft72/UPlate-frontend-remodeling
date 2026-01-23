@@ -93,8 +93,12 @@ function isAndroid() {
 // App store URLs
 const APP_STORE_IOS = 'https://apps.apple.com/us/app/uplate/id6752828206'
 const APP_STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.njr.boilerFuel' 
+
+// API endpoint for referral tracking
+const REFERRAL_API = 'https://boilerbites.com/purdue/referrals/createAttempt'
+
 // Check for referral code in URL params
-// Supports: ?ref=CODE or path like /ref/CODE (from Porkbun wildcard redirect)
+// Supports: ?ref=CODE&handle=IG_HANDLE or path like /ref/CODE (from Porkbun wildcard redirect)
 function getReferralCode() {
     const urlParams = new URLSearchParams(window.location.search)
     
@@ -110,6 +114,12 @@ function getReferralCode() {
     }
     
     return null
+}
+
+// Get referrer's Instagram handle from URL params
+function getReferrerHandle() {
+    const urlParams = new URLSearchParams(window.location.search)
+    return urlParams.get('handle') || ''
 }
 
 // Format referral code for display (e.g., "john_doe" → "John Doe")
@@ -153,25 +163,51 @@ function showReferralModal(referralCode) {
     setTimeout(() => referralFullnameInput.focus(), 400)
 }
 
-function handleReferralSubmit(e) {
+async function handleReferralSubmit(e) {
     e.preventDefault()
     
     const fullName = referralFullnameInput.value.trim()
     if (!fullName) return
     
     const referralCode = getReferralCode()
+    const referrerHandle = getReferrerHandle()
+    const referrerName = formatReferrerName(referralCode)
     
-    // Store referral data in localStorage for the app to read later
+    // Disable button while processing
+    const submitBtn = document.getElementById('referral-submit')
+    const originalBtnText = referralBtnText.textContent
+    submitBtn.disabled = true
+    referralBtnText.textContent = 'Processing...'
+    
+    try {
+        // Call the referral API to record this attempt
+        const apiUrl = `${REFERRAL_API}?name=${encodeURIComponent(fullName)}&referredBy=${encodeURIComponent(referrerName)}&referrerHandle=${encodeURIComponent(referrerHandle)}`
+        
+        const response = await fetch(apiUrl, {
+            method: 'GET', // or 'POST' if the API expects that
+            mode: 'cors'
+        })
+        
+        if (!response.ok) {
+            console.warn('Referral API returned non-OK status:', response.status)
+            // Continue anyway - don't block the user from downloading
+        }
+        
+    } catch (error) {
+        // Log error but don't block the user
+        console.error('Referral API error:', error)
+    }
+    
+    // Store referral data in localStorage as backup
     const referralData = {
         referralCode: referralCode,
+        referrerHandle: referrerHandle,
         referredUserName: fullName,
         timestamp: new Date().toISOString(),
         source: window.location.href,
         platform: isAndroid() ? 'android' : 'ios'
     }
     localStorage.setItem('uplate_referral', JSON.stringify(referralData))
-    
-    // Also store in sessionStorage as backup
     sessionStorage.setItem('uplate_referral', JSON.stringify(referralData))
     
     // Mark intro as seen
