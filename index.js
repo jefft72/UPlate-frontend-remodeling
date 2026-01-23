@@ -76,9 +76,122 @@ function enterSite() {
     sessionStorage.setItem("introSeen", "true")
 }
 
-// Only run intro/typewriter on home page (where intro-screen exists)
-// AND only if user hasn't seen it this session
-if (introScreen && typewriterText) {
+// ============ REFERRAL SYSTEM ============
+const referralModal = document.getElementById("referral-modal")
+const referralForm = document.getElementById("referral-form")
+const referrerNameSpan = document.getElementById("referrer-name")
+const referralFullnameInput = document.getElementById("referral-fullname")
+const referralBtnIcon = document.getElementById("referral-btn-icon")
+const referralBtnText = document.getElementById("referral-btn-text")
+
+// Detect if user is on Android
+function isAndroid() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera
+    return /android/i.test(ua)
+}
+
+// App store URLs
+const APP_STORE_IOS = 'https://apps.apple.com/us/app/uplate/id6752828206'
+const APP_STORE_ANDROID = 'https://play.google.com/store/apps/details?id=com.njr.boilerFuel' 
+// Check for referral code in URL params
+// Supports: ?ref=CODE or path like /ref/CODE (from Porkbun wildcard redirect)
+function getReferralCode() {
+    const urlParams = new URLSearchParams(window.location.search)
+    
+    // Check query param: ?ref=CODE
+    if (urlParams.has('ref')) {
+        return urlParams.get('ref')
+    }
+    
+    // Check path: /ref/CODE or just the last segment if redirected
+    const pathParts = window.location.pathname.split('/').filter(Boolean)
+    if (pathParts.length > 0 && pathParts[0] === 'ref' && pathParts[1]) {
+        return pathParts[1]
+    }
+    
+    return null
+}
+
+// Format referral code for display (e.g., "john_doe" → "John Doe")
+function formatReferrerName(code) {
+    if (!code) return ''
+    return code
+        .replace(/[_-]/g, ' ')
+        .replace(/\b\w/g, c => c.toUpperCase())
+}
+
+function showReferralModal(referralCode) {
+    // Hide intro screen immediately
+    if (introScreen) {
+        introScreen.classList.add("hidden")
+    }
+    
+    // Show main site behind modal
+    if (mainSite) {
+        mainSite.classList.add("visible")
+    }
+    
+    // Set referrer name
+    referrerNameSpan.textContent = formatReferrerName(referralCode)
+    
+    // Update button for Android vs iOS
+    if (isAndroid()) {
+        if (referralBtnIcon) {
+            referralBtnIcon.classList.remove('bi-apple')
+            referralBtnIcon.classList.add('bi-google-play')
+        }
+        if (referralBtnText) {
+            referralBtnText.textContent = 'Download for Android'
+        }
+    }
+    
+    // Show modal
+    referralModal.classList.remove("tw-hidden")
+    document.body.style.overflow = "hidden"
+    
+    // Focus input
+    setTimeout(() => referralFullnameInput.focus(), 400)
+}
+
+function handleReferralSubmit(e) {
+    e.preventDefault()
+    
+    const fullName = referralFullnameInput.value.trim()
+    if (!fullName) return
+    
+    const referralCode = getReferralCode()
+    
+    // Store referral data in localStorage for the app to read later
+    const referralData = {
+        referralCode: referralCode,
+        referredUserName: fullName,
+        timestamp: new Date().toISOString(),
+        source: window.location.href,
+        platform: isAndroid() ? 'android' : 'ios'
+    }
+    localStorage.setItem('uplate_referral', JSON.stringify(referralData))
+    
+    // Also store in sessionStorage as backup
+    sessionStorage.setItem('uplate_referral', JSON.stringify(referralData))
+    
+    // Mark intro as seen
+    sessionStorage.setItem("introSeen", "true")
+    
+    // Redirect to appropriate App Store
+    window.location.href = isAndroid() ? APP_STORE_ANDROID : APP_STORE_IOS
+}
+
+// Initialize referral system
+const referralCode = getReferralCode()
+
+if (referralCode && referralModal) {
+    // User came from a referral link - show the modal
+    showReferralModal(referralCode)
+    
+    // Handle form submission
+    referralForm.addEventListener('submit', handleReferralSubmit)
+} else if (introScreen && typewriterText) {
+    // Normal flow - check for intro
     const hasSeenIntro = sessionStorage.getItem("introSeen")
     
     if (hasSeenIntro) {

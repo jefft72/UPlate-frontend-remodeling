@@ -64,6 +64,39 @@
             <div class="intro-hint">Click to enter</div>
         </div>
 
+        <!-- REFERRAL POPUP MODAL -->
+        <div id="referral-modal" class="referral-modal tw-hidden">
+            <div class="referral-modal-backdrop"></div>
+            <div class="referral-modal-content">
+                <div class="referral-modal-header">
+                    <img src="./assets/logo/logo.png" alt="UPlate" class="tw-w-12 tw-h-12 tw-mb-4" />
+                    <h2 class="tw-text-2xl tw-font-semibold tw-mb-2">Welcome to UPlate!</h2>
+                    <p class="tw-text-gray-400 tw-text-sm">You've been referred by <span id="referrer-name" class="tw-text-white tw-font-medium"></span></p>
+                </div>
+                <form id="referral-form" class="referral-form">
+                    <div class="tw-mb-4">
+                        <label for="referral-fullname" class="tw-block tw-text-sm tw-font-medium tw-mb-2">Enter your full name</label>
+                        <input 
+                            type="text" 
+                            id="referral-fullname" 
+                            name="fullname" 
+                            required
+                            placeholder=""
+                            class="referral-input"
+                        />
+                    </div>
+                    <p class="tw-text-amber-400 tw-text-xs tw-mb-6 tw-flex tw-items-start tw-gap-2">
+                        <i class="bi bi-exclamation-triangle-fill tw-mt-0.5"></i>
+                        <span>Make sure to use the <strong>same name</strong> when registering in the app so your referral counts!</span>
+                    </p>
+                    <button type="submit" id="referral-submit" class="referral-submit-btn">
+                        <i id="referral-btn-icon" class="bi bi-apple tw-mr-2"></i>
+                        <span id="referral-btn-text">Download for iOS</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
         <!-- MAIN SITE WRAPPER -->
         <div id="main-site" class="main-site">
         <header
