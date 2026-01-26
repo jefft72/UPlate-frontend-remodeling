@@ -1,204 +1,153 @@
 <!doctype html>
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>UPlate</title>
 
-        <link rel="stylesheet" href="./css/tailwind-build.css">
-        <link rel="stylesheet" href="./css/index.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UPlate</title>
 
-        <meta name="description" content="Your University Meal Prep Buddy - Better Food. Better Tracking. Better Health." />
-        <link
-            rel="shortcut icon"
-            href="./assets/logo/logo.png"
-            type="image/x-icon"
-        />
+    <link rel="stylesheet" href="./css/tailwind-build.css">
+    <link rel="stylesheet" href="./css/index.css">
 
-        <meta property="og:url" content="https://u-plate.com" />
+    <meta name="description" content="Your University Meal Prep Buddy - Better Food. Better Tracking. Better Health." />
+    <link rel="shortcut icon" href="./assets/logo/logo.png" type="image/x-icon" />
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:title" content="UPlate - University Meal Prep" />
-        <meta property="og:description" content="Better Food. Better Tracking. Better Health." />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="" />
-        <meta name="apple-itunes-app" content="app-id=6752828206">
+    <meta property="og:url" content="https://u-plate.com" />
 
-        <!-- SF Pro Display Font (Apple-style) -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:title" content="UPlate - University Meal Prep" />
+    <meta property="og:description" content="Better Food. Better Tracking. Better Health." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <!-- <meta name="apple-itunes-app" content="app-id=6752828206"> -->
 
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
-            integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        />
+    <!-- SF Pro Display Font (Apple-style) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        <!-- GSAP must load before our module script -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
-            integrity="sha512-B1lby8cGcAUU3GR+Fd809/ZxgHbfwJMp0jLTVfHiArTuUt++VqSlJpaJvhNtRf3NERaxDNmmxkdx2o+aHd4bvw=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"
-            integrity="sha512-AY2+JxnBETJ0wcXnLPCcZJIJx0eimyhz3OJ55k2Jx4RtYC+XdIi2VtJQ+tP3BaTst4otlGG1TtPJ9fKrAUnRdQ=="
-            crossorigin="anonymous"
-            referrerpolicy="no-referrer"
-        ></script>
-    </head>
-    <body
-        class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white"
-    >
-        <!-- INTRO LANDING SCREEN -->
-        <div id="intro-screen" class="intro-screen">
-            <div class="intro-content">
-                <div id="typewriter-text" class="typewriter-text"></div>
-            </div>
-            <button id="enter-btn" class="enter-btn" aria-label="Enter site">
-                <i class="bi bi-arrow-right"></i>
-            </button>
-            <div class="intro-hint">Click to enter</div>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
+        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- GSAP must load before our module script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/gsap.min.js"
+        integrity="sha512-B1lby8cGcAUU3GR+Fd809/ZxgHbfwJMp0jLTVfHiArTuUt++VqSlJpaJvhNtRf3NERaxDNmmxkdx2o+aHd4bvw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"
+        integrity="sha512-AY2+JxnBETJ0wcXnLPCcZJIJx0eimyhz3OJ55k2Jx4RtYC+XdIi2VtJQ+tP3BaTst4otlGG1TtPJ9fKrAUnRdQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white">
+    <!-- INTRO LANDING SCREEN -->
+    <div id="intro-screen" class="intro-screen">
+        <div class="intro-content">
+            <div id="typewriter-text" class="typewriter-text"></div>
         </div>
+        <button id="enter-btn" class="enter-btn" aria-label="Enter site">
+            <i class="bi bi-arrow-right"></i>
+        </button>
+        <div class="intro-hint">Click to enter</div>
+    </div>
 
-        <!-- REFERRAL POPUP MODAL -->
-        <div id="referral-modal" class="referral-modal tw-hidden">
-            <div class="referral-modal-backdrop"></div>
-            <div class="referral-modal-content">
-                <div class="referral-modal-header">
-                    <img src="./assets/logo/logo.png" alt="UPlate" class="tw-w-12 tw-h-12 tw-mb-4" />
-                    <h2 class="tw-text-2xl tw-font-semibold tw-mb-2">Welcome to UPlate!</h2>
-                    <p class="tw-text-gray-400 tw-text-sm">You've been referred by <span id="referrer-name" class="tw-text-white tw-font-medium"></span></p>
+    <!-- REFERRAL POPUP MODAL -->
+    <div id="referral-modal" class="referral-modal tw-hidden">
+        <div class="referral-modal-backdrop"></div>
+        <div class="referral-modal-content">
+            <div class="referral-modal-header">
+                <img src="./assets/logo/logo.png" alt="UPlate" class="tw-w-12 tw-h-12 tw-mb-4" />
+                <h2 class="tw-text-2xl tw-font-semibold tw-mb-2">Welcome to UPlate!</h2>
+                <p class="tw-text-gray-400 tw-text-sm">You've been referred by <span id="referrer-name"
+                        class="tw-text-white tw-font-medium"></span></p>
+            </div>
+            <form id="referral-form" class="referral-form">
+                <div class="tw-mb-4">
+                    <label for="referral-fullname" class="tw-block tw-text-sm tw-font-medium tw-mb-2">Enter your full
+                        name</label>
+                    <input type="text" id="referral-fullname" name="fullname" required placeholder=""
+                        class="referral-input" />
                 </div>
-                <form id="referral-form" class="referral-form">
-                    <div class="tw-mb-4">
-                        <label for="referral-fullname" class="tw-block tw-text-sm tw-font-medium tw-mb-2">Enter your full name</label>
-                        <input 
-                            type="text" 
-                            id="referral-fullname" 
-                            name="fullname" 
-                            required
-                            placeholder=""
-                            class="referral-input"
-                        />
-                    </div>
-                    <p class="tw-text-amber-400 tw-text-xs tw-mb-6 tw-flex tw-items-start tw-gap-2">
-                        <i class="bi bi-exclamation-triangle-fill tw-mt-0.5"></i>
-                        <span>Make sure to use the <strong>same name</strong> when registering in the app so your referral counts!</span>
-                    </p>
-                    <button type="submit" id="referral-submit" class="referral-submit-btn">
-                        <i id="referral-btn-icon" class="bi bi-apple tw-mr-2"></i>
-                        <span id="referral-btn-text">Download for iOS</span>
-                    </button>
-                </form>
-            </div>
+                <p class="tw-text-amber-400 tw-text-xs tw-mb-6 tw-flex tw-items-start tw-gap-2">
+                    <i class="bi bi-exclamation-triangle-fill tw-mt-0.5"></i>
+                    <span>Make sure to use the <strong>same name</strong> when registering in the app so your referral
+                        counts!</span>
+                </p>
+                <button type="submit" id="referral-submit" class="referral-submit-btn">
+                    <i id="referral-btn-icon" class="bi bi-apple tw-mr-2"></i>
+                    <span id="referral-btn-text">Download for iOS</span>
+                </button>
+            </form>
         </div>
+    </div>
 
-        <!-- MAIN SITE WRAPPER -->
-        <div id="main-site" class="main-site">
+    <!-- MAIN SITE WRAPPER -->
+    <div id="main-site" class="main-site">
         <header
-            class="header-glass tw-fixed tw-top-0 tw-z-50 tw-flex tw-h-[72px] tw-w-full tw-items-center tw-justify-between tw-px-[5%] lg:tw-px-[8%]"
-        >
+            class="header-glass tw-fixed tw-top-0 tw-z-50 tw-flex tw-h-[72px] tw-w-full tw-items-center tw-justify-between tw-px-[5%] lg:tw-px-[8%]">
             <a class="tw-flex tw-items-center tw-gap-3" href="">
-                <img
-                    src="./assets/logo/logo.png"
-                    alt="logo"
-                    class="tw-h-[40px] tw-w-[40px] tw-object-contain"
-                />
+                <img src="./assets/logo/logo.png" alt="logo" class="tw-h-[40px] tw-w-[40px] tw-object-contain" />
                 <span class="tw-text-xl tw-font-semibold tw-tracking-tight">UPlate</span>
             </a>
-            <nav
-                class="collapsible-header animated-collapse max-lg:tw-shadow-md"
-                id="collapsed-header-items"
-            >
+            <nav class="collapsible-header animated-collapse max-lg:tw-shadow-md" id="collapsed-header-items">
                 <div
-                    class="tw-flex tw-h-full tw-w-max tw-gap-8 tw-text-sm tw-font-medium max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center"
-                >
+                    class="tw-flex tw-h-full tw-w-max tw-gap-8 tw-text-sm tw-font-medium max-lg:tw-mt-[30px] max-lg:tw-flex-col max-lg:tw-place-items-end max-lg:tw-gap-5 lg:tw-mx-auto lg:tw-place-items-center">
                     <a class="header-links" href="about.html">About</a>
                     <a class="header-links" href="#features">Features</a>
                     <a class="header-links" href="#faq">FAQ</a>
                 </div>
                 <div
-                    class="tw-ml-8 tw-flex tw-place-items-center tw-gap-4 max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center max-md:tw-ml-0 max-md:tw-mt-6"
-                >
-                    <a
-                        href="https://apps.apple.com/us/app/uplate/id6752828206"
-                        aria-label="Download"
-                        class="glass-btn tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-transition-all tw-duration-300 hover:tw-scale-105"
-                    >
+                    class="tw-ml-8 tw-flex tw-place-items-center tw-gap-4 max-md:tw-w-full max-md:tw-flex-col max-md:tw-place-content-center max-md:tw-ml-0 max-md:tw-mt-6">
+                    <a href="https://apps.apple.com/us/app/uplate/id6752828206" aria-label="Download"
+                        class="glass-btn tw-rounded-full tw-px-5 tw-py-2.5 tw-text-sm tw-font-medium tw-transition-all tw-duration-300 hover:tw-scale-105">
                         <span>Download</span>
                         <i class="bi bi-apple tw-ml-2"></i>
                     </a>
                 </div>
             </nav>
-            <button
-                class="bi bi-list tw-text-2xl tw-text-white lg:tw-hidden"
-                onclick="toggleHeader()"
-                aria-label="menu"
-                id="collapse-btn"
-            ></button>
+            <button class="bi bi-list tw-text-2xl tw-text-white lg:tw-hidden" onclick="toggleHeader()" aria-label="menu"
+                id="collapse-btn"></button>
         </header>
 
         <section
             class="hero-section tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-flex-col tw-overflow-hidden tw-pt-[120px] tw-pb-20"
-            id="hero-section"
-        >
-            <div
-                class="tw-flex tw-h-full tw-w-full tw-flex-col tw-items-center tw-gap-8 tw-px-[5%]"
-            >
+            id="hero-section">
+            <div class="tw-flex tw-h-full tw-w-full tw-flex-col tw-items-center tw-gap-8 tw-px-[5%]">
                 <!-- Subtle gradient orb background -->
                 <div class="hero-glow"></div>
-                
-                <div
-                    class="tw-flex tw-flex-col tw-items-center tw-text-center tw-relative tw-z-10"
-                >
+
+                <div class="tw-flex tw-flex-col tw-items-center tw-text-center tw-relative tw-z-10">
                     <h1
-                        class="hero-title tw-text-6xl tw-font-semibold tw-tracking-tight tw-leading-[1.1] max-lg:tw-text-5xl max-md:tw-text-4xl"
-                    >
-                        Your University<br/>
+                        class="hero-title tw-text-6xl tw-font-semibold tw-tracking-tight tw-leading-[1.1] max-lg:tw-text-5xl max-md:tw-text-4xl">
+                        Your University<br />
                         <span class="gradient-text-apple">Meal Prep Buddy</span>
                     </h1>
-                    <p class="tw-mt-6 tw-max-w-[500px] tw-text-xl tw-text-gray-400 tw-font-light max-md:tw-text-lg max-md:tw-max-w-full">
+                    <p
+                        class="tw-mt-6 tw-max-w-[500px] tw-text-xl tw-text-gray-400 tw-font-light max-md:tw-text-lg max-md:tw-max-w-full">
                         AI-powered meal planning designed for the way you eat on campus.
                     </p>
 
-                    <div
-                        class="tw-mt-10 tw-flex tw-items-center tw-gap-4 max-md:tw-flex-col"
-                    >
-                        <a
-                            class="primary-btn tw-flex tw-items-center tw-gap-2"
-                            href="https://apps.apple.com/us/app/uplate/id6752828206"
-                        >
+                    <div class="tw-mt-10 tw-flex tw-items-center tw-gap-4 max-md:tw-flex-col">
+                        <a class="primary-btn tw-flex tw-items-center tw-gap-2"
+                            href="https://apps.apple.com/us/app/uplate/id6752828206">
                             <i class="bi bi-apple"></i>
                             Download for iOS
                         </a>
-                        <a
-                            class="secondary-btn tw-flex tw-items-center tw-gap-2"
-                            href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel"
-                        >
+                        <a class="secondary-btn tw-flex tw-items-center tw-gap-2"
+                            href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel">
                             <i class="bi bi-android2"></i>
                             Download for Android
                         </a>
                     </div>
                 </div>
 
-                <div
-                    class="reveal-up tw-relative tw-mt-12 tw-flex tw-w-full tw-justify-center"
-                    id="dashboard-container"
-                >
-                    <div
-                        class="tw-relative tw-max-w-[700px] tw-overflow-hidden tw-rounded-[40px] max-md:tw-max-w-full"
-                        id="dashboard"
-                    >
+                <div class="reveal-up tw-relative tw-mt-12 tw-flex tw-w-full tw-justify-center"
+                    id="dashboard-container">
+                    <div class="tw-relative tw-max-w-[700px] tw-overflow-hidden tw-rounded-[40px] max-md:tw-max-w-full"
+                        id="dashboard">
                         <div class="phone-glow"></div>
-                        <img
-                            src="./assets/images/home/phone.png"
-                            alt="UPlate App"
-                            class="tw-w-full tw-object-contain tw-relative tw-z-10"
-                        />
+                        <img src="./assets/images/home/phone.png" alt="UPlate App"
+                            class="tw-w-full tw-object-contain tw-relative tw-z-10" />
                     </div>
                 </div>
             </div>
@@ -206,42 +155,43 @@
 
         <section
             class="tw-relative tw-flex tw-min-h-[100vh] tw-w-full tw-flex-col tw-items-center tw-px-[5%] lg:tw-px-[8%] tw-py-16"
-            id="features"
-        >
+            id="features">
             <div class="section-header tw-text-center tw-mb-20">
                 <h2 class="tw-text-5xl tw-font-semibold tw-tracking-tight max-md:tw-text-3xl">
-                    The Future of<br/>Campus Dining
+                    The Future of<br />Campus Dining
                 </h2>
             </div>
-            
+
             <!-- Scroll trigger area for the features -->
             <div class="tw-h-[550vh] tw-relative tw-w-full tw-max-w-[1400px]" id="features-scroll-container">
                 <!-- Sticky container holds both phone and text cards -->
-                <div class="tw-sticky tw-top-0 tw-h-screen tw-flex tw-items-center tw-justify-center tw-gap-16 max-lg:tw-flex-col max-lg:tw-gap-8">
-                    
+                <div
+                    class="tw-sticky tw-top-0 tw-h-screen tw-flex tw-items-center tw-justify-center tw-gap-16 max-lg:tw-flex-col max-lg:tw-gap-8">
+
                     <!-- Phone carousel on the left -->
                     <div class="tw-relative tw-flex tw-flex-col tw-items-center">
-                        <div class="tw-h-[600px] tw-w-[400px] max-lg:tw-h-[350px] max-lg:tw-w-[240px]" id="phone-carousel-wrapper">
+                        <div class="tw-h-[600px] tw-w-[400px] max-lg:tw-h-[350px] max-lg:tw-w-[240px]"
+                            id="phone-carousel-wrapper">
                             <div class="phone-carousel" id="phone-carousel">
-                            <div class="phone-carousel-item" data-index="0">
-                                <img src="./assets/images/home/brandbird-iphone-16.png" alt="Feature 1" />
-                            </div>
-                            <div class="phone-carousel-item" data-index="1">
-                                <img src="./assets/images/home/brandbird-iphone-16(1).png" alt="Feature 2" />
-                            </div>
-                            <div class="phone-carousel-item" data-index="2">
-                                <img src="./assets/images/home/brandbird-iphone-16(5).png" alt="Feature 3" />
-                            </div>
-                            <div class="phone-carousel-item" data-index="3">
-                                <img src="./assets/images/home/brandbird-iphone-16(3).png" alt="Feature 4" />
-                            </div>
-                            <div class="phone-carousel-item" data-index="4">
-                                <img src="./assets/images/home/brandbird-iphone-16(4).png" alt="Feature 5" />
+                                <div class="phone-carousel-item" data-index="0">
+                                    <img src="./assets/images/home/brandbird-iphone-16.png" alt="Feature 1" />
+                                </div>
+                                <div class="phone-carousel-item" data-index="1">
+                                    <img src="./assets/images/home/brandbird-iphone-16(1).png" alt="Feature 2" />
+                                </div>
+                                <div class="phone-carousel-item" data-index="2">
+                                    <img src="./assets/images/home/brandbird-iphone-16(5).png" alt="Feature 3" />
+                                </div>
+                                <div class="phone-carousel-item" data-index="3">
+                                    <img src="./assets/images/home/brandbird-iphone-16(3).png" alt="Feature 4" />
+                                </div>
+                                <div class="phone-carousel-item" data-index="4">
+                                    <img src="./assets/images/home/brandbird-iphone-16(4).png" alt="Feature 5" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                    
+
                     <!-- Stacked feature cards on the right -->
                     <div class="feature-slides-container" id="features-text-container">
                         <div class="feature-item" data-feature="0">
@@ -318,21 +268,16 @@
             </div>
         </section>
 
-      
+
         <section
-            class="tw-relative tw-flex tw-w-full tw-flex-col tw-items-center tw-px-[5%] lg:tw-px-[8%] tw-py-16 tw-pb-32"
-        >
+            class="tw-relative tw-flex tw-w-full tw-flex-col tw-items-center tw-px-[5%] lg:tw-px-[8%] tw-py-16 tw-pb-32">
             <div class="section-header tw-text-center tw-mb-10">
                 <h2 class="tw-text-5xl tw-font-semibold tw-tracking-tight max-md:tw-text-3xl">
                     Everything You Need
                 </h2>
             </div>
-            <div
-                class="tw-flex tw-flex-col tw-items-center tw-gap-8 tw-w-full tw-max-w-[1400px]"
-            >
-                <div
-                    class="tw-grid tw-grid-cols-2 tw-max-w-[1000px] tw-gap-6 max-lg:tw-grid-cols-1"
-                >
+            <div class="tw-flex tw-flex-col tw-items-center tw-gap-8 tw-w-full tw-max-w-[1400px]">
+                <div class="tw-grid tw-grid-cols-2 tw-max-w-[1000px] tw-gap-6 max-lg:tw-grid-cols-1">
                     <div class="glass-card feature-grid-card">
                         <div class="feature-icon-small">
                             <i class="bi bi-globe2"></i>
@@ -391,47 +336,39 @@
                 </div>
             </div>
         </section>
-        
-        <section
-            class="tw-flex tw-w-full tw-flex-col tw-items-center tw-gap-8 tw-py-16 tw-px-[5%] lg:tw-px-[8%]"
-            id="faq"
-        >
+
+        <section class="tw-flex tw-w-full tw-flex-col tw-items-center tw-gap-8 tw-py-16 tw-px-[5%] lg:tw-px-[8%]"
+            id="faq">
             <div class="section-header tw-text-center">
                 <h2 class="tw-text-5xl tw-font-semibold tw-tracking-tight max-md:tw-text-3xl">
                     Frequently Asked
                 </h2>
             </div>
-            <div
-                class="tw-flex tw-w-full tw-max-w-[700px] tw-flex-col tw-gap-3"
-            >
+            <div class="tw-flex tw-w-full tw-max-w-[700px] tw-flex-col tw-gap-3">
                 <div class="faq glass-card-dark">
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium"
-                    >
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
                         <span>What makes UPlate different?</span>
                         <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
                     </div>
                     <div class="content">
-                        UPlate is the only meal prep app built specifically for university students, powered by AI trained on Stanford and Harvard nutrition research.
+                        UPlate is the only meal prep app built specifically for university students, powered by AI
+                        trained on Stanford and Harvard nutrition research.
                     </div>
                 </div>
 
                 <div class="faq glass-card-dark">
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium"
-                    >
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
                         <span>Which universities are supported?</span>
                         <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
                     </div>
                     <div class="content">
-                        Right now, it's only Purdue, but we're working hard to expand to other major universities. Contact us to request your school!
+                        Right now, it's only Purdue, but we're working hard to expand to other major universities.
+                        Contact us to request your school!
                     </div>
                 </div>
 
                 <div class="faq glass-card-dark">
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium"
-                    >
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
                         <span>Is UPlate free to use?</span>
                         <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
                     </div>
@@ -441,9 +378,7 @@
                 </div>
 
                 <div class="faq glass-card-dark">
-                    <div
-                        class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium"
-                    >
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
                         <span>How accurate is the nutrition data?</span>
                         <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
                     </div>
@@ -453,25 +388,18 @@
                 </div>
             </div>
 
-            <div
-                class="tw-mt-20 tw-flex tw-flex-col tw-items-center tw-gap-4"
-            >
+            <div class="tw-mt-20 tw-flex tw-flex-col tw-items-center tw-gap-4">
                 <p class="tw-text-lg tw-text-gray-400">
                     Still have questions?
                 </p>
-                <a
-                    href="about.html"
-                    class="secondary-btn"
-                >
+                <a href="about.html" class="secondary-btn">
                     Find Us Here
                 </a>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section
-            class="tw-flex tw-w-full tw-flex-col tw-items-center tw-py-32 tw-px-[5%] lg:tw-px-[8%]"
-        >
+        <section class="tw-flex tw-w-full tw-flex-col tw-items-center tw-py-32 tw-px-[5%] lg:tw-px-[8%]">
             <div class="cta-card glass-card-glow tw-max-w-[900px] tw-w-full tw-text-center tw-py-16 tw-px-8">
                 <h2 class="tw-text-4xl tw-font-semibold tw-mb-4 max-md:tw-text-3xl">
                     Ready to transform your campus dining?
@@ -480,17 +408,13 @@
                     Join thousands of students eating smarter.
                 </p>
                 <div class="tw-flex tw-justify-center tw-gap-4 max-md:tw-flex-col max-md:tw-items-center">
-                    <a
-                        class="primary-btn tw-flex tw-items-center tw-gap-2"
-                        href="https://apps.apple.com/us/app/uplate/id6752828206"
-                    >
+                    <a class="primary-btn tw-flex tw-items-center tw-gap-2"
+                        href="https://apps.apple.com/us/app/uplate/id6752828206">
                         <i class="bi bi-apple"></i>
                         Download for iOS
                     </a>
-                    <a
-                        class="secondary-btn tw-flex tw-items-center tw-gap-2"
-                        href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel"
-                    >
+                    <a class="secondary-btn tw-flex tw-items-center tw-gap-2"
+                        href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel">
                         <i class="bi bi-android2"></i>
                         Download for Android
                     </a>
@@ -498,17 +422,12 @@
             </div>
         </section>
 
-        <footer
-            class="tw-mt-auto tw-border-t tw-border-white/10 tw-py-16 tw-px-[8%]"
-        >
+        <footer class="tw-mt-auto tw-border-t tw-border-white/10 tw-py-16 tw-px-[8%]">
             <div class="tw-max-w-[1200px] tw-mx-auto tw-flex tw-justify-between tw-gap-12 max-md:tw-flex-col">
                 <div class="tw-flex tw-flex-col tw-gap-6">
                     <div class="tw-flex tw-items-center tw-gap-3">
-                        <img
-                            src="./assets/logo/logo.png"
-                            alt="logo"
-                            class="tw-w-[40px] tw-h-[40px] tw-object-contain"
-                        />
+                        <img src="./assets/logo/logo.png" alt="logo"
+                            class="tw-w-[40px] tw-h-[40px] tw-object-contain" />
                         <span class="tw-text-xl tw-font-semibold">UPlate</span>
                     </div>
                     <p class="tw-text-gray-500 tw-text-sm tw-max-w-[250px]">
@@ -518,7 +437,8 @@
 
                 <div class="tw-flex tw-gap-20 max-md:tw-gap-12">
                     <div class="tw-flex tw-flex-col tw-gap-4">
-                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Product</h3>
+                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Product
+                        </h3>
                         <div class="tw-flex tw-flex-col tw-gap-3 tw-text-sm">
                             <a href="#features" class="footer-link">Features</a>
                             <a href="#faq" class="footer-link">FAQ</a>
@@ -526,7 +446,8 @@
                     </div>
 
                     <div class="tw-flex tw-flex-col tw-gap-4">
-                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Company</h3>
+                        <h3 class="tw-text-sm tw-font-semibold tw-uppercase tw-tracking-wider tw-text-gray-500">Company
+                        </h3>
                         <div class="tw-flex tw-flex-col tw-gap-3 tw-text-sm">
                             <a href="about.html" class="footer-link">About</a>
                             <a href="mailto:contact@u-plate.com" class="footer-link">Contact</a>
@@ -534,12 +455,14 @@
                     </div>
                 </div>
             </div>
-            <div class="tw-max-w-[1200px] tw-mx-auto tw-mt-12 tw-pt-8 tw-border-t tw-border-white/5 tw-text-center tw-text-sm tw-text-gray-600">
+            <div
+                class="tw-max-w-[1200px] tw-mx-auto tw-mt-12 tw-pt-8 tw-border-t tw-border-white/5 tw-text-center tw-text-sm tw-text-gray-600">
                 © 2026 UPlate. All rights reserved.
             </div>
         </footer>
-        </div><!-- End main-site -->
+    </div><!-- End main-site -->
 
-        <script type="module" src="./index.js"></script>
-    </body>
+    <script type="module" src="./index.js"></script>
+</body>
+
 </html>
