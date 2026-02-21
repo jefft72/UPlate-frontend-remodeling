@@ -165,8 +165,26 @@
                         AI-powered meal planning designed for the way you eat on campus.
                     </p>
 
+                    <!-- University Search Bar -->
+                    <div class="uni-search-wrapper tw-mt-10 tw-w-full tw-max-w-[400px] tw-relative">
+                        <div class="uni-search-container">
+                            <i class="bi bi-search uni-search-icon"></i>
+                            <input
+                                type="text"
+                                id="uni-search-input"
+                                class="uni-search-input"
+                                placeholder="Type in your university here"
+                                autocomplete="off"
+                            />
+                        </div>
+                        <ul id="uni-search-results" class="uni-search-results tw-hidden"></ul>
+                    </div>
+
+                    <!-- Download buttons (Purdue only) -->
                     <div
-                        class="tw-mt-10 tw-flex tw-items-center tw-gap-4 max-md:tw-flex-col"
+                        id="download-buttons"
+                        class="hero-reveal-panel tw-mt-6 tw-flex tw-items-center tw-gap-4 max-md:tw-flex-col tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none"
+                        style="max-height: 0; overflow: hidden;"
                     >
                         <a
                             class="primary-btn tw-flex tw-items-center tw-gap-2"
@@ -182,6 +200,36 @@
                             <i class="bi bi-android2"></i>
                             Download for Android
                         </a>
+                    </div>
+
+                    <!-- Waitlist form (non-Purdue universities) -->
+                    <div
+                        id="waitlist-panel"
+                        class="hero-reveal-panel tw-mt-6 tw-flex tw-flex-col tw-items-center tw-gap-4 tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none tw-w-full tw-max-w-[500px]"
+                        style="max-height: 0; overflow: hidden;"
+                    >
+                        <p class="tw-text-gray-400 tw-text-base tw-text-center">
+                            We're not at <span id="waitlist-uni-name" class="tw-text-white tw-font-medium"></span> yet — but we're expanding!
+                        </p>
+                        <form id="waitlist-form" class="tw-flex tw-w-full tw-flex-col tw-gap-3">
+                            <div class="tw-flex tw-w-full tw-gap-3 max-md:tw-flex-col">
+                                <div class="uni-search-container tw-flex-1">
+                                    <i class="bi bi-envelope uni-search-icon"></i>
+                                    <input
+                                        type="email"
+                                        id="waitlist-email"
+                                        class="uni-search-input"
+                                        placeholder="Your school email"
+                                        required
+                                    />
+                                </div>
+                                <button type="submit" id="waitlist-submit" class="primary-btn tw-whitespace-nowrap">
+                                    Join the Waitlist
+                                </button>
+                            </div>
+                            <p id="waitlist-error" class="tw-text-red-400 tw-text-sm tw-hidden tw-text-center"></p>
+                        </form>
+                        <p id="waitlist-success" class="tw-text-green-400 tw-text-sm tw-hidden">You're on the list! We'll let you know when we launch at your school.</p>
                     </div>
                 </div>
 

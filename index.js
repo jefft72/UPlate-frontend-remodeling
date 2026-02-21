@@ -473,6 +473,209 @@ setTimeout(updateActiveFeature, 100)
 // Export toggleHeader to global scope for HTML onclick
 window.toggleHeader = toggleHeader
 
+// ============ UNIVERSITY SEARCH ============
+const uniSearchInput = document.getElementById('uni-search-input')
+const uniSearchResults = document.getElementById('uni-search-results')
+const downloadButtons = document.getElementById('download-buttons')
+const waitlistPanel = document.getElementById('waitlist-panel')
+const waitlistForm = document.getElementById('waitlist-form')
+const waitlistUniName = document.getElementById('waitlist-uni-name')
+const waitlistEmail = document.getElementById('waitlist-email')
+const waitlistSuccess = document.getElementById('waitlist-success')
+
+let uniDebounceTimer = null
+
+// Check if input matches Purdue (case/whitespace/special-char insensitive)
+function isPurdue(name) {
+    const normalized = name.replace(/[^a-zA-Z]/g, '').toLowerCase()
+    return normalized === 'purdue' || normalized.startsWith('purdue')
+}
+
+// Hide all reveal panels (download buttons & waitlist)
+function hideAllPanels() {
+    document.querySelectorAll('.hero-reveal-panel').forEach(panel => {
+        panel.style.maxHeight = '0'
+        panel.style.overflow = 'hidden'
+        panel.classList.remove('tw-opacity-100', 'tw-translate-y-0')
+        panel.classList.add('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
+    })
+}
+
+// Animate a panel into view
+function showPanel(panel) {
+    panel.style.maxHeight = '300px'
+    panel.style.overflow = 'visible'
+    panel.classList.remove('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
+    panel.classList.add('tw-opacity-100', 'tw-translate-y-0')
+}
+
+function handleUniversitySubmit() {
+    const raw = uniSearchInput.value.trim()
+    if (!raw) return
+
+    uniSearchInput.classList.add('uni-selected')
+    hideAllPanels()
+
+    // Store university locally
+    localStorage.setItem('uplate_university', raw)
+
+    if (isPurdue(raw)) {
+        // Purdue → show download buttons
+        if (downloadButtons) showPanel(downloadButtons)
+    } else {
+        // Other university → show waitlist
+        if (waitlistPanel) {
+            if (waitlistUniName) waitlistUniName.textContent = raw
+            showPanel(waitlistPanel)
+            if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
+            if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
+        }
+    }
+}
+
+if (uniSearchInput) {
+    // Reset panels when user edits
+    uniSearchInput.addEventListener('input', function () {
+        uniSearchInput.classList.remove('uni-selected')
+        hideAllPanels()
+        
+        // Clear email input and reset form state
+        if (waitlistEmail) waitlistEmail.value = ''
+        if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
+        if (waitlistError) waitlistError.classList.add('tw-hidden')
+        if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
+    })
+
+    // Submit on Enter key
+    uniSearchInput.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            handleUniversitySubmit()
+        }
+    })
+}
+
+// Validate if email is from an educational institution
+function isValidSchoolEmail(email) {
+    const eduDomains = [
+        '.edu',           // US universities
+        '.ac.uk',         // UK universities
+        '.edu.au',        // Australian universities
+        '.ac.nz',         // New Zealand universities
+        '.edu.sg',        // Singapore universities
+        '.ac.in',         // Indian universities
+        '.edu.cn',        // Chinese universities
+        '.ac.jp',         // Japanese universities
+        '.edu.br',        // Brazilian universities
+        '.ac.za',         // South African universities
+        '.edu.mx',        // Mexican universities
+        '.ac.kr',         // Korean universities
+        '.edu.co',        // Colombian universities
+    ]
+    
+    // Blocked generic email providers
+    const blockedDomains = [
+        'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
+        'icloud.com', 'aol.com', 'protonmail.com', 'mail.com',
+        'zoho.com', 'yandex.com', 'gmx.com'
+    ]
+    
+    const emailLower = email.toLowerCase()
+    const domain = emailLower.split('@')[1]
+    
+    if (!domain) return false
+    
+    // Check if it's a blocked domain
+    if (blockedDomains.includes(domain)) {
+        return false
+    }
+    
+    // Check if it ends with an educational domain
+    return eduDomains.some(eduDomain => domain.endsWith(eduDomain))
+}
+
+// Handle waitlist form submission
+const waitlistError = document.getElementById('waitlist-error')
+
+if (waitlistForm) {
+    // Clear error when user types
+    if (waitlistEmail) {
+        waitlistEmail.addEventListener('input', function () {
+            if (waitlistError) waitlistError.classList.add('tw-hidden')
+        })
+    }
+    
+    waitlistForm.addEventListener('submit', async function (e) {
+        e.preventDefault()
+        const email = waitlistEmail.value.trim()
+        if (!email) return
+
+        // Validate school email
+        if (!isValidSchoolEmail(email)) {
+            if (waitlistError) {
+                waitlistError.textContent = 'Please use a valid school email address (e.g., name@university.edu)'
+                waitlistError.classList.remove('tw-hidden')
+            }
+            return
+        }
+
+        const uniName = waitlistUniName ? waitlistUniName.textContent : ''
+        
+        // Disable submit button while processing
+        const submitBtn = document.getElementById('waitlist-submit')
+        const originalBtnText = submitBtn ? submitBtn.textContent : ''
+        if (submitBtn) {
+            submitBtn.disabled = true
+            submitBtn.textContent = 'Joining...'
+        }
+
+        try {
+            // Convert university name to URL-safe format (lowercase, no spaces)
+            const schoolSlug = uniName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+            
+            // Call Cloudflare backend API
+            const apiUrl = `https://boilerbites.com/waitlist/${encodeURIComponent(schoolSlug)}/${encodeURIComponent(email)}`
+            
+            // Use no-cors mode to bypass CORS restrictions (backend doesn't return CORS headers)
+            // This sends the request successfully but we can't read the response
+            await fetch(apiUrl, {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+
+            // Also store locally as backup
+            const waitlistData = {
+                email: email,
+                university: uniName,
+                timestamp: new Date().toISOString()
+            }
+            const existing = JSON.parse(localStorage.getItem('uplate_waitlist') || '[]')
+            existing.push(waitlistData)
+            localStorage.setItem('uplate_waitlist', JSON.stringify(existing))
+
+            // Show success, hide form and error
+            waitlistForm.classList.add('tw-hidden')
+            if (waitlistError) waitlistError.classList.add('tw-hidden')
+            if (waitlistSuccess) waitlistSuccess.classList.remove('tw-hidden')
+            
+        } catch (error) {
+            console.error('Waitlist API error:', error)
+            
+            // Show error to user
+            if (waitlistError) {
+                waitlistError.textContent = 'Something went wrong. Please try again.'
+                waitlistError.classList.remove('tw-hidden')
+            }
+            
+            // Re-enable button
+            if (submitBtn) {
+                submitBtn.disabled = false
+                submitBtn.textContent = originalBtnText
+            }
+        }
+    })
+}
+
 } 
 
 // Run init when DOM is ready
