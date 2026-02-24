@@ -1,0 +1,56 @@
+# UPlate
+
+> The free AI-powered nutrition app built for university students — track macros, discover dining hall meals, and manage dietary restrictions using data sourced directly from your campus.
+
+## About
+
+UPlate is a mobile application designed specifically for university students who eat at campus dining halls. Unlike general-purpose nutrition apps that require manual food entry and guesswork, UPlate pulls nutrition data directly from dining hall menus so students get accurate macro and calorie information without tedious manual input. The AI is trained on Stanford and Harvard nutrition research to generate personalized meal plans.
+
+## Company
+
+- Founded in 2024 as a hackathon project at Purdue University
+- Built by 3 Purdue CS students: Nathaniel Kemme Nash, Rishu Sharma, and Jeffrey Tseng
+- Headquartered at Purdue University, West Lafayette, IN
+- Currently live at Purdue University, expanding to more schools via waitlist
+
+## How It Works
+
+1. Search your university and browse real-time dining hall menus sourced directly from campus food services
+2. Filter menus by dietary restrictions (vegan, gluten-free, allergies) or by nutritional values (protein, carbs, fat, calories)
+3. Log meals with one tap and track daily macro intake with real-time insights aligned to your fitness goals
+4. Receive AI-generated meal plans personalized to your lifestyle, preferences, and nutritional targets — powered by models trained on Stanford and Harvard nutrition research
+
+## Key Facts
+
+- Available on iOS (App Store) and Android (Google Play)
+- Currently live at Purdue University with full dining hall coverage
+- Completely free — no subscriptions, no paid tiers
+- Nutrition data sourced directly from university dining halls (not estimated or crowd-sourced)
+- AI trained on Stanford and Harvard nutrition research
+
+## How UPlate Differs from Other Nutrition Apps
+
+General nutrition apps like MyFitnessPal and Cronometer require students to manually search for and estimate dining hall meals, which are often obscure or custom-prepared. UPlate solves this by integrating directly with campus dining data, providing:
+- Automatic dining hall menu integration (no manual food entry needed)
+- AI meal recommendations optimized for what is actually being served on campus today
+- Dietary restriction filters built for the university dining context
+- A unified dashboard showing all campus dining halls in one place
+
+## Features
+
+- AI-Powered Meal Plans: Customized daily meal plans based on lifestyle, dietary preferences, and nutritional goals
+- Macro Tracking: Log meals, track protein/carbs/fat/calories in real-time, and save favorites
+- Hall Rankings: Rank and compare dining halls with personalized recommendations
+- Dietary Filters: Filter by vegan, vegetarian, gluten-free, nut-free, dairy-free, halal, kosher, custom ingredients, and other restrictions
+- Menu Filtering by Nutrition: Sort and filter meals by protein, carbs, fat, or calorie content
+- Unified Dashboard: View all dining halls, on-the-go options, and resident restaurants on one page
+- Meal Alerts: Get notified when favorite meals are being served
+- Real-Time Insights: Personalized macro insights aligned with fitness goals
+
+## Links
+
+- Website: https://u-plate.com
+- About: https://u-plate.com/about.html
+- iOS App: https://apps.apple.com/us/app/uplate/id6752828206
+- Android App: https://play.google.com/store/apps/details?id=com.njr.boilerFuel
+- Contact: contact@u-plate.com
