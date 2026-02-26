@@ -1,23 +1,37 @@
 <!doctype html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>UPlate</title>
+    <title>UPlate - Your University Meal Prep Buddy</title>
 
     <link rel="stylesheet" href="./css/tailwind-build.css">
     <link rel="stylesheet" href="./css/index.css">
 
     <meta name="description" content="Your University Meal Prep Buddy - Better Food. Better Tracking. Better Health." />
+    <link rel="canonical" href="https://u-plate.com/" />
     <link rel="shortcut icon" href="./assets/logo/logo.png" type="image/x-icon" />
 
-    <meta property="og:url" content="https://u-plate.com" />
-
     <!-- Open Graph / Facebook -->
-    <meta property="og:title" content="UPlate - University Meal Prep" />
-    <meta property="og:description" content="Better Food. Better Tracking. Better Health." />
+    <meta property="og:url" content="https://u-plate.com/" />
+    <meta property="og:title" content="UPlate - Your University Meal Prep Buddy" />
+    <meta property="og:description"
+        content="AI-powered meal planning designed for the way you eat on campus. Track macros, filter by dietary needs, and discover dining hall meals." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="" />
+    <meta property="og:image" content="https://u-plate.com/assets/logo/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="UPlate - University Meal Prep App Logo" />
+    <meta property="og:site_name" content="UPlate" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="UPlate - Your University Meal Prep Buddy" />
+    <meta name="twitter:description" content="AI-powered meal planning designed for the way you eat on campus." />
+    <meta name="twitter:image" content="https://u-plate.com/assets/logo/logo.png" />
+    <meta name="twitter:image:alt" content="UPlate - University Meal Prep App Logo" />
+
     <!-- <meta name="apple-itunes-app" content="app-id=6752828206"> -->
 
     <!-- SF Pro Display Font (Apple-style) -->
@@ -37,6 +51,120 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.0/ScrollTrigger.min.js"
         integrity="sha512-AY2+JxnBETJ0wcXnLPCcZJIJx0eimyhz3OJ55k2Jx4RtYC+XdIi2VtJQ+tP3BaTst4otlGG1TtPJ9fKrAUnRdQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UPlate",
+      "url": "https://u-plate.com",
+      "logo": "https://u-plate.com/assets/logo/logo.png",
+      "description": "AI-powered university meal prep app for students.",
+      "email": "contact@u-plate.com",
+      "foundingDate": "2024",
+      "founders": [
+        { "@type": "Person", "name": "Nathaniel Kemme Nash" },
+        { "@type": "Person", "name": "Rishu Sharma" },
+        { "@type": "Person", "name": "Jeffrey Tseng" }
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/uplate/id6752828206",
+        "https://play.google.com/store/apps/details?id=com.njr.boilerFuel"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MobileApplication",
+      "name": "UPlate",
+      "url": "https://u-plate.com",
+      "description": "AI-powered meal planning app built for university students. Track macros, filter dining hall menus by dietary restrictions or nutritional values, and get personalized meal recommendations using data sourced directly from campus dining halls.",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "iOS, Android",
+      "downloadUrl": [
+        "https://apps.apple.com/us/app/uplate/id6752828206",
+        "https://play.google.com/store/apps/details?id=com.njr.boilerFuel"
+      ],
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What makes UPlate different?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "UPlate is the only meal prep app built specifically for university students, powered by AI trained on Stanford and Harvard nutrition research."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which universities are supported?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Right now, it's only Purdue, but we're working hard to expand to other major universities. Contact us to request your school!"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is UPlate free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! UPlate is completely free."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the nutrition data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We source nutrition data directly from dining halls — no guessing or crowd-sourced estimates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does UPlate's AI work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our AI is trained on Stanford and Harvard nutrition research. It analyzes your dietary preferences, fitness goals, and what's being served at your dining halls to generate personalized meal plans and recommendations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What dietary restrictions does UPlate support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "UPlate supports filtering by vegan, vegetarian, gluten-free, nut-free, dairy-free, halal, kosher, and other common restrictions. You can also filter by custom ingredients or sort meals by specific nutritional values like protein, carbs, fat, and calories."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is UPlate different from other nutrition apps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unlike general nutrition apps that require manual food entry, UPlate integrates directly with campus dining hall menus. You get accurate nutrition data for the exact meals being served — no searching or estimating required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often are dining hall menus updated?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Menus are updated in real-time as dining halls publish their daily offerings, so you always see what's currently being served."
+          }
+        }
+      ]
+    }
+    </script>
 </head>
 
 <body class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white">
@@ -86,7 +214,7 @@
         <header
             class="header-glass tw-fixed tw-top-0 tw-z-50 tw-flex tw-h-[72px] tw-w-full tw-items-center tw-justify-between tw-px-[5%] lg:tw-px-[8%]">
             <a class="tw-flex tw-items-center tw-gap-3" href="">
-                <img src="./assets/logo/logo.png" alt="logo" class="tw-h-[40px] tw-w-[40px] tw-object-contain" />
+                <img src="./assets/logo/logo.png" alt="UPlate logo" class="tw-h-[40px] tw-w-[40px] tw-object-contain" />
                 <span class="tw-text-xl tw-font-semibold tw-tracking-tight">UPlate</span>
             </a>
             <nav class="collapsible-header animated-collapse max-lg:tw-shadow-md" id="collapsed-header-items">
@@ -123,35 +251,27 @@
                         <span class="gradient-text-apple">Meal Prep Buddy</span>
                     </h1>
                     <p
-                        class="tw-mt-6 tw-max-w-[500px] tw-text-xl tw-text-gray-400 tw-font-light max-md:tw-text-lg max-md:tw-max-w-full">
-                        AI-powered meal planning designed for the way you eat on campus.
+                        class="tw-mt-6 tw-max-w-[550px] tw-text-xl tw-text-gray-400 tw-font-light max-md:tw-text-lg max-md:tw-max-w-full">
+                        The free AI-powered nutrition app built for university students — track macros, discover dining
+                        hall meals, and manage dietary restrictions using data sourced directly from your campus.
                     </p>
 
                     <!-- University Search Bar -->
                     <div class="uni-search-wrapper tw-mt-10 tw-w-full tw-max-w-[400px] tw-relative">
                         <div class="uni-search-container">
                             <i class="bi bi-search uni-search-icon"></i>
-                            <input
-                                type="text"
-                                id="uni-search-input"
-                                class="uni-search-input"
-                                placeholder="Type in your university here"
-                                autocomplete="off"
-                            />
+                            <input type="text" id="uni-search-input" class="uni-search-input"
+                                placeholder="Type in your university here" autocomplete="off" />
                         </div>
                         <ul id="uni-search-results" class="uni-search-results tw-hidden"></ul>
                     </div>
 
                     <!-- Download buttons (Purdue only) -->
-                    <div
-                        id="download-buttons"
+                    <div id="download-buttons"
                         class="hero-reveal-panel tw-mt-6 tw-flex tw-items-center tw-gap-4 max-md:tw-flex-col tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none"
-                        style="max-height: 0; overflow: hidden;"
-                    >
-                        <a
-                            class="primary-btn tw-flex tw-items-center tw-gap-2"
-                            href="https://apps.apple.com/us/app/uplate/id6752828206"
-                        >
+                        style="max-height: 0; overflow: hidden;">
+                        <a class="primary-btn tw-flex tw-items-center tw-gap-2"
+                            href="https://apps.apple.com/us/app/uplate/id6752828206">
                             <i class="bi bi-apple"></i>
                             Download for iOS
                         </a>
@@ -163,25 +283,19 @@
                     </div>
 
                     <!-- Waitlist form (non-Purdue universities) -->
-                    <div
-                        id="waitlist-panel"
+                    <div id="waitlist-panel"
                         class="hero-reveal-panel tw-mt-6 tw-flex tw-flex-col tw-items-center tw-gap-4 tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none tw-w-full tw-max-w-[500px]"
-                        style="max-height: 0; overflow: hidden;"
-                    >
+                        style="max-height: 0; overflow: hidden;">
                         <p class="tw-text-gray-400 tw-text-base tw-text-center">
-                            We're not at <span id="waitlist-uni-name" class="tw-text-white tw-font-medium"></span> yet — but we're expanding!
+                            We're not at <span id="waitlist-uni-name" class="tw-text-white tw-font-medium"></span> yet —
+                            but we're expanding!
                         </p>
                         <form id="waitlist-form" class="tw-flex tw-w-full tw-flex-col tw-gap-3">
                             <div class="tw-flex tw-w-full tw-gap-3 max-md:tw-flex-col">
                                 <div class="uni-search-container tw-flex-1">
                                     <i class="bi bi-envelope uni-search-icon"></i>
-                                    <input
-                                        type="email"
-                                        id="waitlist-email"
-                                        class="uni-search-input"
-                                        placeholder="Your school email"
-                                        required
-                                    />
+                                    <input type="email" id="waitlist-email" class="uni-search-input"
+                                        placeholder="Your school email" required />
                                 </div>
                                 <button type="submit" id="waitlist-submit" class="primary-btn tw-whitespace-nowrap">
                                     Join the Waitlist
@@ -189,7 +303,8 @@
                             </div>
                             <p id="waitlist-error" class="tw-text-red-400 tw-text-sm tw-hidden tw-text-center"></p>
                         </form>
-                        <p id="waitlist-success" class="tw-text-green-400 tw-text-sm tw-hidden">You're on the list! We'll let you know when we launch at your school.</p>
+                        <p id="waitlist-success" class="tw-text-green-400 tw-text-sm tw-hidden">You're on the list!
+                            We'll let you know when we launch at your school.</p>
                     </div>
                 </div>
 
@@ -226,19 +341,24 @@
                             id="phone-carousel-wrapper">
                             <div class="phone-carousel" id="phone-carousel">
                                 <div class="phone-carousel-item" data-index="0">
-                                    <img src="./assets/images/home/brandbird-iphone-16.png" alt="Feature 1" />
+                                    <img src="./assets/images/home/brandbird-iphone-16.png"
+                                        alt="UPlate AI-powered meal plans screen" />
                                 </div>
                                 <div class="phone-carousel-item" data-index="1">
-                                    <img src="./assets/images/home/brandbird-iphone-16(1).png" alt="Feature 2" />
+                                    <img src="./assets/images/home/brandbird-iphone-16(1).png"
+                                        alt="UPlate macro tracking screen" />
                                 </div>
                                 <div class="phone-carousel-item" data-index="2">
-                                    <img src="./assets/images/home/brandbird-iphone-16(5).png" alt="Feature 3" />
+                                    <img src="./assets/images/home/brandbird-iphone-16(5).png"
+                                        alt="UPlate dining hall rankings screen" />
                                 </div>
                                 <div class="phone-carousel-item" data-index="3">
-                                    <img src="./assets/images/home/brandbird-iphone-16(3).png" alt="Feature 4" />
+                                    <img src="./assets/images/home/brandbird-iphone-16(3).png"
+                                        alt="UPlate dietary filters screen" />
                                 </div>
                                 <div class="phone-carousel-item" data-index="4">
-                                    <img src="./assets/images/home/brandbird-iphone-16(4).png" alt="Feature 5" />
+                                    <img src="./assets/images/home/brandbird-iphone-16(4).png"
+                                        alt="UPlate unified dashboard screen" />
                                 </div>
                             </div>
                         </div>
@@ -389,6 +509,78 @@
             </div>
         </section>
 
+        <section
+            class="tw-relative tw-flex tw-w-full tw-flex-col tw-items-center tw-px-[5%] lg:tw-px-[8%] tw-py-16 tw-pb-32">
+            <div class="section-header tw-text-center tw-mb-10">
+                <h2 class="tw-text-5xl tw-font-semibold tw-tracking-tight max-md:tw-text-3xl">
+                    How It Works
+                </h2>
+            </div>
+            <div class="tw-flex tw-flex-col tw-items-center tw-gap-8 tw-w-full tw-max-w-[1400px]">
+                <div class="tw-grid tw-grid-cols-2 tw-max-w-[1000px] tw-gap-6 max-lg:tw-grid-cols-1">
+                    <div class="glass-card feature-grid-card">
+                        <div class="feature-icon-small">
+                            <i class="bi bi-search"></i>
+                        </div>
+                        <div>
+                            <h3 class="tw-text-xl tw-font-medium tw-mb-2">
+                                1. Search Your University
+                            </h3>
+                            <p class="tw-text-gray-400 tw-text-base">
+                                Find your school and browse real-time dining hall menus sourced directly from campus
+                                food services.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card feature-grid-card">
+                        <div class="feature-icon-small">
+                            <i class="bi bi-funnel"></i>
+                        </div>
+                        <div>
+                            <h3 class="tw-text-xl tw-font-medium tw-mb-2">
+                                2. Filter By Your Needs
+                            </h3>
+                            <p class="tw-text-gray-400 tw-text-base">
+                                Filter menus by dietary restrictions like vegan, gluten-free, or allergies — or sort by
+                                nutritional values like protein, carbs, fat, and calories.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card feature-grid-card">
+                        <div class="feature-icon-small">
+                            <i class="bi bi-graph-up-arrow"></i>
+                        </div>
+                        <div>
+                            <h3 class="tw-text-xl tw-font-medium tw-mb-2">
+                                3. Track Your Macros
+                            </h3>
+                            <p class="tw-text-gray-400 tw-text-base">
+                                Log meals with one tap and track your daily macro intake with real-time insights aligned
+                                to your fitness goals.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="glass-card feature-grid-card">
+                        <div class="feature-icon-small">
+                            <i class="bi bi-cpu"></i>
+                        </div>
+                        <div>
+                            <h3 class="tw-text-xl tw-font-medium tw-mb-2">
+                                4. Get AI Recommendations
+                            </h3>
+                            <p class="tw-text-gray-400 tw-text-base">
+                                Receive personalized meal plans powered by AI trained on Stanford & Harvard nutrition
+                                research, optimized for what's being served today.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="tw-flex tw-w-full tw-flex-col tw-items-center tw-gap-8 tw-py-16 tw-px-[5%] lg:tw-px-[8%]"
             id="faq">
             <div class="section-header tw-text-center">
@@ -435,7 +627,54 @@
                         <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
                     </div>
                     <div class="content">
-                        We source nutrition data directly from dining halls.
+                        We source nutrition data directly from dining halls — no guessing or crowd-sourced estimates.
+                    </div>
+                </div>
+
+                <div class="faq glass-card-dark">
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
+                        <span>How does UPlate's AI work?</span>
+                        <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
+                    </div>
+                    <div class="content">
+                        Our AI is trained on Stanford and Harvard nutrition research. It analyzes your dietary
+                        preferences, fitness goals, and what's being served at your dining halls to generate
+                        personalized meal plans and recommendations.
+                    </div>
+                </div>
+
+                <div class="faq glass-card-dark">
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
+                        <span>What dietary restrictions does UPlate support?</span>
+                        <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
+                    </div>
+                    <div class="content">
+                        UPlate supports filtering by vegan, vegetarian, gluten-free, nut-free, dairy-free, halal, kosher, and other
+                        common restrictions. You can also filter by custom ingredients or sort meals by specific nutritional values like protein,
+                        carbs, fat, and calories.
+                    </div>
+                </div>
+
+                <div class="faq glass-card-dark">
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
+                        <span>How is UPlate different from other nutrition apps?</span>
+                        <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
+                    </div>
+                    <div class="content">
+                        Unlike general nutrition apps that require manual food entry, UPlate integrates directly with
+                        campus dining hall menus. You get accurate nutrition data for the exact meals being served — no
+                        searching or estimating required.
+                    </div>
+                </div>
+
+                <div class="faq glass-card-dark">
+                    <div class="faq-accordion tw-flex tw-w-full tw-select-none tw-text-lg tw-font-medium">
+                        <span>How often are dining hall menus updated?</span>
+                        <i class="bi bi-plus tw-ml-auto tw-text-xl"></i>
+                    </div>
+                    <div class="content">
+                        Menus are updated in real-time as dining halls publish their daily offerings, so you always see
+                        what's currently being served.
                     </div>
                 </div>
             </div>
@@ -478,7 +717,7 @@
             <div class="tw-max-w-[1200px] tw-mx-auto tw-flex tw-justify-between tw-gap-12 max-md:tw-flex-col">
                 <div class="tw-flex tw-flex-col tw-gap-6">
                     <div class="tw-flex tw-items-center tw-gap-3">
-                        <img src="./assets/logo/logo.png" alt="logo"
+                        <img src="./assets/logo/logo.png" alt="UPlate logo"
                             class="tw-w-[40px] tw-h-[40px] tw-object-contain" />
                         <span class="tw-text-xl tw-font-semibold">UPlate</span>
                     </div>

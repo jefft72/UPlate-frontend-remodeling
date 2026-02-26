@@ -5,11 +5,30 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Us - UPlate</title>
-    <meta name="description" content="Learn more about UPlate and our mission" />
+    <meta name="description" content="Meet the team behind UPlate - 3 Purdue CS students on a mission to empower university students to take control of their nutrition." />
+    <link rel="canonical" href="https://u-plate.com/about.html" />
     <link rel="shortcut icon" href="./assets/logo/logo.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="./css/tailwind-build.css">
     <link rel="stylesheet" href="./css/index.css">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:url" content="https://u-plate.com/about.html" />
+    <meta property="og:title" content="About Us - UPlate" />
+    <meta property="og:description" content="Meet the team behind UPlate - 3 Purdue CS students building the future of university meal prep." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://u-plate.com/assets/logo/logo.png" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:image:alt" content="UPlate - University Meal Prep App Logo" />
+    <meta property="og:site_name" content="UPlate" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="About Us - UPlate" />
+    <meta name="twitter:description" content="Meet the team behind UPlate - 3 Purdue CS students building the future of university meal prep." />
+    <meta name="twitter:image" content="https://u-plate.com/assets/logo/logo.png" />
+    <meta name="twitter:image:alt" content="UPlate - University Meal Prep App Logo" />
 
     <!-- Apple font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,13 +68,36 @@
             }
         }
     </style>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "UPlate",
+      "url": "https://u-plate.com",
+      "logo": "https://u-plate.com/assets/logo/logo.png",
+      "description": "AI-powered university meal prep app for students.",
+      "email": "contact@u-plate.com",
+      "foundingDate": "2024",
+      "founders": [
+        { "@type": "Person", "name": "Nathaniel Kemme Nash" },
+        { "@type": "Person", "name": "Rishu Sharma" },
+        { "@type": "Person", "name": "Jeffrey Tseng" }
+      ],
+      "sameAs": [
+        "https://apps.apple.com/us/app/uplate/id6752828206",
+        "https://play.google.com/store/apps/details?id=com.njr.boilerFuel"
+      ]
+    }
+    </script>
 </head>
 
 <body class="tw-flex tw-min-h-[100vh] tw-flex-col tw-bg-black tw-text-white tw-overflow-x-hidden">
     <header
         class="header-glass tw-fixed tw-top-0 tw-z-50 tw-flex tw-h-[72px] tw-w-full tw-items-center tw-justify-between tw-px-[5%] lg:tw-px-[8%]">
         <a class="tw-flex tw-items-center tw-gap-3" href="index.html">
-            <img src="./assets/logo/logo.png" alt="logo" class="tw-h-[40px] tw-w-[40px] tw-object-contain" />
+            <img src="./assets/logo/logo.png" alt="UPlate logo" class="tw-h-[40px] tw-w-[40px] tw-object-contain" />
             <span class="tw-text-xl tw-font-semibold tw-tracking-tight">UPlate</span>
         </a>
         <nav class="collapsible-header animated-collapse max-lg:tw-shadow-md" id="collapsed-header-items">
@@ -140,7 +182,7 @@
                                         <div class="pc-glare"></div>
                                         <div class="pc-content pc-avatar-content">
                                             <img class="avatar" src="./assets/images/people/nathaniel_headshot.jpeg"
-                                                alt="Nathaniel Headshot">
+                                                alt="Nathaniel Kemme Nash, UPlate co-founder">
                                             <div class="pc-user-info">
                                                 <div class="pc-user-details">
                                                     <div class="pc-user-text">
@@ -165,7 +207,7 @@
                                         <div class="pc-glare"></div>
                                         <div class="pc-content pc-avatar-content">
                                             <img class="avatar" src="./assets/images/people/rishu_headshot.jpeg"
-                                                alt="Rishu Headshot">
+                                                alt="Rishu Sharma, UPlate co-founder">
                                             <div class="pc-user-info">
                                                 <div class="pc-user-details">
                                                     <div class="pc-user-text">
@@ -191,7 +233,7 @@
                                         <div class="pc-glare"></div>
                                         <div class="pc-content pc-avatar-content">
                                             <img class="avatar" src="./assets/images/people/headshot.jpeg"
-                                                alt="Jeffrey Headshot">
+                                                alt="Jeffrey Tseng, UPlate co-founder">
                                             <div class="pc-user-info">
                                                 <div class="pc-user-details">
                                                     <div class="pc-user-text">
@@ -236,7 +278,7 @@
         <div class="tw-max-w-[1200px] tw-mx-auto tw-flex tw-justify-between tw-gap-12 max-md:tw-flex-col">
             <div class="tw-flex tw-flex-col tw-gap-6">
                 <div class="tw-flex tw-items-center tw-gap-3">
-                    <img src="./assets/logo/logo.png" alt="logo" class="tw-w-[40px] tw-h-[40px] tw-object-contain" />
+                    <img src="./assets/logo/logo.png" alt="UPlate logo" class="tw-w-[40px] tw-h-[40px] tw-object-contain" />
                     <span class="tw-text-xl tw-font-semibold">UPlate</span>
                 </div>
                 <p class="tw-text-gray-500 tw-text-sm tw-max-w-[250px]">
