@@ -370,7 +370,8 @@ header>.collapsible-header {
     transition: background 0.2s ease;
 }
 
-.uni-search-result-item:hover {
+.uni-search-result-item:hover,
+.uni-search-result-item.active {
     background: rgba(255, 255, 255, 0.08);
 }
 
@@ -398,11 +399,21 @@ header>.collapsible-header {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     border: none;
     cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .primary-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2);
+    outline: none;
+}
+
+.primary-btn:focus {
+    outline: none;
 }
 
 .secondary-btn {
@@ -415,11 +426,21 @@ header>.collapsible-header {
     border: 1px solid rgba(255, 255, 255, 0.3);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .secondary-btn:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.5);
+    outline: none;
+}
+
+.secondary-btn:focus {
+    outline: none;
 }
 
 /* ============ PILL BADGE ============ */

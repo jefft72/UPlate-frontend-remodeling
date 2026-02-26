@@ -484,11 +484,89 @@ const waitlistEmail = document.getElementById('waitlist-email')
 const waitlistSuccess = document.getElementById('waitlist-success')
 
 let uniDebounceTimer = null
+let selectedSchoolDomain = null   // e.g. "purdue.edu"
+let schoolSelectedFromDropdown = false
 
-// Check if input matches Purdue (case/whitespace/special-char insensitive)
+const COLLEGE_API_KEY = 'uxZR8qLnaqU3mok06NeeVkzcf1zrdXx9ROCatWDG'
+
+// Fetch college suggestions from the College Scorecard API
+async function searchColleges(query) {
+    if (!query || query.length < 2) return []
+    try {
+        const url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${COLLEGE_API_KEY}&fields=school.name,school.school_url,school.domains&school.name=${encodeURIComponent(query)}&per_page=6`
+        const res = await fetch(url)
+        if (!res.ok) return []
+        const json = await res.json()
+        if (!json.results) return []
+        return json.results.map(r => ({
+            name: r['school.name'],
+            url: r['school.school_url'] || '',
+            domains: r['school.domains'] || []
+        }))
+    } catch (err) {
+        console.error('College API error:', err)
+        return []
+    }
+}
+
+// Extract a usable email domain from the API result
+function getSchoolEmailDomain(college) {
+    // Prefer the explicit domains array from the API
+    if (college.domains && college.domains.length > 0) {
+        return college.domains[0].toLowerCase().replace(/^www\./, '')
+    }
+    // Fall back to school_url
+    if (college.url) {
+        let domain = college.url.toLowerCase()
+            .replace(/^https?:\/\//, '')
+            .replace(/^www\./, '')
+            .split('/')[0]
+        return domain
+    }
+    return null
+}
+
+// Render autocomplete dropdown
+function renderSearchResults(colleges) {
+    if (!uniSearchResults) return
+    uniSearchResults.innerHTML = ''
+    if (colleges.length === 0) {
+        uniSearchResults.classList.add('tw-hidden')
+        return
+    }
+    colleges.forEach(college => {
+        const li = document.createElement('li')
+        li.className = 'uni-search-result-item'
+        const domain = getSchoolEmailDomain(college)
+        li.innerHTML = `
+            <span class="uni-name">${college.name}</span>
+            ${domain ? `<span class="uni-country">${domain}</span>` : ''}
+        `
+        li.addEventListener('click', () => {
+            uniSearchInput.value = college.name
+            selectedSchoolDomain = domain
+            schoolSelectedFromDropdown = true
+            uniSearchResults.classList.add('tw-hidden')
+            handleUniversitySubmit()
+        })
+        uniSearchResults.appendChild(li)
+    })
+    uniSearchResults.classList.remove('tw-hidden')
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    if (uniSearchResults && !e.target.closest('.uni-search-wrapper')) {
+        uniSearchResults.classList.add('tw-hidden')
+    }
+})
+
+// Check if input matches Purdue main campus (West Lafayette) only
 function isPurdue(name) {
     const normalized = name.replace(/[^a-zA-Z]/g, '').toLowerCase()
-    return normalized === 'purdue' || normalized.startsWith('purdue')
+    return normalized === 'purdueuniversitymaincampus'
+        || normalized === 'purdueuniversity'
+        || normalized === 'purdue'
 }
 
 // Hide all reveal panels (download buttons & waitlist)
@@ -511,7 +589,7 @@ function showPanel(panel) {
 
 function handleUniversitySubmit() {
     const raw = uniSearchInput.value.trim()
-    if (!raw) return
+    if (!raw || !schoolSelectedFromDropdown) return
 
     uniSearchInput.classList.add('uni-selected')
     hideAllPanels()
@@ -534,64 +612,68 @@ function handleUniversitySubmit() {
 }
 
 if (uniSearchInput) {
-    // Reset panels when user edits
+    // Debounced autocomplete on input
     uniSearchInput.addEventListener('input', function () {
         uniSearchInput.classList.remove('uni-selected')
         hideAllPanels()
-        
+        selectedSchoolDomain = null
+        schoolSelectedFromDropdown = false
+
         // Clear email input and reset form state
         if (waitlistEmail) waitlistEmail.value = ''
         if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
         if (waitlistError) waitlistError.classList.add('tw-hidden')
         if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
+
+        const query = uniSearchInput.value.trim()
+        clearTimeout(uniDebounceTimer)
+        if (query.length < 2) {
+            renderSearchResults([])
+            return
+        }
+        uniDebounceTimer = setTimeout(async () => {
+            const results = await searchColleges(query)
+            renderSearchResults(results)
+        }, 300)
     })
 
-    // Submit on Enter key
+    // Keyboard navigation for autocomplete
     uniSearchInput.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
+        if (!uniSearchResults) return
+        const items = uniSearchResults.querySelectorAll('.uni-search-result-item')
+        const activeItem = uniSearchResults.querySelector('.uni-search-result-item.active')
+        let activeIndex = Array.from(items).indexOf(activeItem)
+
+        if (e.key === 'ArrowDown') {
             e.preventDefault()
-            handleUniversitySubmit()
+            if (activeItem) activeItem.classList.remove('active')
+            activeIndex = (activeIndex + 1) % items.length
+            items[activeIndex].classList.add('active')
+            items[activeIndex].scrollIntoView({ block: 'nearest' })
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            if (activeItem) activeItem.classList.remove('active')
+            activeIndex = activeIndex <= 0 ? items.length - 1 : activeIndex - 1
+            items[activeIndex].classList.add('active')
+            items[activeIndex].scrollIntoView({ block: 'nearest' })
+        } else if (e.key === 'Enter') {
+            e.preventDefault()
+            if (activeItem) {
+                activeItem.click()
+            } else if (items.length > 0) {
+                items[0].click()
+            }
+        } else if (e.key === 'Escape') {
+            renderSearchResults([])
         }
     })
 }
 
-// Validate if email is from an educational institution
-function isValidSchoolEmail(email) {
-    const eduDomains = [
-        '.edu',           // US universities
-        '.ac.uk',         // UK universities
-        '.edu.au',        // Australian universities
-        '.ac.nz',         // New Zealand universities
-        '.edu.sg',        // Singapore universities
-        '.ac.in',         // Indian universities
-        '.edu.cn',        // Chinese universities
-        '.ac.jp',         // Japanese universities
-        '.edu.br',        // Brazilian universities
-        '.ac.za',         // South African universities
-        '.edu.mx',        // Mexican universities
-        '.ac.kr',         // Korean universities
-        '.edu.co',        // Colombian universities
-    ]
-    
-    // Blocked generic email providers
-    const blockedDomains = [
-        'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com',
-        'icloud.com', 'aol.com', 'protonmail.com', 'mail.com',
-        'zoho.com', 'yandex.com', 'gmx.com'
-    ]
-    
-    const emailLower = email.toLowerCase()
-    const domain = emailLower.split('@')[1]
-    
-    if (!domain) return false
-    
-    // Check if it's a blocked domain
-    if (blockedDomains.includes(domain)) {
-        return false
-    }
-    
-    // Check if it ends with an educational domain
-    return eduDomains.some(eduDomain => domain.endsWith(eduDomain))
+// Validate email: must be @gmail.com or a .edu address
+function isValidEmail(email) {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false
+    const domain = email.toLowerCase().split('@')[1]
+    return domain === 'gmail.com' || domain.endsWith('.edu') || domain === 'edu'
 }
 
 // Handle waitlist form submission
@@ -610,13 +692,27 @@ if (waitlistForm) {
         const email = waitlistEmail.value.trim()
         if (!email) return
 
-        // Validate school email
-        if (!isValidSchoolEmail(email)) {
+        // Validate email format
+        if (!isValidEmail(email)) {
             if (waitlistError) {
-                waitlistError.textContent = 'Please use a valid school email address (e.g., name@university.edu)'
+                waitlistError.textContent = 'Please use your school .edu email or a Gmail address.'
                 waitlistError.classList.remove('tw-hidden')
             }
             return
+        }
+
+        // If they used a .edu email, verify it matches the selected university
+        const emailDomain = email.toLowerCase().split('@')[1]
+        if (emailDomain !== 'gmail.com' && selectedSchoolDomain) {
+            const matches = emailDomain === selectedSchoolDomain
+                || emailDomain.endsWith('.' + selectedSchoolDomain)
+            if (!matches) {
+                if (waitlistError) {
+                    waitlistError.textContent = `That .edu doesn't match ${uniSearchInput.value}. Please use your @${selectedSchoolDomain} email, or use a Gmail address instead.`
+                    waitlistError.classList.remove('tw-hidden')
+                }
+                return
+            }
         }
 
         const uniName = waitlistUniName ? waitlistUniName.textContent : ''
