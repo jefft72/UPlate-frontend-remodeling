@@ -2,7 +2,7 @@
 import './css/tailwind.css'
 import './css/index.css'
 import { WebHaptics, defaultPatterns } from "web-haptics";
-
+const haptics = new WebHaptics();
 // Wrap everything in init function to ensure DOM is ready
 function init() {
 
@@ -28,54 +28,87 @@ function init() {
     let currentPhraseIndex = 0
     let currentCharIndex = 0
     let isDeleting = false
-    let typingSpeed = 80
 
     function typeWriter() {
-        const currentPhrase = phrases[currentPhraseIndex]
+        const BASE_SPEED = 40
+        const PAUSE_AFTER_TYPE = 800
+        const PAUSE_AFTER_DELETE = 300
+        let pauseCounter = 0
+        let skipFrame = false
 
-        if (!isDeleting) {
-            // Typing
-            typewriterText.textContent = currentPhrase.substring(0, currentCharIndex + 1)
-            currentCharIndex++
+        const interval = setInterval(() => {
+            if (pauseCounter > 0) {
+                pauseCounter -= BASE_SPEED
+                return
+            }
 
-            if (currentCharIndex === currentPhrase.length) {
-                // Finished typing current phrase
-                if (currentPhraseIndex < phrases.length - 1) {
-                    // Pause before deleting
-                    setTimeout(() => {
+            const currentPhrase = phrases[currentPhraseIndex]
+
+            if (!isDeleting) {
+                skipFrame = !skipFrame
+                if (skipFrame) return
+
+                typewriterText.textContent = currentPhrase.substring(0, currentCharIndex + 1)
+                currentCharIndex++
+
+                if (currentCharIndex === currentPhrase.length) {
+                    if (currentPhraseIndex < phrases.length - 1) {
+                        pauseCounter = PAUSE_AFTER_TYPE
                         isDeleting = true
-                        typeWriter()
-                    }, 800)
+                        skipFrame = false
+                    } else {
+                        clearInterval(interval)
+                        if (enterBtn) enterBtn.classList.add('visible')
+                    }
                 }
-                // If last phrase, just keep it displayed
-                return
-            }
-        } else {
-            // Deleting - but keep "BETTER " (7 characters)
-            if (currentCharIndex > 7) {
-                currentCharIndex--
-                typewriterText.textContent = currentPhrase.substring(0, currentCharIndex)
             } else {
-                // Reached "BETTER ", move to next phrase
-                isDeleting = false
-                currentPhraseIndex++
-                currentCharIndex = 7 // Start after "BETTER "
-                setTimeout(typeWriter, 300)
-                return
+                if (currentCharIndex > 7) {
+                    currentCharIndex--
+                    typewriterText.textContent = currentPhrase.substring(0, currentCharIndex)
+                } else {
+                    isDeleting = false
+                    currentPhraseIndex++
+                    currentCharIndex = 7
+                    pauseCounter = PAUSE_AFTER_DELETE
+                    skipFrame = false
+                }
             }
-        }
-
-        const speed = isDeleting ? typingSpeed / 2 : typingSpeed
-        setTimeout(typeWriter, speed)
+        }, BASE_SPEED)
     }
 
     function enterSite() {
-        haptics.trigger(defaultPatterns.success)
-        introScreen.classList.add("hidden")
-        mainSite.classList.add("visible")
-        document.body.style.overflow = "auto"
-        // Mark that user has seen the intro this session
-        sessionStorage.setItem("introSeen", "true")
+        const welcomeText = "WELCOME TO UPLATE!"
+        const PULSE = 12
+        const TYPE_SPEED = 50
+        const gap = TYPE_SPEED - PULSE
+
+        // Trigger haptic pattern for welcome text (from this user gesture)
+        haptics.trigger(Array.from({ length: welcomeText.length }, (_, i) => ({
+            delay: i === 0 ? 0 : gap,
+            duration: PULSE,
+            intensity: welcomeText[i] === ' ' ? 0.3 : 0.7 + Math.random() * 0.3
+        })))
+
+        // Type out "Welcome to UPlate!" visually
+        if (enterBtn) enterBtn.classList.remove('visible')
+        typewriterText.textContent = ""
+        let charIndex = 0
+
+        const interval = setInterval(() => {
+            typewriterText.textContent = welcomeText.substring(0, charIndex + 1)
+            charIndex++
+
+            if (charIndex === welcomeText.length) {
+                clearInterval(interval)
+                // Pause briefly, then transition to main site
+                setTimeout(() => {
+                    introScreen.classList.add("hidden")
+                    mainSite.classList.add("visible")
+                    document.body.style.overflow = "auto"
+                    sessionStorage.setItem("introSeen", "true")
+                }, 600)
+            }
+        }, TYPE_SPEED)
     }
 
     // ============ REFERRAL SYSTEM ============
@@ -98,7 +131,7 @@ function init() {
 
     // API endpoint for referral tracking
     const REFERRAL_API = 'https://boilerbites.com/purdue/referrals/createAttempt'
-    const haptics = new WebHaptics();
+
 
     // Check for referral code in URL params
     // Supports: ?ref=CODE&handle=IG_HANDLE or path like /ref/CODE (from Porkbun wildcard redirect)
@@ -241,22 +274,13 @@ function init() {
         } else {
             // Show intro on first visit
             document.body.style.overflow = "hidden"
-            // Start typewriter after a brief delay
+            // Auto-start typewriter
             setTimeout(typeWriter, 500)
 
             // Enter button click
             if (enterBtn) {
                 enterBtn.addEventListener("click", enterSite)
             }
-
-            // Also allow clicking anywhere on intro after animation completes post delay 
-            setTimeout(() => {
-                introScreen.addEventListener("click", (e) => {
-                    if (e.target === introScreen || e.target.closest(".intro-content")) {
-                        enterSite()
-                    }
-                })
-            }, 3000)
         }
     }
 
@@ -292,6 +316,11 @@ function init() {
 
 
     // Header
+    const headerTitle = document.getElementById("header-title")
+    headerTitle.addEventListener("click", () => {
+        haptics.trigger(defaultPatterns.light)
+    })
+
     function onHeaderClickOutside(e) {
         if (!collapseHeaderItems.contains(e.target)) {
             toggleHeader()
@@ -372,6 +401,7 @@ function init() {
 
     faqAccordion.forEach(function (btn) {
         btn.addEventListener('click', function () {
+            haptics.trigger(defaultPatterns.light)
             this.classList.toggle('active')
 
             // Toggle 'rotate' class to rotate the arrow
@@ -507,307 +537,312 @@ function init() {
     // Initial check after a small delay to let layout settle
     setTimeout(updateActiveFeature, 100)
 
-// Export toggleHeader to global scope for HTML onclick
-window.toggleHeader = toggleHeader
+    // Export toggleHeader to global scope for HTML onclick
+    window.toggleHeader = toggleHeader
 
-// ============ UNIVERSITY SEARCH ============
-const uniSearchInput = document.getElementById('uni-search-input')
-const uniSearchResults = document.getElementById('uni-search-results')
-const downloadButtons = document.getElementById('download-buttons')
-const waitlistPanel = document.getElementById('waitlist-panel')
-const waitlistForm = document.getElementById('waitlist-form')
-const waitlistUniName = document.getElementById('waitlist-uni-name')
-const waitlistEmail = document.getElementById('waitlist-email')
-const waitlistSuccess = document.getElementById('waitlist-success')
+    // ============ UNIVERSITY SEARCH ============
+    const uniSearchInput = document.getElementById('uni-search-input')
+    const uniSearchResults = document.getElementById('uni-search-results')
+    const downloadButtons = document.getElementById('download-buttons')
+    const waitlistPanel = document.getElementById('waitlist-panel')
+    const waitlistForm = document.getElementById('waitlist-form')
+    const waitlistUniName = document.getElementById('waitlist-uni-name')
+    const waitlistEmail = document.getElementById('waitlist-email')
+    const waitlistSuccess = document.getElementById('waitlist-success')
 
-let uniDebounceTimer = null
-let selectedSchoolDomain = null   // e.g. "purdue.edu"
-let schoolSelectedFromDropdown = false
+    uniSearchInput.addEventListener('click', function () {
+        haptics.trigger(defaultPatterns.light)
+    })
 
-const COLLEGE_API_KEY = 'uxZR8qLnaqU3mok06NeeVkzcf1zrdXx9ROCatWDG'
+    let uniDebounceTimer = null
+    let selectedSchoolDomain = null   // e.g. "purdue.edu"
+    let schoolSelectedFromDropdown = false
 
-// Fetch college suggestions from the College Scorecard API
-async function searchColleges(query) {
-    if (!query || query.length < 2) return []
-    try {
-        const url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${COLLEGE_API_KEY}&fields=school.name,school.school_url,school.domains&school.name=${encodeURIComponent(query)}&per_page=6`
-        const res = await fetch(url)
-        if (!res.ok) return []
-        const json = await res.json()
-        if (!json.results) return []
-        return json.results.map(r => ({
-            name: r['school.name'],
-            url: r['school.school_url'] || '',
-            domains: r['school.domains'] || []
-        }))
-    } catch (err) {
-        console.error('College API error:', err)
-        return []
+    const COLLEGE_API_KEY = 'uxZR8qLnaqU3mok06NeeVkzcf1zrdXx9ROCatWDG'
+
+    // Fetch college suggestions from the College Scorecard API
+    async function searchColleges(query) {
+        if (!query || query.length < 2) return []
+        try {
+            const url = `https://api.data.gov/ed/collegescorecard/v1/schools?api_key=${COLLEGE_API_KEY}&fields=school.name,school.school_url,school.domains&school.name=${encodeURIComponent(query)}&per_page=6`
+            const res = await fetch(url)
+            if (!res.ok) return []
+            const json = await res.json()
+            if (!json.results) return []
+            return json.results.map(r => ({
+                name: r['school.name'],
+                url: r['school.school_url'] || '',
+                domains: r['school.domains'] || []
+            }))
+        } catch (err) {
+            console.error('College API error:', err)
+            return []
+        }
     }
-}
 
-// Extract a usable email domain from the API result
-function getSchoolEmailDomain(college) {
-    // Prefer the explicit domains array from the API
-    if (college.domains && college.domains.length > 0) {
-        return college.domains[0].toLowerCase().replace(/^www\./, '')
+    // Extract a usable email domain from the API result
+    function getSchoolEmailDomain(college) {
+        // Prefer the explicit domains array from the API
+        if (college.domains && college.domains.length > 0) {
+            return college.domains[0].toLowerCase().replace(/^www\./, '')
+        }
+        // Fall back to school_url
+        if (college.url) {
+            let domain = college.url.toLowerCase()
+                .replace(/^https?:\/\//, '')
+                .replace(/^www\./, '')
+                .split('/')[0]
+            return domain
+        }
+        return null
     }
-    // Fall back to school_url
-    if (college.url) {
-        let domain = college.url.toLowerCase()
-            .replace(/^https?:\/\//, '')
-            .replace(/^www\./, '')
-            .split('/')[0]
-        return domain
-    }
-    return null
-}
 
-// Render autocomplete dropdown
-function renderSearchResults(colleges) {
-    if (!uniSearchResults) return
-    uniSearchResults.innerHTML = ''
-    if (colleges.length === 0) {
-        uniSearchResults.classList.add('tw-hidden')
-        return
-    }
-    colleges.forEach(college => {
-        const li = document.createElement('li')
-        li.className = 'uni-search-result-item'
-        const domain = getSchoolEmailDomain(college)
-        li.innerHTML = `
+    // Render autocomplete dropdown
+    function renderSearchResults(colleges) {
+        if (!uniSearchResults) return
+        uniSearchResults.innerHTML = ''
+        if (colleges.length === 0) {
+            uniSearchResults.classList.add('tw-hidden')
+            return
+        }
+        colleges.forEach(college => {
+            const li = document.createElement('li')
+            li.className = 'uni-search-result-item'
+            const domain = getSchoolEmailDomain(college)
+            li.innerHTML = `
             <span class="uni-name">${college.name}</span>
             ${domain ? `<span class="uni-country">${domain}</span>` : ''}
         `
-        li.addEventListener('click', () => {
-            uniSearchInput.value = college.name
-            selectedSchoolDomain = domain
-            schoolSelectedFromDropdown = true
+            li.addEventListener('click', () => {
+                haptics.trigger(defaultPatterns.selection)
+                uniSearchInput.value = college.name
+                selectedSchoolDomain = domain
+                schoolSelectedFromDropdown = true
+                uniSearchResults.classList.add('tw-hidden')
+                handleUniversitySubmit()
+            })
+            uniSearchResults.appendChild(li)
+        })
+        uniSearchResults.classList.remove('tw-hidden')
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+        if (uniSearchResults && !e.target.closest('.uni-search-wrapper')) {
             uniSearchResults.classList.add('tw-hidden')
-            handleUniversitySubmit()
-        })
-        uniSearchResults.appendChild(li)
-    })
-    uniSearchResults.classList.remove('tw-hidden')
-}
-
-// Close dropdown when clicking outside
-document.addEventListener('click', (e) => {
-    if (uniSearchResults && !e.target.closest('.uni-search-wrapper')) {
-        uniSearchResults.classList.add('tw-hidden')
-    }
-})
-
-// Check if input matches Purdue main campus (West Lafayette) only
-function isPurdue(name) {
-    const normalized = name.replace(/[^a-zA-Z]/g, '').toLowerCase()
-    return normalized === 'purdueuniversitymaincampus'
-        || normalized === 'purdueuniversity'
-        || normalized === 'purdue'
-}
-
-// Hide all reveal panels (download buttons & waitlist)
-function hideAllPanels() {
-    document.querySelectorAll('.hero-reveal-panel').forEach(panel => {
-        panel.style.maxHeight = '0'
-        panel.style.overflow = 'hidden'
-        panel.classList.remove('tw-opacity-100', 'tw-translate-y-0')
-        panel.classList.add('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
-    })
-}
-
-// Animate a panel into view
-function showPanel(panel) {
-    panel.style.maxHeight = '300px'
-    panel.style.overflow = 'visible'
-    panel.classList.remove('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
-    panel.classList.add('tw-opacity-100', 'tw-translate-y-0')
-}
-
-function handleUniversitySubmit() {
-    const raw = uniSearchInput.value.trim()
-    if (!raw || !schoolSelectedFromDropdown) return
-
-    uniSearchInput.classList.add('uni-selected')
-    hideAllPanels()
-
-    // Store university locally
-    localStorage.setItem('uplate_university', raw)
-
-    if (isPurdue(raw)) {
-        // Purdue → show download buttons
-        if (downloadButtons) showPanel(downloadButtons)
-    } else {
-        // Other university → show waitlist
-        if (waitlistPanel) {
-            if (waitlistUniName) waitlistUniName.textContent = raw
-            showPanel(waitlistPanel)
-            if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
-            if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
         }
-    }
-}
+    })
 
-if (uniSearchInput) {
-    // Debounced autocomplete on input
-    uniSearchInput.addEventListener('input', function () {
-        uniSearchInput.classList.remove('uni-selected')
+    // Check if input matches Purdue main campus (West Lafayette) only
+    function isPurdue(name) {
+        const normalized = name.replace(/[^a-zA-Z]/g, '').toLowerCase()
+        return normalized === 'purdueuniversitymaincampus'
+            || normalized === 'purdueuniversity'
+            || normalized === 'purdue'
+    }
+
+    // Hide all reveal panels (download buttons & waitlist)
+    function hideAllPanels() {
+        document.querySelectorAll('.hero-reveal-panel').forEach(panel => {
+            panel.style.maxHeight = '0'
+            panel.style.overflow = 'hidden'
+            panel.classList.remove('tw-opacity-100', 'tw-translate-y-0')
+            panel.classList.add('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
+        })
+    }
+
+    // Animate a panel into view
+    function showPanel(panel) {
+        panel.style.maxHeight = '300px'
+        panel.style.overflow = 'visible'
+        panel.classList.remove('tw-opacity-0', 'tw-translate-y-4', 'tw-pointer-events-none')
+        panel.classList.add('tw-opacity-100', 'tw-translate-y-0')
+    }
+
+    function handleUniversitySubmit() {
+        const raw = uniSearchInput.value.trim()
+        if (!raw || !schoolSelectedFromDropdown) return
+
+        uniSearchInput.classList.add('uni-selected')
         hideAllPanels()
-        selectedSchoolDomain = null
-        schoolSelectedFromDropdown = false
 
-        // Clear email input and reset form state
-        if (waitlistEmail) waitlistEmail.value = ''
-        if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
-        if (waitlistError) waitlistError.classList.add('tw-hidden')
-        if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
+        // Store university locally
+        localStorage.setItem('uplate_university', raw)
 
-        const query = uniSearchInput.value.trim()
-        clearTimeout(uniDebounceTimer)
-        if (query.length < 2) {
-            renderSearchResults([])
-            return
-        }
-        uniDebounceTimer = setTimeout(async () => {
-            const results = await searchColleges(query)
-            renderSearchResults(results)
-        }, 300)
-    })
-
-    // Keyboard navigation for autocomplete
-    uniSearchInput.addEventListener('keydown', function (e) {
-        if (!uniSearchResults) return
-        const items = uniSearchResults.querySelectorAll('.uni-search-result-item')
-        const activeItem = uniSearchResults.querySelector('.uni-search-result-item.active')
-        let activeIndex = Array.from(items).indexOf(activeItem)
-
-        if (e.key === 'ArrowDown') {
-            e.preventDefault()
-            if (activeItem) activeItem.classList.remove('active')
-            activeIndex = (activeIndex + 1) % items.length
-            items[activeIndex].classList.add('active')
-            items[activeIndex].scrollIntoView({ block: 'nearest' })
-        } else if (e.key === 'ArrowUp') {
-            e.preventDefault()
-            if (activeItem) activeItem.classList.remove('active')
-            activeIndex = activeIndex <= 0 ? items.length - 1 : activeIndex - 1
-            items[activeIndex].classList.add('active')
-            items[activeIndex].scrollIntoView({ block: 'nearest' })
-        } else if (e.key === 'Enter') {
-            e.preventDefault()
-            if (activeItem) {
-                activeItem.click()
-            } else if (items.length > 0) {
-                items[0].click()
+        if (isPurdue(raw)) {
+            // Purdue → show download buttons
+            if (downloadButtons) showPanel(downloadButtons)
+        } else {
+            // Other university → show waitlist
+            if (waitlistPanel) {
+                if (waitlistUniName) waitlistUniName.textContent = raw
+                showPanel(waitlistPanel)
+                if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
+                if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
             }
-        } else if (e.key === 'Escape') {
-            renderSearchResults([])
         }
-    })
-}
+    }
 
-// Validate email: must be @gmail.com or a .edu address
-function isValidEmail(email) {
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false
-    const domain = email.toLowerCase().split('@')[1]
-    return domain === 'gmail.com' || domain.endsWith('.edu') || domain === 'edu'
-}
+    if (uniSearchInput) {
+        // Debounced autocomplete on input
+        uniSearchInput.addEventListener('input', function () {
+            uniSearchInput.classList.remove('uni-selected')
+            hideAllPanels()
+            selectedSchoolDomain = null
+            schoolSelectedFromDropdown = false
 
-// Handle waitlist form submission
-const waitlistError = document.getElementById('waitlist-error')
-
-if (waitlistForm) {
-    // Clear error when user types
-    if (waitlistEmail) {
-        waitlistEmail.addEventListener('input', function () {
+            // Clear email input and reset form state
+            if (waitlistEmail) waitlistEmail.value = ''
+            if (waitlistSuccess) waitlistSuccess.classList.add('tw-hidden')
             if (waitlistError) waitlistError.classList.add('tw-hidden')
+            if (waitlistForm) waitlistForm.classList.remove('tw-hidden')
+
+            const query = uniSearchInput.value.trim()
+            clearTimeout(uniDebounceTimer)
+            if (query.length < 2) {
+                renderSearchResults([])
+                return
+            }
+            uniDebounceTimer = setTimeout(async () => {
+                const results = await searchColleges(query)
+                renderSearchResults(results)
+            }, 300)
+        })
+
+        // Keyboard navigation for autocomplete
+        uniSearchInput.addEventListener('keydown', function (e) {
+            if (!uniSearchResults) return
+            const items = uniSearchResults.querySelectorAll('.uni-search-result-item')
+            const activeItem = uniSearchResults.querySelector('.uni-search-result-item.active')
+            let activeIndex = Array.from(items).indexOf(activeItem)
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault()
+                if (activeItem) activeItem.classList.remove('active')
+                activeIndex = (activeIndex + 1) % items.length
+                items[activeIndex].classList.add('active')
+                items[activeIndex].scrollIntoView({ block: 'nearest' })
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault()
+                if (activeItem) activeItem.classList.remove('active')
+                activeIndex = activeIndex <= 0 ? items.length - 1 : activeIndex - 1
+                items[activeIndex].classList.add('active')
+                items[activeIndex].scrollIntoView({ block: 'nearest' })
+            } else if (e.key === 'Enter') {
+                e.preventDefault()
+                if (activeItem) {
+                    activeItem.click()
+                } else if (items.length > 0) {
+                    items[0].click()
+                }
+            } else if (e.key === 'Escape') {
+                renderSearchResults([])
+            }
         })
     }
-    
-    waitlistForm.addEventListener('submit', async function (e) {
-        e.preventDefault()
-        const email = waitlistEmail.value.trim()
-        if (!email) return
 
-        // Validate email format
-        if (!isValidEmail(email)) {
-            if (waitlistError) {
-                waitlistError.textContent = 'Please use your school .edu email or a Gmail address.'
-                waitlistError.classList.remove('tw-hidden')
-            }
-            return
+    // Validate email: must be @gmail.com or a .edu address
+    function isValidEmail(email) {
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return false
+        const domain = email.toLowerCase().split('@')[1]
+        return domain === 'gmail.com' || domain.endsWith('.edu') || domain === 'edu'
+    }
+
+    // Handle waitlist form submission
+    const waitlistError = document.getElementById('waitlist-error')
+
+    if (waitlistForm) {
+        // Clear error when user types
+        if (waitlistEmail) {
+            waitlistEmail.addEventListener('input', function () {
+                if (waitlistError) waitlistError.classList.add('tw-hidden')
+            })
         }
 
-        // If they used a .edu email, verify it matches the selected university
-        const emailDomain = email.toLowerCase().split('@')[1]
-        if (emailDomain !== 'gmail.com' && selectedSchoolDomain) {
-            const matches = emailDomain === selectedSchoolDomain
-                || emailDomain.endsWith('.' + selectedSchoolDomain)
-            if (!matches) {
+        waitlistForm.addEventListener('submit', async function (e) {
+            e.preventDefault()
+            const email = waitlistEmail.value.trim()
+            if (!email) return
+
+            // Validate email format
+            if (!isValidEmail(email)) {
                 if (waitlistError) {
-                    waitlistError.textContent = `That .edu doesn't match ${uniSearchInput.value}. Please use your @${selectedSchoolDomain} email, or use a Gmail address instead.`
+                    waitlistError.textContent = 'Please use your school .edu email or a Gmail address.'
                     waitlistError.classList.remove('tw-hidden')
                 }
                 return
             }
-        }
 
-        const uniName = waitlistUniName ? waitlistUniName.textContent : ''
-        
-        // Disable submit button while processing
-        const submitBtn = document.getElementById('waitlist-submit')
-        const originalBtnText = submitBtn ? submitBtn.textContent : ''
-        if (submitBtn) {
-            submitBtn.disabled = true
-            submitBtn.textContent = 'Joining...'
-        }
-
-        try {
-            // Convert university name to URL-safe format (lowercase, no spaces)
-            const schoolSlug = uniName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-            
-            // Call Cloudflare backend API
-            const apiUrl = `https://boilerbites.com/waitlist/${encodeURIComponent(schoolSlug)}/${encodeURIComponent(email)}`
-            
-            // Use no-cors mode to bypass CORS restrictions (backend doesn't return CORS headers)
-            // This sends the request successfully but we can't read the response
-            await fetch(apiUrl, {
-                method: 'GET',
-                mode: 'no-cors'
-            })
-
-            // Also store locally as backup
-            const waitlistData = {
-                email: email,
-                university: uniName,
-                timestamp: new Date().toISOString()
+            // If they used a .edu email, verify it matches the selected university
+            const emailDomain = email.toLowerCase().split('@')[1]
+            if (emailDomain !== 'gmail.com' && selectedSchoolDomain) {
+                const matches = emailDomain === selectedSchoolDomain
+                    || emailDomain.endsWith('.' + selectedSchoolDomain)
+                if (!matches) {
+                    if (waitlistError) {
+                        waitlistError.textContent = `That .edu doesn't match ${uniSearchInput.value}. Please use your @${selectedSchoolDomain} email, or use a Gmail address instead.`
+                        waitlistError.classList.remove('tw-hidden')
+                    }
+                    return
+                }
             }
-            const existing = JSON.parse(localStorage.getItem('uplate_waitlist') || '[]')
-            existing.push(waitlistData)
-            localStorage.setItem('uplate_waitlist', JSON.stringify(existing))
 
-            // Show success, hide form and error
-            waitlistForm.classList.add('tw-hidden')
-            if (waitlistError) waitlistError.classList.add('tw-hidden')
-            if (waitlistSuccess) waitlistSuccess.classList.remove('tw-hidden')
-            
-        } catch (error) {
-            console.error('Waitlist API error:', error)
-            
-            // Show error to user
-            if (waitlistError) {
-                waitlistError.textContent = 'Something went wrong. Please try again.'
-                waitlistError.classList.remove('tw-hidden')
-            }
-            
-            // Re-enable button
+            const uniName = waitlistUniName ? waitlistUniName.textContent : ''
+
+            // Disable submit button while processing
+            const submitBtn = document.getElementById('waitlist-submit')
+            const originalBtnText = submitBtn ? submitBtn.textContent : ''
             if (submitBtn) {
-                submitBtn.disabled = false
-                submitBtn.textContent = originalBtnText
+                submitBtn.disabled = true
+                submitBtn.textContent = 'Joining...'
             }
-        }
-    })
-}
+
+            try {
+                // Convert university name to URL-safe format (lowercase, no spaces)
+                const schoolSlug = uniName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+
+                // Call Cloudflare backend API
+                const apiUrl = `https://boilerbites.com/waitlist/${encodeURIComponent(schoolSlug)}/${encodeURIComponent(email)}`
+
+                // Use no-cors mode to bypass CORS restrictions (backend doesn't return CORS headers)
+                // This sends the request successfully but we can't read the response
+                await fetch(apiUrl, {
+                    method: 'GET',
+                    mode: 'no-cors'
+                })
+
+                // Also store locally as backup
+                const waitlistData = {
+                    email: email,
+                    university: uniName,
+                    timestamp: new Date().toISOString()
+                }
+                const existing = JSON.parse(localStorage.getItem('uplate_waitlist') || '[]')
+                existing.push(waitlistData)
+                localStorage.setItem('uplate_waitlist', JSON.stringify(existing))
+
+                // Show success, hide form and error
+                waitlistForm.classList.add('tw-hidden')
+                if (waitlistError) waitlistError.classList.add('tw-hidden')
+                if (waitlistSuccess) waitlistSuccess.classList.remove('tw-hidden')
+
+            } catch (error) {
+                console.error('Waitlist API error:', error)
+
+                // Show error to user
+                if (waitlistError) {
+                    waitlistError.textContent = 'Something went wrong. Please try again.'
+                    waitlistError.classList.remove('tw-hidden')
+                }
+
+                // Re-enable button
+                if (submitBtn) {
+                    submitBtn.disabled = false
+                    submitBtn.textContent = originalBtnText
+                }
+            }
+        })
+    }
 
 }
 
