@@ -1,33 +1,34 @@
 {
-    "name": "landing-pages",
-    "version": "1.0.0",
-    "description": "beautiful landing pages",
-    "main": "index.js",
-    "scripts": {
-      "start:tailwind": "NODE_ENV=development tailwindcss --postcss -i css/tailwind.css -o css/tailwind-runtime.css -w",
-      "build:tailwind": "NODE_ENV=production tailwindcss --postcss -i css/tailwind.css -o css/tailwind-build.css --minify",
-      "dev": "vite",
-      "build": "vite build",
-      "build:prod": "npm run build:tailwind && vite build",
-      "preview": "vite preview --port 8080",
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-      "landing",
-      "pages",
-      "motion",
-      "design",
-      "websites"
-    ],
-    "author": "Paul",
-    "license": "MIT",
-    "devDependencies": {
-      "tailwindcss": "^3.4.1",
-      "vite": "^5.0.0"
-    },
-    "dependencies": {
-      "postcss": "^8.4.33",
-      "postcss-simple-vars": "^7.0.1"
-    }
+  "name": "landing-pages",
+  "version": "1.0.0",
+  "description": "beautiful landing pages",
+  "main": "index.js",
+  "scripts": {
+    "start:tailwind": "NODE_ENV=development tailwindcss --postcss -i css/tailwind.css -o css/tailwind-runtime.css -w",
+    "build:tailwind": "NODE_ENV=production tailwindcss --postcss -i css/tailwind.css -o css/tailwind-build.css --minify",
+    "dev": "vite",
+    "dev:mobile": "vite --host",
+    "build": "vite build",
+    "build:prod": "npm run build:tailwind && vite build",
+    "preview": "vite preview --port 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "landing",
+    "pages",
+    "motion",
+    "design",
+    "websites"
+  ],
+  "author": "Paul",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "postcss": "^8.4.33",
+    "postcss-simple-vars": "^7.0.1",
+    "web-haptics": "^0.0.6"
   }
-  
+}
