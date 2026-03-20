@@ -77,7 +77,7 @@ function init() {
     }
 
     function enterSite() {
-        const welcomeText = "WELCOME TO UPLATE!"
+        const welcomeText = "MEET UPLATE!"
         const PULSE = 12
         const TYPE_SPEED = 50
         const gap = TYPE_SPEED - PULSE
