@@ -445,123 +445,6 @@ header > .collapsible-header {
     color: #fff;
 }
 
-/* ============ UNIVERSITY SEARCH & INPUTS ============ */
-.uni-search-wrapper {
-    position: relative;
-}
-
-.uni-search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.uni-search-icon {
-    position: absolute;
-    left: 20px;
-    color: var(--ink-muted);
-    font-size: 16px;
-    pointer-events: none;
-    transition: color 0.3s ease;
-    z-index: 10;
-}
-
-.uni-search-input {
-    width: 100%;
-    padding: 16px 20px 16px 48px;
-    border-radius: var(--radius-pill);
-    background: var(--surface-soft);
-    border: 1px solid var(--accent-line);
-    color: var(--ink);
-    font-size: 16px;
-    font-weight: 400;
-    font-family: inherit;
-    outline: none;
-    transition: all 0.25s var(--ease-out-expo);
-    box-shadow: var(--shadow-sm);
-}
-
-.uni-search-input::placeholder {
-    color: var(--ink-muted);
-}
-
-.uni-search-input:hover {
-    border-color: var(--powder-blue);
-    background: var(--surface);
-}
-
-.uni-search-input:focus {
-    border-color: var(--accent-strong);
-    background: var(--surface);
-    box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.uni-search-container:has(.uni-search-input:focus) .uni-search-icon {
-    color: var(--accent-strong);
-}
-
-.uni-search-input.uni-selected {
-    border-color: var(--slate-indigo);
-    background: var(--surface);
-}
-
-.uni-search-results {
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    list-style: none;
-    margin: 0;
-    padding: 8px 0;
-    background: var(--surface);
-    border: 1px solid var(--accent-line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-lg);
-    z-index: 100;
-    max-height: 320px;
-    overflow-y: auto;
-}
-
-.uni-search-results::-webkit-scrollbar {
-    width: 6px;
-}
-
-.uni-search-results::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.uni-search-results::-webkit-scrollbar-thumb {
-    background: var(--accent-line);
-    border-radius: 3px;
-}
-
-.uni-search-result-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 20px;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-.uni-search-result-item:hover,
-.uni-search-result-item.active {
-    background: var(--surface-sunken);
-}
-
-.uni-search-result-item .uni-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink);
-}
-
-.uni-search-result-item .uni-country {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--ink-muted);
-    margin-left: 12px;
-    white-space: nowrap;
-}
 
 /* ============ HERO ============ */
 /* Overrides the tw-min-h-[100vh] utility: 100vh is measured against the
@@ -869,7 +752,7 @@ header > .collapsible-header {
 .checklist-row {
     display: flex;
     gap: 18px;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid var(--accent-line);
 }

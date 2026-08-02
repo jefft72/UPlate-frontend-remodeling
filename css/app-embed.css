@@ -1,0 +1,53 @@
+/* While preloading, the frame is a full-screen layer sitting above the page.
+   `visibility: hidden` keeps the browser from painting and compositing it on
+   every frame — the iframe still loads in the background either way. */
+.uplate-app-backdrop {
+    position: fixed;
+    inset: 0;
+    background: #F6F9FE;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 300;
+    transition: opacity .35s ease, visibility .35s ease;
+}
+
+.uplate-app-backdrop.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.uplate-app-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    height: 100dvh;
+    border: 0;
+}
+
+/* On roomier viewports the Flutter app is designed for a phone, not a
+   stretched browser window — frame it like one, floating on the same
+   gradient backdrop the old web onboarding used. */
+@media (min-width: 700px) {
+    .uplate-app-backdrop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background:
+            radial-gradient(circle at 18% 12%, rgba(162, 195, 255, .72), transparent 30rem),
+            linear-gradient(180deg, #f6f9fe 0%, #dcedff 100%);
+    }
+
+    .uplate-app-frame {
+        width: 412px;
+        height: min(890px, 90dvh);
+        border: 1px solid rgba(148, 176, 218, .35);
+        border-radius: 44px;
+        box-shadow: 0 40px 80px -40px rgba(31, 61, 110, .45);
+    }
+}
+
+html.uplate-app-open {
+    overflow: hidden;
+}

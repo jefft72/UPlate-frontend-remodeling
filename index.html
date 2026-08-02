@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="./css/tailwind-build.css">
     <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/app-embed.css">
+    <link rel="preconnect" href="https://app.u-plate.com">
+    <link rel="dns-prefetch" href="https://app.u-plate.com">
 
     <meta name="description" content="Know what you can eat, what helps you reach your goals, and track it effortlessly. UPlate filters dining hall and restaurant menus by your dietary needs and macro goals — the free meal-prep app built for university students." />
     <link rel="canonical" href="https://u-plate.com/" />
@@ -276,49 +279,11 @@
                         meal-prep buddy that filters your dining hall and restaurant menus for you.
                     </p>
 
-                    <!-- University Search Bar -->
-                    <div class="uni-search-wrapper tw-mt-10 tw-w-full tw-max-w-[420px] tw-relative">
-                        <div class="uni-search-container">
-                            <i class="bi bi-search uni-search-icon"></i>
-                            <input type="text" id="uni-search-input" class="uni-search-input"
-                                placeholder="Type in your university here" autocomplete="off" />
-                        </div>
-                        <ul id="uni-search-results" class="uni-search-results tw-hidden"></ul>
-                    </div>
-
-                    <!-- Supported schools continue into web onboarding. -->
-                    <div id="get-started-panel"
-                        class="hero-reveal-panel tw-mt-6 tw-flex tw-items-center tw-gap-4 tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none"
-                        style="max-height: 0; overflow: hidden;">
+                    <div class="tw-mt-10 tw-flex tw-items-center tw-gap-4">
                         <a id="get-started-link" class="primary-btn tw-flex tw-items-center tw-gap-2" href="./onboarding.html">
                             Get started
                             <i class="bi bi-arrow-right"></i>
                         </a>
-                    </div>
-
-                    <!-- Waitlist form (non-Purdue universities) -->
-                    <div id="waitlist-panel"
-                        class="hero-reveal-panel tw-mt-6 tw-flex tw-flex-col tw-items-start tw-gap-4 tw-opacity-0 tw-translate-y-4 tw-transition-all tw-duration-500 tw-pointer-events-none tw-w-full tw-max-w-[500px]"
-                        style="max-height: 0; overflow: hidden;">
-                        <p class="tw-text-ink-soft tw-text-base">
-                            We're not at <span id="waitlist-uni-name" class="tw-text-ink-navy tw-font-medium"></span> yet —
-                            but we're expanding!
-                        </p>
-                        <form id="waitlist-form" class="tw-flex tw-w-full tw-flex-col tw-gap-3">
-                            <div class="tw-flex tw-w-full tw-gap-3 max-md:tw-flex-col">
-                                <div class="uni-search-container tw-flex-1">
-                                    <i class="bi bi-envelope uni-search-icon"></i>
-                                    <input type="email" id="waitlist-email" class="uni-search-input"
-                                        placeholder="Your school email" required />
-                                </div>
-                                <button type="submit" id="waitlist-submit" class="primary-btn tw-whitespace-nowrap">
-                                    Join the Waitlist
-                                </button>
-                            </div>
-                            <p id="waitlist-error" class="tw-text-danger tw-text-sm tw-hidden"></p>
-                        </form>
-                        <p id="waitlist-success" class="tw-text-success tw-text-sm tw-hidden">You're on the list!
-                            We'll let you know when we launch at your school.</p>
                     </div>
                 </div>
 
@@ -902,6 +867,7 @@
     </div><!-- End main-site -->
 
     <script type="module" src="./index.js"></script>
+    <script type="module" src="./app-embed.js"></script>
 </body>
 
 </html>

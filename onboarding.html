@@ -3,38 +3,18 @@
 
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#F6F9FE" />
     <meta name="description" content="Create your UPlate account and personalize your campus dining plan." />
     <meta name="robots" content="noindex" />
     <title>Get started with UPlate</title>
     <link rel="shortcut icon" href="./assets/logo/plate_dark.png" type="image/x-icon" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css"
-        integrity="sha512-dPXYcDub/aeb08c63jRq/k6GaKccl256JQy/AnOq7CAnEZ9FzSL9wSbcZkMp4R26vBsMLFYH4kQ67/bbV8XaCQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/onboarding.css" />
 </head>
 
 <body class="onboarding-page">
-    <main class="onboarding-shell">
-        <a class="onboarding-brand" href="/" aria-label="Back to UPlate home">
-            <span class="logo-badge"><img src="./assets/logo/plate_dark.png" alt="" /></span>
-            <span>UPlate</span>
-        </a>
-        <section class="onboarding-card" aria-live="polite">
-            <div class="onboarding-progress" aria-label="Onboarding progress">
-                <div class="onboarding-progress__track"><span id="progress-fill"></span></div>
-                <span id="progress-label">Welcome</span>
-            </div>
-            <div id="onboarding-content"></div>
-        </section>
-        <p class="onboarding-footer">Your answers stay private and are only used to personalize UPlate.</p>
-    </main>
-    <script type="module" src="./onboarding.js"></script>
+    <iframe class="onboarding-frame" src="https://app.u-plate.com" title="UPlate"
+        allow="camera; microphone; geolocation"></iframe>
 </body>
 
 </html>
