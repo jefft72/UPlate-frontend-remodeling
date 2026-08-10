@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" />
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
 
     <style>
         :root {
@@ -30,7 +30,8 @@
             --accent-line: rgba(148, 176, 218, 0.32);
             --ink: #14213d;
             --ink-soft: #3b4a6b;
-            --ink-muted: #6f7e9c;
+            --ink-muted: #526181;
+            --deep-navy: #3a4c7e;
             --danger: #c0392b;
             --success: #2f855a;
             --shadow-sm: 0 1px 2px rgba(20, 33, 61, 0.06);
@@ -40,7 +41,7 @@
             --radius-md: 14px;
             --radius-lg: 20px;
             --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-display: "Fraunces", "Georgia", ui-serif, serif;
+            --font-display: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             font-family: var(--font-sans);
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizeLegibility;
@@ -151,7 +152,7 @@
             padding: 6px 12px;
             border-radius: 999px;
             background: var(--accent-soft);
-            color: var(--accent-strong);
+            color: var(--deep-navy);
             font-size: 11px;
             font-weight: 700;
             letter-spacing: 0.14em;
@@ -233,7 +234,7 @@
             margin-top: 4px;
             padding: 0 18px;
             border: none;
-            border-radius: var(--radius-md);
+            border-radius: 999px;
             background: var(--ink);
             color: #ffffff;
             font-family: var(--font-sans);
@@ -324,7 +325,7 @@
             transition: color 0.18s ease;
         }
 
-        .card-footer a:hover { color: var(--accent-strong); }
+        .card-footer a:hover { color: var(--deep-navy); }
 
         @media (min-width: 680px) {
             body { padding: 56px 24px; }
