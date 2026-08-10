@@ -307,9 +307,80 @@
         <!-- INSIGHTS -->
         <section id="insights"
             class="tw-relative tw-flex tw-w-full tw-items-center tw-justify-center tw-gap-16 tw-px-4 sm:tw-px-[5%] lg:tw-px-[8%] tw-py-24 max-lg:tw-flex-col">
-            <div class="tw-w-full tw-max-w-[280px] tw-shrink-0 max-lg:tw-order-2">
-                <img class="phone-shot" src="/assets/images/home/analytics.png" width="1206" height="2622"
-                    alt="A student's analytics screen in UPlate, charting daily macro goals and weight over the past week" />
+            <div class="tw-w-full tw-max-w-[440px] tw-shrink-0 max-lg:tw-order-2" role="img"
+                aria-label="A preview of the restaurant Insights dashboard, showing 1,107 views, 197 logged meals, a 4.2 average rating, 57% repeat visitors, a leaderboard of top items by diet, and a ranked list of logged menu items with ratings">
+                <!-- Mirrors the real restaurant Insights dashboard: same top-line
+                     stats, same "Who's eating what" leaderboard and ranked list. -->
+                <div class="metrics-panel" aria-hidden="true">
+                    <span class="metrics-title">Insights</span>
+                    <span class="metrics-subtitle">Logging, rating, and coming back — separate from any ad you've
+                        run.</span>
+
+                    <div class="metrics-stats">
+                        <div class="metric-tile">
+                            <span class="metric-label">Views</span>
+                            <span class="metric-value">1,107</span>
+                            <span class="metric-delta"><i class="bi bi-arrow-up-right"></i> 52% vs last week</span>
+                        </div>
+                        <div class="metric-tile">
+                            <span class="metric-label">Logged meals</span>
+                            <span class="metric-value">197</span>
+                        </div>
+                        <div class="metric-tile">
+                            <span class="metric-label">Avg rating</span>
+                            <span class="metric-value">4.2</span>
+                            <span class="metric-sub">119 ratings</span>
+                        </div>
+                        <div class="metric-tile">
+                            <span class="metric-label">Repeat visitors</span>
+                            <span class="metric-value">57%</span>
+                            <span class="metric-sub">525 visitors</span>
+                        </div>
+                    </div>
+
+                    <div class="metrics-divider"></div>
+
+                    <span class="metrics-section-label">Who's eating what</span>
+
+                    <div class="leaderboard-row">
+                        <div class="leaderboard-chip">
+                            <span class="leaderboard-tag">#1 Bulking</span>
+                            <span class="leaderboard-item">Salmon Macro Plate</span>
+                        </div>
+                        <div class="leaderboard-chip">
+                            <span class="leaderboard-tag">#1 Vegan</span>
+                            <span class="leaderboard-item">Smoky Tofu Buddha Bowl</span>
+                        </div>
+                        <div class="leaderboard-chip">
+                            <span class="leaderboard-tag">#1 Halal</span>
+                            <span class="leaderboard-item">Chicken Quinoa Power Bowl</span>
+                        </div>
+                    </div>
+
+                    <div class="menu-rank-list">
+                        <div class="menu-rank-row">
+                            <span class="menu-rank-main">
+                                <span class="menu-rank-name">Chicken Quinoa Power Bowl</span>
+                                <span class="menu-rank-meta">Skews Halal +18pts · 4.3★ (23)</span>
+                            </span>
+                            <span class="menu-rank-count">39<span>logged</span></span>
+                        </div>
+                        <div class="menu-rank-row">
+                            <span class="menu-rank-main">
+                                <span class="menu-rank-name">Salmon Macro Plate</span>
+                                <span class="menu-rank-meta">Skews Kosher +20pts · 4.4★ (26)</span>
+                            </span>
+                            <span class="menu-rank-count">39<span>logged</span></span>
+                        </div>
+                        <div class="menu-rank-row">
+                            <span class="menu-rank-main">
+                                <span class="menu-rank-name">Falafel Power Wrap</span>
+                                <span class="menu-rank-meta">Skews Maintaining +24pts · 4.8★ (14)</span>
+                            </span>
+                            <span class="menu-rank-count">23<span>logged</span></span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="restaurant-dashboard"

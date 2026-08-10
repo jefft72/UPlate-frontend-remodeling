@@ -2272,3 +2272,186 @@ textarea.field-input {
     background: var(--status-attention-tint);
     color: var(--status-attention);
 }
+
+/* ============================================================
+   RESTAURANTS PAGE — INSIGHTS MOCKUP
+   Mirrors the real restaurant Insights dashboard: the four
+   top-line stats, then the "Who's eating what" leaderboard and
+   logged-item list. Keep in sync with that dashboard's own
+   stylesheet if it changes.
+   ============================================================ */
+
+.metrics-panel {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    padding: 28px 28px 8px;
+    width: 100%;
+}
+
+.metrics-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.metrics-subtitle {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8125rem;
+    color: var(--ink-muted);
+}
+
+.metrics-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 16px;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--accent-line);
+}
+
+.metric-label {
+    display: block;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+}
+
+.metric-value {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+}
+
+.metric-sub {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+}
+
+.metric-delta {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--success);
+}
+
+.metrics-divider {
+    margin: 22px 0 16px;
+    border-top: 1px solid var(--accent-line);
+}
+
+.metrics-section-label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.leaderboard-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.leaderboard-chip {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    background: var(--surface-soft);
+}
+
+.leaderboard-tag {
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-strong);
+}
+
+.leaderboard-item {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.menu-rank-list {
+    margin-top: 6px;
+}
+
+.menu-rank-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--accent-line);
+}
+
+.menu-rank-row:last-of-type {
+    border-bottom: none;
+}
+
+.menu-rank-main {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.menu-rank-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.menu-rank-meta {
+    font-size: 0.75rem;
+    color: var(--ink-muted);
+}
+
+.menu-rank-count {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-family: var(--font-display);
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.menu-rank-count span {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+@media (max-width: 560px) {
+    .metrics-panel {
+        padding: 22px 20px 6px;
+    }
+
+    .metrics-stats {
+        gap: 18px 12px;
+    }
+}
