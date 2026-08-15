@@ -1,0 +1,1 @@
+import"./modulepreload-polyfill-B5Qt9EMX.js";/* empty css              */import{v as c,b as r}from"./chunk-4NSAIXAB-D3LIHawy.js";const t=new c;document.querySelectorAll(".action--primary").forEach(e=>{e.addEventListener("click",()=>t.trigger(r.medium))});document.querySelectorAll(".action--secondary").forEach(e=>{e.addEventListener("click",()=>t.trigger(r.light))});
