@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#DCEDFF" />
+    <title>Rishu Sharma · UPlate</title>
+    <meta name="description" content="Rishu Sharma's UPlate contact card." />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href="https://u-plate.com/rishu/" />
+    <link rel="shortcut icon" href="/assets/logo/logo.png" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" />
+    <link rel="stylesheet" href="/css/cards.css" />
+
+    <!--
+      Moved here from UPlate-cards (previously a standalone React SPA at
+      cards.u-plate.com/rishu). This is a static port, not a rebuild: markup
+      and styling (css/cards.css) are carried over from the React
+      PersonCard/BrandHeader/CardFooter/ActionButton components byte-for-byte,
+      just without the React/react-router runtime, since this route is a
+      fixed, known page rather than one behind a client-side match. See
+      UPlate-cards/src/data/team.js for the source of truth on team data.
+    -->
+</head>
+
+<body>
+    <div id="root">
+        <main class="page shell">
+            <article class="card" aria-labelledby="card-title">
+                <header class="brand-header">
+                    <span class="brand-mark" aria-hidden="true"></span>
+                    <div class="brand-text">
+                        <p class="brand-name">UPlate</p>
+                        <p class="brand-line">Your Plate. Your Plan.</p>
+                    </div>
+                </header>
+
+                <section class="identity">
+                    <div class="avatar" aria-hidden="true">R</div>
+                    <h1 id="card-title" class="person-name">Rishu</h1>
+                    <p class="person-role">Co-Founder & CTO</p>
+                </section>
+
+                <nav class="actions" aria-label="Contact Rishu">
+                <a class="action action--primary" href="mailto:rishu@u-plate.com">
+                    <span class="action__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect x="3" y="5" width="18" height="14" rx="2.5" />
+                        <path d="m3.5 7 8 6a1 1 0 0 0 1 0l8-6" />
+                    </svg>
+                    </span>
+                    <span class="action__label">rishu@u-plate.com</span>
+                    <svg class="action__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 6 6 6-6 6" />
+                    </svg>
+                </a>
+                <a class="action action--secondary" href="https://www.linkedin.com/in/rishit-sharma-2a7904299/" target="_blank" rel="noopener">
+                    <span class="action__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4v11H3v-11Zm6.5 0H13v1.55h.05c.5-.9 1.7-1.85 3.5-1.85 3.75 0 4.45 2.45 4.45 5.65V20.5h-4v-4.95c0-1.18-.02-2.7-1.65-2.7-1.65 0-1.9 1.28-1.9 2.6V20.5h-4v-11Z" />
+                    </svg>
+                    </span>
+                    <span class="action__label">LinkedIn</span>
+                    <svg class="action__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 6 6 6-6 6" />
+                    </svg>
+                </a>
+                <a class="action action--secondary" href="https://u-plate.com/" target="_blank" rel="noopener">
+                    <span class="action__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M3 12h18" />
+                        <path d="M12 3a14 14 0 0 1 0 18" />
+                        <path d="M12 3a14 14 0 0 0 0 18" />
+                    </svg>
+                    </span>
+                    <span class="action__label">Meet U-Plate</span>
+                    <svg class="action__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m9 6 6 6-6 6" />
+                    </svg>
+                </a>
+                </nav>
+
+                <footer class="card-footer">
+                    <span>UPlate</span>
+                    <span>2026</span>
+                </footer>
+            </article>
+        </main>
+    </div>
+
+    <script type="module">
+        import { WebHaptics, defaultPatterns } from "web-haptics";
+        const haptics = new WebHaptics();
+
+        document.querySelectorAll(".action--primary").forEach((el) => {
+            el.addEventListener("click", () => haptics.trigger(defaultPatterns.medium));
+        });
+        document.querySelectorAll(".action--secondary").forEach((el) => {
+            el.addEventListener("click", () => haptics.trigger(defaultPatterns.light));
+        });
+    </script>
+</body>
+
+</html>

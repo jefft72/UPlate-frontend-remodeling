@@ -65,7 +65,10 @@ export default defineConfig({
         careers: resolve(__dirname, 'careers.html'),
         unsubscribe: resolve(__dirname, 'unsubscribe.html'),
         onboarding: resolve(__dirname, 'onboarding.html'),
-        privacy: resolve(__dirname, 'privacy.html')
+        privacy: resolve(__dirname, 'privacy.html'),
+        nathaniel: resolve(__dirname, 'nathaniel/index.html'),
+        rishu: resolve(__dirname, 'rishu/index.html'),
+        monish: resolve(__dirname, 'monish/index.html')
       }
     }
   }
