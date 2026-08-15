@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#DCEDFF" />
+    <title>Privacy Policy · UPlate</title>
+    <meta name="description" content="How UPlate collects, uses, and protects your information." />
+    <link rel="canonical" href="https://u-plate.com/privacy.html" />
+    <link rel="shortcut icon" href="/assets/logo-BjDNvxQU.png" type="image/x-icon" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+
+    <!--
+      Temporary home: this page lived at uplate_app/web/privacyPolicy.html
+      (served from app.u-plate.com) and was copied here so it can be reached
+      from the marketing site. Content is unchanged from that version;
+      styling brought in line with this repo's design system (see DESIGN.md
+      and unsubscribe.html, the canonical reference for the standalone-page
+      pattern this follows).
+    -->
+    <style>
+        :root {
+            color-scheme: light;
+            --bg-grad: radial-gradient(120% 80% at 50% -10%, #ffffff 0%, #DCEDFF 55%, #c4dcf6 100%);
+            --surface: #ffffff;
+            --surface-soft: #f3f8ff;
+            --accent: #94B0DA;
+            --accent-strong: #6f92c5;
+            --accent-soft: rgba(148, 176, 218, 0.14);
+            --accent-line: rgba(148, 176, 218, 0.32);
+            --ink: #14213d;
+            --ink-soft: #3b4a6b;
+            --ink-muted: #526181;
+            --deep-navy: #3a4c7e;
+            --shadow-sm: 0 1px 2px rgba(20, 33, 61, 0.06);
+            --shadow-md: 0 12px 32px -12px rgba(31, 61, 110, 0.22);
+            --shadow-lg: 0 40px 80px -40px rgba(31, 61, 110, 0.45);
+            --radius-sm: 10px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        * { box-sizing: border-box; }
+
+        html, body { margin: 0; padding: 0; }
+
+        html { min-height: 100%; background: #DCEDFF; }
+
+        body {
+            min-height: 100vh;
+            background: var(--bg-grad);
+            background-attachment: fixed;
+            color: var(--ink);
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        a { color: inherit; }
+
+        .shell {
+            width: 100%;
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 20px 72px;
+        }
+
+        /* ============ Brand header ============ */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .brand-mark {
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-image: url("/assets/plate_dark-D9m1RI5p.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .brand-name {
+            margin: 0;
+            color: var(--ink);
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .brand-line {
+            margin: 4px 0 0;
+            color: var(--ink-muted);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            background: var(--surface);
+            border: 1px solid var(--accent-line);
+            color: var(--ink-soft);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: color 0.18s ease, border-color 0.18s ease, background-color 0.18s ease;
+        }
+
+        .back-link:hover {
+            color: var(--deep-navy);
+            border-color: var(--accent);
+            background: var(--surface-soft);
+        }
+
+        /* ============ Heading block ============ */
+        .hero {
+            margin-top: 44px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--accent-soft);
+            color: var(--deep-navy);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            margin: 16px 0 0;
+            color: var(--ink);
+            font-size: clamp(32px, 7vw, 44px);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .updated {
+            margin: 12px 0 0;
+            color: var(--ink-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* ============ Content card ============ */
+        .card {
+            position: relative;
+            margin-top: 32px;
+            padding: 8px 32px 36px;
+            background: var(--surface);
+            border: 1px solid rgba(148, 176, 218, 0.35);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(80% 40% at 50% 0%, rgba(148, 176, 218, 0.14), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        h2 {
+            margin: 36px 0 12px;
+            color: var(--ink);
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h3 {
+            margin: 24px 0 8px;
+            color: var(--ink-muted);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: var(--ink-soft);
+            font-size: 15.5px;
+            line-height: 1.6;
+        }
+
+        ul {
+            margin: 0 0 16px;
+            padding-left: 22px;
+        }
+
+        li {
+            margin-bottom: 8px;
+            color: var(--ink-soft);
+            font-size: 15.5px;
+            line-height: 1.6;
+        }
+
+        li strong, p strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        a.inline-link {
+            color: var(--deep-navy);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-color: var(--accent-line);
+            text-underline-offset: 2px;
+        }
+
+        a.inline-link:hover {
+            text-decoration-color: var(--deep-navy);
+        }
+
+        .contact {
+            margin-top: 36px;
+            padding: 20px 22px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--accent-line);
+            background: var(--accent-soft);
+        }
+
+        .contact h2 {
+            margin-top: 0;
+        }
+
+        .contact p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ============ Footer ============ */
+        .page-footer {
+            margin-top: 28px;
+            padding-top: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            color: var(--ink-muted);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .page-footer a {
+            text-decoration: none;
+            transition: color 0.18s ease;
+        }
+
+        .page-footer a:hover { color: var(--deep-navy); }
+
+        @media (min-width: 680px) {
+            .shell { padding: 56px 24px 88px; }
+            .card { padding: 12px 44px 44px; }
+        }
+
+        @media (max-width: 480px) {
+            .brand-header { flex-wrap: wrap; }
+            .back-link { order: 3; width: 100%; justify-content: center; }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="shell">
+        <header class="brand-header">
+            <a class="brand-left" href="/">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <div class="brand-text">
+                    <p class="brand-name">UPlate</p>
+                    <p class="brand-line">Your University Meal Prep Buddy</p>
+                </div>
+            </a>
+            <a class="back-link" href="/">← Back to UPlate</a>
+        </header>
+
+        <div class="hero">
+            <h1 class="title">Privacy Policy</h1>
+            <p class="updated">Last updated: August 15, 2026</p>
+        </div>
+
+        <div class="card">
+            <h2>Overview</h2>
+            <p>
+                UPlate ("we", "our", or "us") operates the UPlate mobile application and the
+                sign-up flow at <strong>app.u-plate.com</strong> (together, the "App"). This
+                Privacy Policy explains what we collect, why, and what control you have over it.
+            </p>
+            <p>
+                The short version: UPlate collects what it needs to personalize your campus dining
+                — your goals, your dietary restrictions, and what you log. We don't sell it, we
+                don't advertise against it, and you can delete it from inside the App.
+            </p>
+
+            <h2>Information We Collect</h2>
+
+            <h3>Information you give us</h3>
+            <ul>
+                <li><strong>Account details:</strong> your name, email address, username, and the
+                    Apple or Google identifier you sign in with.</li>
+                <li><strong>Your campus:</strong> the school you select during setup.</li>
+                <li><strong>Health and dietary profile:</strong> the answers you give during setup
+                    and can change later — your goal, age, sex, height, weight, activity level,
+                    meals per day, calorie and macronutrient targets, food allergies, dietary
+                    preferences, ingredients you want to avoid, favorite cuisines, and your dining
+                    hall ranking.</li>
+                <li><strong>Photos you submit:</strong> pictures of dining hall food you choose to
+                    upload. These are reviewed and, once approved, shown to other UPlate users
+                    alongside that food.</li>
+                <li><strong>Feedback you send us</strong> through the in-app report and feedback
+                    forms.</li>
+            </ul>
+
+            <h3>Information created by using UPlate</h3>
+            <ul>
+                <li><strong>Food and meal logs:</strong> what you log, when, and the nutrition
+                    totals that come from it, plus any weight entries you record.</li>
+                <li><strong>Saved and custom items:</strong> meals you save and foods you create
+                    yourself.</li>
+                <li><strong>Food ratings and taste signals</strong> used to suggest food you're
+                    likely to enjoy.</li>
+                <li><strong>Social activity:</strong> your friends, friend requests, and your
+                    standings in any macro competitions you join. Your username and competition
+                    results are visible to friends you've connected with.</li>
+                <li><strong>App preferences</strong> such as appearance and notification settings,
+                    so they follow you between devices.</li>
+            </ul>
+
+            <h3>Information collected automatically</h3>
+            <ul>
+                <li><strong>Analytics and usage data</strong> through Google Analytics for Firebase
+                    — device type, app version, screens viewed, and general (city-level) location
+                    derived from your IP address. You can turn this off in
+                    Settings&nbsp;→&nbsp;App&nbsp;Preferences.</li>
+                <li><strong>A device identifier</strong> used to prevent duplicate entries in
+                    giveaways and referral promotions.</li>
+                <li><strong>A push notification token</strong>, if you enable notifications.</li>
+            </ul>
+
+            <h3>Information that stays on your device</h3>
+            <p>
+                Some permissions the App asks for are used entirely on your phone and are never
+                sent to us:
+            </p>
+            <ul>
+                <li><strong>Apple Health / Google Fit</strong> data is limited to active energy
+                    burned, read on your device to adjust your daily calorie target. It is not
+                    uploaded, shared, or used for any other purpose.</li>
+                <li><strong>Camera and photo library</strong> access is used only to attach a photo
+                    you choose to submit.</li>
+            </ul>
+
+            <h2>How We Use Your Information</h2>
+            <p>We use your information to:</p>
+            <ul>
+                <li>Create and maintain your account, and back it up so you can restore it on a
+                    new device</li>
+                <li>Personalize what the App shows you — filtering menus for your allergies and
+                    dietary restrictions, calculating your targets, ranking dining halls, and
+                    suggesting food and meals you're likely to enjoy</li>
+                <li>Generate AI meal plans from your campus's live menu (see Service Providers
+                    below)</li>
+                <li>Operate social features you opt into, such as friends and macro competitions</li>
+                <li>Review and publish food photos submitted by users</li>
+                <li>Run giveaways and referral promotions, and prevent duplicate or fraudulent
+                    entries</li>
+                <li>Send you notifications and emails you've asked for</li>
+                <li>Understand how the App is used so we can improve it</li>
+            </ul>
+
+            <h2>Analytics</h2>
+            <p>
+                UPlate uses Google Analytics to understand how users interact with the App.
+                Google Analytics may collect non-personal information such as device information,
+                usage data, and general location. This information is used solely to improve the App.
+            </p>
+
+            <h2>Data Sharing</h2>
+            <p>
+                We do <strong>not</strong> sell, rent, or trade your personal information, and we
+                do not share it with third parties for their own marketing purposes.
+            </p>
+            <p>
+                The only information visible to other people is what social features are for: your
+                username, profile, and competition standings are shown to friends you connect with,
+                and food photos you submit are shown to other UPlate users once approved.
+            </p>
+
+            <h2>Service Providers</h2>
+            <p>
+                UPlate runs on infrastructure operated by other companies, which process data on our
+                behalf and only to provide the App:
+            </p>
+            <ul>
+                <li><strong>Google Firebase</strong> — authentication, analytics, push
+                    notifications, and app configuration.</li>
+                <li><strong>Cloudflare</strong> — our backend API, which stores your profile
+                    backup, logs, and social data.</li>
+                <li><strong>Amazon Web Services (S3)</strong> — storage for food photos.</li>
+                <li><strong>Google Gemini</strong> — meal plan generation. The request includes your
+                    dietary restrictions, targets, and the menu being planned against. Do not enter
+                    anything into the App you would not want processed by an AI service.</li>
+            </ul>
+
+            <h2>Advertising</h2>
+            <p>
+                UPlate does <strong>not</strong> show advertisements, and we do not use your
+                personal information for advertising or sell it to advertisers.
+            </p>
+            <p>
+                We do send occasional emails about UPlate itself — launch announcements,
+                promotions, and giveaways — to the address on your account. See
+                <a class="inline-link" href="#choices">Your Choices</a> for how to stop them.
+            </p>
+
+            <h2>Data Security</h2>
+            <p>
+                We take reasonable steps to protect your information. However, no method of
+                transmission over the Internet or electronic storage is completely secure.
+            </p>
+
+            <h2 id="choices">Your Choices</h2>
+            <p>You can change what UPlate collects at any time from inside the App:</p>
+            <ul>
+                <li><strong>Analytics:</strong> Settings → App Preferences → Anonymous Analytics
+                    turns usage analytics off.</li>
+                <li><strong>Notifications:</strong> Settings → Notification Settings lets you turn
+                    each notification type off individually.</li>
+                <li><strong>Email:</strong> you can opt out of UPlate emails at any time by
+                    contacting us at the address below.</li>
+                <li><strong>Deleting your account:</strong> Settings → Account Settings → Delete
+                    Account removes your account and the data associated with it. This cannot be
+                    undone. You can also email us and we'll handle it for you.</li>
+            </ul>
+
+            <h2>Your Data Protection Rights (GDPR)</h2>
+            <p>
+                If you are located in the European Economic Area (EEA), you have the following rights:
+            </p>
+            <ul>
+                <li>The right to access your personal data</li>
+                <li>The right to correct inaccurate data</li>
+                <li>The right to request deletion of your data</li>
+                <li>The right to restrict or object to processing</li>
+                <li>The right to data portability</li>
+                <li>The right to withdraw consent at any time</li>
+            </ul>
+            <p>
+                To exercise these rights, please contact us using the email address below.
+            </p>
+
+            <h2>Your Privacy Rights (CCPA)</h2>
+            <p>
+                If you are a California resident, you have the right to:
+            </p>
+            <ul>
+                <li>Request disclosure of the personal information we collect about you</li>
+                <li>Request deletion of your personal information</li>
+                <li>Know that we do not sell your personal information</li>
+            </ul>
+            <p>
+                We do not sell personal information.
+            </p>
+
+            <h2>Children's Information</h2>
+            <p>
+                UPlate does not knowingly collect personal information from children under the age of 13.
+                If you believe that a child has provided us with personal information, please contact us
+                and we will promptly remove it.
+            </p>
+
+            <h2>Changes to This Privacy Policy</h2>
+            <p>
+                We may update this Privacy Policy from time to time. Any changes will be posted on this
+                page with an updated effective date.
+            </p>
+
+            <div class="contact">
+                <h2>Contact Us</h2>
+                <p>
+                    If you have any questions about this Privacy Policy or your data rights, contact us at
+                    <a class="inline-link" href="mailto:contact@u-plate.com">contact@u-plate.com</a>.
+                </p>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <span>UPlate</span>
+            <span>·</span>
+            <a href="/">u-plate.com</a>
+        </footer>
+    </main>
+</body>
+
+</html>
