@@ -3,7 +3,8 @@ import { resolve } from 'path'
 
 const cleanRouteFiles = {
   'restaurants.html': 'Restaurants/index.html',
-  'coaches.html': 'Coaches/index.html'
+  'coaches.html': 'Coaches/index.html',
+  'careers.html': 'Careers/index.html'
 }
 
 function cleanRoutes() {
@@ -11,7 +12,8 @@ function cleanRoutes() {
     const [pathname, search = ''] = request.url.split('?')
     const routeFile = {
       '/Restaurants/': '/restaurants.html',
-      '/Coaches/': '/coaches.html'
+      '/Coaches/': '/coaches.html',
+      '/Careers/': '/careers.html'
     }[pathname]
 
     if (routeFile) request.url = `${routeFile}${search ? `?${search}` : ''}`
@@ -60,8 +62,10 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         restaurants: resolve(__dirname, 'restaurants.html'),
         coaches: resolve(__dirname, 'coaches.html'),
+        careers: resolve(__dirname, 'careers.html'),
         unsubscribe: resolve(__dirname, 'unsubscribe.html'),
-        onboarding: resolve(__dirname, 'onboarding.html')
+        onboarding: resolve(__dirname, 'onboarding.html'),
+        privacy: resolve(__dirname, 'privacy.html')
       }
     }
   }

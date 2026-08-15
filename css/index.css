@@ -2,7 +2,7 @@
 :root {
     color-scheme: light;
 
-    /* Blue-navy ramp — see DESIGN.md */
+    /* Blue-navy ramp, see DESIGN.md */
     --pale-sky: #DCEDFF;
     --pale-sky-deep: #C4DCF6;
     --surface: #FFFFFF;
@@ -18,7 +18,7 @@
     --ink-soft: #3B4A6B;
     --ink-muted: #526181;
 
-    /* Locked semantic breaks — nutrition data + form feedback only */
+    /* Locked semantic breaks: nutrition data + form feedback only */
     --macro-green: #166534;
     --macro-amber: #9A4508;
     --danger: #C0392B;
@@ -540,8 +540,8 @@ header > .collapsible-header {
     }
 }
 
-/* Per-card screenshot: mobile pairs each feature with its own image inline
-   (see the mobile override block). Desktop uses the 3D carousel instead. */
+/* Screenshots belong to the desktop carousel. The mobile story is intentionally
+   text-led so no phone image competes with the feature copy. */
 .feature-card-thumb {
     display: none;
 }
@@ -657,15 +657,14 @@ header > .collapsible-header {
     }
 }
 
-/* ============ MOBILE FEATURE STORY (no scroll-jack below 1024px) ============ */
+/* ============ MOBILE FEATURE STORY (no scroll-jack or phone imagery below 1024px) ============ */
 /* A 300vh pinned-and-scrubbed pin reads fine under a mouse wheel but fights
-   touch-momentum scrolling — the progress math runs on every native scroll
+   touch-momentum scrolling: the progress math runs on every native scroll
    event, so it stutters through iOS/Android's inertial deceleration and the
    4 pinned states blow past 3 phone-screens' worth of dead scroll distance.
-   Below the desktop breakpoint we drop the pin for a normal static list and
-   swap the 3D carousel for a native horizontal swipe strip instead — imagery
-   stays, the interaction becomes thumb-native. */
-@media (max-width: 1023px) {
+   Below the desktop breakpoint we drop the pin and phone imagery entirely for
+   a normal, text-first feature list. */
+@media (max-width: 1024px) {
     #features {
         min-height: auto;
     }
@@ -680,7 +679,7 @@ header > .collapsible-header {
         display: block;
     }
 
-    /* Hide the whole column, not just the wrapper — an emptied-but-present
+    /* Hide the whole column, not just the wrapper: an emptied-but-present
        flex child still contributes the parent's 32px gap. */
     .phone-carousel-col {
         display: none;
@@ -688,7 +687,7 @@ header > .collapsible-header {
 
     .feature-slides-container {
         position: static;
-        /* Must clear the base `display: flex` too — otherwise the now-static
+        /* Must clear the base `display: flex` too, otherwise the now-static
            feature items become flex ROW children and overflow off both edges. */
         display: block;
         width: 100%;
@@ -708,32 +707,18 @@ header > .collapsible-header {
         margin-bottom: 14px;
     }
 
-    /* Screenshot sits beside its own copy, so the feature it illustrates is
-       unambiguous and nothing scrolls sideways. */
+    /* Keep mobile cards focused on the feature message. */
     .feature-card {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        padding: 16px;
+        padding: 24px;
     }
 
     .feature-card-thumb {
-        display: block;
-        flex: 0 0 auto;
-        width: 92px;
-        /* Crop to the top of the screen: that's where each screen's title sits,
-           which is the part that identifies it at thumbnail size. */
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        object-position: top center;
-        border-radius: 14px;
-        box-shadow: var(--shadow-md);
+        display: none;
     }
 
-    /* The screenshot already carries the visual weight at this size; the icon
-       badge alongside it is redundant and crowds the copy. */
+    /* Restore the compact visual anchor now that the screenshot is gone. */
     .feature-card .icon-badge {
-        display: none;
+        display: flex;
     }
 
     .feature-card h3 {
@@ -812,6 +797,37 @@ header > .collapsible-header {
 .step-row h3 {
     font-family: var(--font-display);
     color: var(--ink);
+}
+
+@media (max-width: 767px) {
+    .step-row {
+        gap: 16px;
+        padding-bottom: 28px;
+    }
+
+    .step-row::before {
+        left: 23px;
+        top: 52px;
+    }
+
+    .step-number {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        font-size: 1.375rem;
+        border-radius: var(--radius-md);
+    }
+
+    .step-row h3 {
+        font-size: 1.25rem;
+        line-height: 1.25;
+        margin-bottom: 6px;
+    }
+
+    .step-row p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
 }
 
 /* ============ SOCIAL SECTION ============ */
@@ -1147,7 +1163,7 @@ header > .collapsible-header {
     }
 }
 
-/* ============ ABOUT PAGE — TEAM CARDS ============ */
+/* ============ ABOUT PAGE - TEAM CARDS ============ */
 .pc-card-wrapper {
     position: relative;
     width: 340px;
@@ -1296,27 +1312,16 @@ header > .collapsible-header {
         transition: none !important;
     }
 
-    /* The carousel is the only imagery in this section, and it's hidden here,
-       so pair each card with its own screenshot instead of going text-only. */
     .feature-card {
-        display: flex;
-        align-items: center;
-        gap: 20px;
+        padding: 24px;
     }
 
     .feature-card-thumb {
-        display: block;
-        flex: 0 0 auto;
-        width: 110px;
-        aspect-ratio: 3 / 4;
-        object-fit: cover;
-        object-position: top center;
-        border-radius: 14px;
-        box-shadow: var(--shadow-md);
+        display: none;
     }
 
     .feature-card .icon-badge {
-        display: none;
+        display: flex;
     }
 
     #dashboard {
@@ -1596,13 +1601,22 @@ textarea.field-input {
     min-height: 108px;
 }
 
+/* iOS Safari auto-zooms on focus into any input under 16px; keep form
+   fields at the zoom-safe minimum on small screens without changing the
+   desktop size. */
+@media (max-width: 640px) {
+    .field-input {
+        font-size: 16px;
+    }
+}
+
 .primary-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
     transform: none;
 }
 
-/* Off-screen but reachable by screen readers — used for the honeypot label. */
+/* Off-screen but reachable by screen readers; used for the honeypot label. */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -1720,7 +1734,7 @@ textarea.field-input {
     color: var(--ink-muted);
 }
 
-/* Status is never encoded by the dot alone — every row carries a
+/* Status is never encoded by the dot alone; every row carries a
    text label, so the roster reads without color vision. */
 .roster-status {
     font-size: 0.75rem;
@@ -2274,7 +2288,7 @@ textarea.field-input {
 }
 
 /* ============================================================
-   RESTAURANTS PAGE — INSIGHTS MOCKUP
+   RESTAURANTS PAGE - INSIGHTS MOCKUP
    Mirrors the real restaurant Insights dashboard: the four
    top-line stats, then the "Who's eating what" leaderboard and
    logged-item list. Keep in sync with that dashboard's own

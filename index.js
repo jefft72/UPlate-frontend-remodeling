@@ -590,11 +590,9 @@ function init() {
         }
     }
 
-    // Initialize carousel on load (CSS shows a static stacked list + swipeable
-    // image strip under reduced motion or below the desktop breakpoint, so skip —
-    // touch-momentum scrolling makes the pinned/scrubbed pin feel janky on phones,
-    // and there's no point paying for a scroll listener with no visual effect there)
-    if (!prefersReducedMotion && window.innerWidth >= RESPONSIVE_WIDTH && phoneItems.length > 0) {
+    // The carousel is desktop-only. Mobile uses a static, text-led feature list,
+    // so do not initialize or update the phone imagery there.
+    if (!prefersReducedMotion && window.innerWidth > RESPONSIVE_WIDTH && phoneItems.length > 0) {
         initCarousel()
 
         // Listen to scroll events
